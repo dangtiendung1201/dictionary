@@ -26,4 +26,9 @@ scrapy crawl dict -o dataDictionary.json
 ```
 
 All words that will be crawled stored in `wordList.txt` file
+
 Crawled data will be stored in `dataDictionary.json` file
+
+Due to the fact that the crawled data was not sorted by key, so we can sort it by
+
+## Usage
