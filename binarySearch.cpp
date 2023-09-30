@@ -56,7 +56,7 @@ int main()
 
     pair<string, string> ans;
 
-    ans = binarySearch("dick");
+    ans = binarySearch("cunt");
     cout << ans.first << '\t' << ans.second << '\n';
 
     ans = binarySearch("a");
