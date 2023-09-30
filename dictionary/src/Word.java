@@ -1,32 +1,49 @@
 public class Word {
-     private final String WORD_TARGET;
-     private final String WORD_EXPLAIN;
+    private String wordTarget;
+    private String wordExplain;
 
-     private static boolean validCharacter(char c) {
-         if (c == '-') {
-             return true;
-         }
-         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
-     }
-     Word(String word_target, String word_explain) {
-        for(int i = 0; i < word_target.length(); i ++) {
+    public Word(String word_target, String word_explain) {
+        for (int i = 0; i < word_target.length(); i++) {
             if (!validCharacter(word_target.charAt(i))) {
                 throw new IllegalArgumentException("This word has an invalid character!");
             }
         }
-        WORD_TARGET = word_target;
-        WORD_EXPLAIN = word_explain;
+        wordTarget = word_target;
+        wordExplain = word_explain;
     }
 
-    public String getWORD_TARGET() {
-        return WORD_TARGET;
+    private static boolean validCharacter(char c) {
+        if (c == '-') {
+            return true;
+        }
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
     }
 
-    public String getWORD_EXPLAIN() {
-        return WORD_EXPLAIN;
+    public String getWordTarget() {
+        return wordTarget;
+    }
+
+    public void setWordTarget(String wordTarget) {
+        this.wordTarget = wordTarget;
+    }
+
+    public String getWordExplain() {
+        return wordExplain;
+    }
+
+    public void setWordExplain(String wordExplain) {
+        this.wordExplain = wordExplain;
     }
 
     public String toString() {
-         return WORD_TARGET + " | " + WORD_EXPLAIN;
+        return "Word[" + "wordTarget=" + wordTarget + ",wordExplain=" + wordExplain + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Word another) {
+            return another.wordExplain.equals(this.wordExplain) && another.wordTarget.equals(this.wordTarget);
+        }
+        return false;
     }
 }
