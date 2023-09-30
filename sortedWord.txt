@@ -5913,7 +5913,6 @@ autosome	thể thường nhiễm sắc, thể nhiễm sắc điển hình
 autospasy	(sinh học) sự tự rụng, tự cắt
 autospore	bào tử gốc
 autostimulation	sự tự kích thích
-autostrada	em auto-road
 autotelic	có mục đích; tự thân
 autotest	(Tech) tự thử, tự kiểm tra
 autothinning	sự tự tỉa thưa, sự tự làm thưa
@@ -6709,7 +6708,7 @@ barre	xà ngang để cho các vũ nữ balê tập
 barred	có vạch kẻ dọc
 barrel	(Tech) khối hình trống; thể viên trụ
 barrel	thùng tròn, thùng rượu
-barrelled	haped) 
+barrelled	hình thùng
 barren	cằn cỗi (đất)
 barrenly	xem barren
 barrenness	sự cằn cỗi
@@ -6784,7 +6783,7 @@ bask	phơi nắng, tắm nắng
 basket	cái rổ, cái giỏ, cái thúng
 basketball	<thể> bóng rổ
 basketful	rổ (đầy), giỏ (đầy), thùng (đầy)
-basketry	ork) 
+basketry	nghề đan rổ rá
 basketwork	nghề đan rổ rá
 basque	tộc người Baxcơ (ở miền Tây Pirênê,  Đông bắc Tây Ban Nha,  Tây Nam Pháp)
 bass	(Tech) âm thanh trầm
@@ -8310,7 +8309,7 @@ bookbinder	thợ đóng sách
 bookbinding	sự đóng sách
 bookcase	tủ sách
 booker	xem book
-bookie	aker) 
+bookie	người đánh cá ngựa thuê chuyên nghiệp (chuyên nhận tiền của người khác để đánh thuê)
 bookish	ham đọc sách
 bookishly	xem bookish
 bookishness	tính ham đọc sách
@@ -8380,7 +8379,6 @@ boozer	người uống nhiều rượu
 boozy	say sưa tuý luý
 bop	(từ Mỹ,nghĩa Mỹ),  (từ lóng) cú đấm
 bopper	người nhảy điệu nhạc pop
-bora	đùa cợt) gió bora
 boracic	(hoá học) boric
 borage	một loại cây mà hoa và lá được dùng trong món sà lát và tạo hương vị cho thức uống
 borate	(hoá học) borat
@@ -8711,7 +8709,7 @@ brandish	khua, vung gươm...)
 brandisher	xem brandish
 brandy	rượu branđi, rượu mạnh
 branny	xem bran
-brant	oose) 
+brant	(động vật học) ngỗng trời branta
 brash	đống gạch đá vụn; đống mảnh vỡ
 brashly	xấc xược, xấc láo
 brashness	sự xấc xược, sự xấc láo
@@ -8821,10 +8819,9 @@ breeziness	tình trạng có gió hiu hiu
 breezy	có gió hiu hiu
 bregma	số nhiều bregmata
 bregmatic	có thóp
-brekker	ngôn ngữ nhà trường),  (từ lóng) bữa ăn sáng, bữa điểm tâm
 bremsstrahlung	(Tech) bức xạ hãm
 bren	súng breen
-brent	oose) 
+brent	(động vật học) ngỗng trời branta
 brethren	anh em đồng ngũ; anh em đồng nghiệp; đồng bào
 breve	<nhạc> dấu ngân
 brevet	(quân sự) hàm (thăng cấp nhưng không tăng lương)
@@ -8836,7 +8833,7 @@ brevity	tính ngắn gọn
 brew	sự chế, sự ủ (rượu bia); sự pha (trà)
 brewage	đồ uống pha chế
 brewer	người ủ rượu bia
-brewery	ouse) 
+brewery	nhà máy bia; nơi ủ rượu bia
 brewing	việc làm rượu bia
 briar	(thực vật học) cây thạch nam
 bribability	tính có thể hối lộ, tính có thể mua chuộc
@@ -10464,7 +10461,7 @@ carriage	(máy tính) bàn trượt (của máy tính trên bàn); xe (lửa, ng
 carriage	xe ngựa
 carriageable	xe chạy được (đường sá)
 carrier	(Tech) vật mang, bộ phận tải; truyền sóng
-carrier	igeon) 
+carrier	người đưa, người mang; người chuyên chở
 carriole	xe độc mã
 carrion	xác chết đã thối
 carrot	cây cà rốt; củ cà rốt
@@ -10635,7 +10632,7 @@ catalyzator	(hoá học) vật xúc tác, chất xúc tác
 catamaran	bè gỗ, bè thuyền đôi (làm bằng hai thuyền ghép lại)
 catamite	thanh niên theo tính dục đồng giới
 catamount	giống mèo rừng
-catamountain	ountain) 
+catamountain	(động vật học) mèo rừng Âu
 cataphora	hiện tượng có quan hệ ngữ pháp với nhóm từ ở sau
 cataphoresis	(Tech) điện vịnh, điện ly tử thấu nhập pháp
 cataphoretic	thuộc điện chuyển
@@ -10818,7 +10815,6 @@ cavalla	(động vật) cá viên
 cavalry	kỵ binh
 cavalryman	kỵ binh
 cavatina	(âm nhạc) khúc cavatin
-cave	ngôn ngữ nhà trường),  (từ lóng) chú ý! (thầy giáo đến kia...)
 caveat	hang, động
 caveman	người ở hang; người thượng cổ
 cavendish	thuốc lá bánh
@@ -12168,7 +12164,7 @@ circumambient	xung quanh (không khí, môi trường...)
 circumambiently	xem circumambient
 circumambulate	đi vòng quanh, đi xung quanh (vật gì)
 circumambulation	xem circumambulate
-circumbiendibus	đùa cợt) phương pháp vòng quanh
+circumbiendibus	lời nói quanh co uẩn khúc
 circumbuccal	quanh miệng
 circumcentre	tâm vòng tròn ngoại tiếp
 circumcircle	(Tech) chu vi, vòng ngoài
@@ -12827,7 +12823,7 @@ cobalt	(hoá học) coban
 cobaltic	(thuộc) coban
 cobaltous	(thuộc) coban
 cobber	(Uc) (thông tục) bạn thân, bạn nối khố
-cobble	tone) 
+cobble	sỏi, cuội (để rải đường) ((cũng) cobble stone)
 cobbler	lát (đường...) bằng đá lát, rải đá cuội (lên sân...)
 cobby	lùn, mập, chắc
 cobelligerent	đồng minh tham chiến
@@ -12857,7 +12853,7 @@ coccyges	(giải phẫu) xương cụt
 coccyx	(giải phẫu) xương cụt
 cochain	(Tech) đồng chuỗi
 cochain	top đôi xích
-cochin	hina) 
+cochin	giống gà Nam-bộ (Việt-nam)
 cochineal	phẩm yên chi; phẩm son (chế từ xác khô con rệp son)
 cochlea	(giải phẫu) ốc tai
 cochleae	(giải phẫu) ốc tai
@@ -14893,7 +14889,7 @@ contemporaneous	(+ with) cùng thời (với)
 contemporaneously	xem contemporaneous
 contemporaneousness	tính chất cùng thời
 contemporarily	xem contemporary
-contemporary	emporary) 
+contemporary	đương thời
 contemporise	đồng thời hoá
 contemporization	xem contemporize
 contemporize	đồng thời hoá
@@ -15551,7 +15547,7 @@ corporealize	vật chất hoá, cụ thể hoá
 corporeally	xem corporeal
 corporealness	xem corporeality
 corporeity	tính vật chất, tính cụ thể, tính hữu hình
-corposant	ire) 
+corposant	hòn sáng (thường xuất hiện trên tàu biển khi có bão)
 corps	(quân sự) quân đoàn
 corpse	xác chết, thi hài
 corpsman	(từ Mỹ,nghĩa Mỹ),  (quân sự) hộ lý quân y, dược tá quân y, y tá quân y
@@ -15806,7 +15802,6 @@ cotter	(như) cottar
 cotterpin	đinh chốt
 cotton	bông
 cottonocracy	những vua bông, những vua dệt
-cottonopolis	đùa cợt) thành phố Man-se-xte (trung tâm kỹ nghệ bông)
 cottony	(thuộc) bông; như bông
 cotyledon	(thực vật học) lá mầm
 cotyledonal	xem cotyledon
@@ -16145,7 +16140,7 @@ cramped	khó đọc (chữ)
 crampon	móc sắt
 cran	đơn vị đo lường Xôtlân bằng 170 lit
 cranage	sự dùng cần trục (để cất hàng)
-cranberry	erry) 
+cranberry	(thực vật học) cây nam việt quất
 crane	(Tech) cần trục
 crane	(động vật học) con sếu
 craneman	số nhiều cranemen
@@ -17087,7 +17082,7 @@ cutthroat	kẻ giết người
 cutting	(Tech) cắt (d)
 cutting	sự cắt, sự thái, sự xẻo (thịt...), sự xén (giấy...), sự chặt (cây...), sự đào (mương...), sự đục (đá...)
 cuttingly	chua cay, cay độc
-cuttle	ish) 
+cuttle	(động vật học) con mực
 cutty	cộc, cụt, ngắn ngủn
 cutup	(từ Mỹ,nghĩa Mỹ),  (từ lóng) người hay pha trò, người hay làm trò hề (để mọi người chú ý)
 cutwater	phần trước chiếc tàu
@@ -20978,7 +20973,7 @@ docile	dễ bảo, dễ sai khiến, ngoan ngoãn
 docilely	ngoan ngoãn, dễ bảo
 docility	tính dễ bảo, tính dễ sai khiến, tính ngoan ngoãn
 dock	(thực vật học) giống cây chút chít
-dockage	ues) 
+dockage	thuế biển
 docker	công nhân bốc xếp ở bến tàu
 docket	(pháp lý) sổ ghi án (ghi các bản án đã tuyên bố...)
 docking	việc cho tàu vào cảng
@@ -21054,7 +21049,7 @@ dogcart	xe chó (xe hai bánh có chỗ ngồi giáp lưng vào nhau, dưới ch
 doge	(sử học) tổng trấn
 dogface	(từ Mỹ,nghĩa Mỹ),  (từ lóng) lính, lính bộ binh
 dogfight	cuộc chó cắn nhau
-dogfish	almon) 
+dogfish	(động vật học) cá nhám góc
 dogged	gan góc, gan lì, lì lợm; ngoan cường, bền bỉ, kiên trì, dai dẳng
 doggedly	gan lì, bền chí
 doggedness	tính gan góc, tính gan lì, tính lì lợm; tính ngoan cường, tính bền bỉ, tính kiên trì, tính dai dẳng
@@ -21083,7 +21078,7 @@ dogshore	(hàng hải) giá đỡ (thân tàu lúc đóng tàu, được dỡ ra
 dogskin	da chó, da giả da chó (để làm găng tay)
 dogsled	xe trượt tuyết do chó kéo
 dogtrot	bước chạy lon ton
-dogwood	ree) 
+dogwood	(thực vật học) cây sơn thù du
 doh	<nhạc> nốt Đô
 doily	khăn lót (để ở dưới bát ăn, cốc...)
 doing	sự làm (việc gì...)
@@ -21212,7 +21207,7 @@ dopey	mơ mơ màng màng, tê mê (hút thuốc phiện, uống rượu mạnh.
 doping	sự dùng chất kích thích trong các cuộc thi đấu thể thao
 doppelganger	con ma của một người đang sống
 dopy	mơ mơ màng màng, tê mê (hút thuốc phiện, uống rượu mạnh...)
-dor	eetle) 
+dor	con bọ hung ((từ Mỹ,nghĩa Mỹ) (cũng) dor-bug)
 dorado	(động vật học) cá nục heo
 dorhawk	(động vật) cú muỗi
 dorian	người Đorian (thuộc cổ Hy lạp)
@@ -21221,7 +21216,7 @@ dorking	giống gà đoockinh (ở Anh)
 dorm	(thông tục) phòng ngủ tập thể
 dormancy	tình trạng ngủ ((nghĩa đen) & (nghĩa bóng))
 dormant	nằm ngủ, nằm im lìm, không hoạt động
-dormer	indow) 
+dormer	cửa sổ ở mái nhà
 dormeuse	xe ngựa hành khách có chỗ ngủ
 dormice	(động vật học) chuột sóc
 dormient	đang ngủ
@@ -21547,7 +21542,7 @@ drinking	sự uống rượu
 drinks	liên quan đến rượu
 drip	sự chảy nhỏ giọt, sự để nhỏ giọt
 dripping	sự chảy nhỏ giọt, sự để chảy nhỏ giọt
-dripstone	oulding) 
+dripstone	(kiến trúc) mái hắt
 drive	(Tech) bộ vân chuyển
 drive	(cơ học) điều khiển, lái, sự chuyển động
 drive	cuộc đi xe, cuộc đi chơi bằng xe
@@ -27195,7 +27190,7 @@ fictive	hư cấu, tưởng tượng
 fid	miếng chêm
 fiddle	(thông tục); buồm) khoan moan (hàng hải) cái chèn, cái chốt, cái chặn
 fiddler	(động vật học) cua uca, cua kéo đàn (cg fiddler crab)
-fiddlestick	ow) /'fidlbou/
+fiddlestick	cái vĩ (để kéo viôlông)
 fiddlesticks	vớ vẩn!, láo toét!
 fiddling	nhỏ mọn, lặt vặt, tầm thường, không đáng kể
 fiddly	nhỏ mọn; lặt vặt
@@ -27513,8 +27508,6 @@ fissured	chẻ; xẻ; nứt
 fist	nắm tay; quả đấm
 fisted	có bàn tay
 fistful	một nắm
-fistic	đùa cợt) đấm đá
-fistical	đùa cợt) đấm đá
 fisticuffer	người đấm
 fisticuffs	cuộc đấm đá
 fistula	(y học) rò
@@ -28217,12 +28210,12 @@ foolishly	điên rồ, rồ dại
 foolishness	tính dại dột, tính ngu xuẩn, tính xuẩn ngốc
 foolocracy	chính quyền của người ngu xuẩn
 foolproof	hết sức rõ ràng, ngu ngốc đến đâu cũng hiểu được; hết sức dễ dùng, ngu ngốc đến đâu cũng dùng được
-foolscap	ap) /'fu:lzkæp/
+foolscap	mũ anh hề
 foot	chân (đường thẳng góc); phút (đơn vị đo lường Anh)
 foot	chân, bàn chân (người, thú...)
 footage	chiều dài tính bằng phút (của cuộn phim)
 football	quả bóng đá
-footballer	layer) /'futbɔ:l,pleiə/
+footballer	(thể dục,thể thao) cầu thủ bóng đá
 footboard	bậc lên xuống (pử xe)
 footboy	chú bé hầu, chú tiểu đồng
 footed	có chân (dùng trong tính từ ghép)
@@ -28568,7 +28561,6 @@ forsake	bỏ rơi
 forsaken	bỏ rơi
 forsaking	sự bỏ rơi
 forsook	bỏ rơi
-forsooth	mỉa mai) thực ra, đúng ra, không còn ngờ vực gì
 forspend	làm cho mệt mỏi; kiệt sức
 forspent	(từ cổ,nghĩa cổ) mệt lử, kiệt sức
 forswear	thề bỏ, thề chừa
@@ -29182,7 +29174,7 @@ fulsomely	quá đáng, thái quá
 fulsomeness	tính chất quá đáng, tính chất thái quá (lời khen, lòng yêu)
 fulvescent	có ánh màu hung hung
 fulvous	hung hung màu da bò
-fumade	aid) /'feəmeid/
+fumade	cá xacddin hun khói
 fumarole	lỗ phun khí (ở miệng núi lửa)
 fumble	sự dò dẫm, sự sờ soạng; sự lần mò
 fumbler	người lóng ngóng, người vụng về
@@ -29349,8 +29341,8 @@ fust	(kiến trúc) cột trụ tường
 fustanella	váy trắng (của đàn ông Hy-lạp)
 fustian	vải bông thô
 fustic	(thực vật học) cây hoàng mộc
-fustigate	đùa cợt) đánh bằng dùi cui
-fustigation	đùa cợt) sự đánh bằng dùi cui
+fustigate	chỉ trích gay gắt
+fustigation	sự chỉ trích gay gắt
 fustiness	mùi ẩm mốc, mùi hôi mốc
 fusty	ẩm mốc, hôi mốc
 fut	tiếng xì (săm xì hơi); tiếng vèo vèo (đạn bay)
@@ -29474,7 +29466,6 @@ galea	(giải phẫu) cân bọc sọ; băng đầu
 galeate	(thực vật học) hình m
 galeeny	(động vật học) gà Phi
 galeiform	có hình mũ
-galen	đùa cợt) ông lang
 galena	(khoáng chất) Galen
 galenic	(thuộc) y lý của Galen
 galenical	thuốc bằng các loại cây cỏ, thuốc lá (chữa bệnh)
@@ -29504,7 +29495,6 @@ gallican	thuộc Gô-lơ (nước Pháp cổ)
 gallicanism	phong trào đòi nhà thờ Pháp độc lập với La-mã và Giáo hoàng
 gallicism	(ngôn ngữ học) từ ngữ đặc Pháp
 gallicization	sự làm cho phù hợp với phong tục, ngôn ngữ... Pháp
-galligaskins	đùa cợt) quần bó ở đầu gối; quần
 gallimaufry	mớ hỗn độn, mớ hổ lốn
 gallinacean	thuộc họ gà
 gallinaceous	(động vật học) (thuộc) bộ gà
@@ -30155,7 +30145,6 @@ geophysics	vật lý địa cầu
 geophyte	(thực vật học) cây chồi dưới
 geopolitical	thuộc về khoa địa chính trị
 geopolitics	khoa địa chính trị
-geoponic	đùa cợt) (thuộc) nông nghiệp
 geopotential	thế năng trái đất
 george	thánh Gióoc
 georgette	nhiễu joocjet, kết joocjet
@@ -30823,9 +30812,9 @@ goliath	người khổng lồ
 golliwog	búp bê mặt đen
 gollop	(thông tục) nuốt chửng
 golly	by golly! trời!, chao ôi!
-goloptious	đùa cợt)
+goloptious	ngon, hợp khẩu vị (thức ăn)
 golosh	giày cao su (để đi mưa, đi tuyết, thường đi ra ngoài giày khác)
-goluptious	đùa cợt)
+goluptious	ngon, hợp khẩu vị (thức ăn)
 gombeen	sự cho vay nặng lãi
 gombroon	cũng gomroon
 gomeril	cũng gomeral
@@ -31138,12 +31127,10 @@ grandiosity	vẻ hùng vĩ, vẻ lớn lao, vẻ đại quy mô
 grandioso	(âm nhạc) hùng tráng
 grandly	đàng hoàng, đâu ra đấy
 grandma	uây oác['grænmə,mɑ:]
-grandmamma	thân mật) bà
 grandmother	bà
 grandmotherly	như bà đối với cháu; quá nuông chiều
 grandness	xem grand
 grandpa	nhuấy &
-grandpapa	thân mật) ông
 grandparents	ông bà (nội ngoại)
 grandsire	(từ cổ, nghĩa cổ) ông; tổ phụ
 grandson	cháu trai (gọi bằng ông nội, ông ngoại)
@@ -31162,8 +31149,8 @@ granitic	(thuộc) granit
 granitite	(khoáng chất) granitit
 granitoid	dạng granit, tựa granit
 granivorous	ăn hạt
-grannie	thân mật) bà
-granny	thân mật) bà
+grannie	(thông tục) bà già
+granny	(thông tục) bà già
 granodiorite	(khoáng chất) granodiorit
 granolith	đá nhân tạo bằng xi măng trộn granit vụn
 granolithic	thuộc đá nhân tạo bằng xi-măng trộn granit vụn
@@ -31220,7 +31207,7 @@ graphological	xem graphology
 graphologist	thầy tướng chữ
 graphology	thuật xem tướng chữ
 graphostatis	tĩnh học đồ thị
-grapnel	ron) /'græpliɳ,aiən/
+grapnel	(hàng hải) neo móc (có nhiều móc)
 grapple	(như) grapnel
 grappler	người túm lấy, người níu lấy, người ôm ghì
 grappling	sự móc hàm
@@ -32048,7 +32035,7 @@ hale	khoẻ mạnh, tráng kiện (người già)
 half	(một) nửa, phân chia đôi
 halfbeak	loại cá biển hoặc cá nước ngọt nhỏ (hàm dưới dài và trễ xuống)
 halfinvariant	(thống kê) bán bất biến
-halfnelson	elson) /'hɑ:f'nelsn/
+halfnelson	(thể dục,thể thao) thế ghì chặt (đánh vật)
 halfpenny	đồng nửa xu, đồng trinh (của Anh)
 halfpennyworth	vật đáng giá nửa xu
 halftime	(thể thao) giờ giải lao lúc hết hiệp một (trong bón đá)
@@ -32426,7 +32413,7 @@ hawk	(động vật học) diều hâu, chim ưng
 hawkbit	(thực vật) cây bồ công anh
 hawker	người đi săn bằng chim ưng
 hawkish	(chính trị) ủng hộ chính sách diều hâu (chứ không thoả hiệp)
-hawkisk	ike) /'hɔ:klaik/
+hawkisk	như chim ưng như diều hâu
 hawkmoth	loại nhậy lớn
 hawksbill	con đồi mồi (rùa biển)
 hawkweed	cây thuộc họ cúc (có hoa đỏ, da cam hoặc vàng,  (thường) mọc thành cụm)
@@ -32571,7 +32558,7 @@ heathery	phủ đầy cây thạch nam
 heathland	vùng có cây thạch nam
 heathy	có nhiều bãi thạch nam
 heating	sự đốt nóng, sự đun nóng; sự làm nóng
-heatproof	esistant) /'hi:tri'zistənt/ (heat-resisting) /'hi:tri'zistiɳ/
+heatproof	chịu nóng, chịu nhiệt
 heave	nâng lên, kéo; lên xuống, nhấp nhô
 heave	sự cố nhấc lên, sự cố kéo
 heaven	(thiên văn) bầu trời thiên đàng
@@ -33174,7 +33161,7 @@ highlight	chỗ nổi bật nhất, chỗ đẹp nhất, chỗ sáng nhất (tro
 highlighter	bút đánh dấu
 highly	rất, lắm, hết sức, ở mức độ cao
 highness	mức cao (thuê giá cả...)
-highproof	roof) /'haipru:f/
+highproof	có nồng độ rượu cao
 hight	(từ cổ,nghĩa cổ),  (thơ ca);(đùa cợt) gọi là, tên là
 highway	đường cái, quốc lộ
 highwayman	kẻ cướp đường
@@ -33381,7 +33368,7 @@ hoecake	bánh nhỏ làm bằng bột ngô
 hoedown	(từ Mỹ) điệu nhảy sinh động ở nông thôn
 hog	lợn; lợn thiến
 hogan	nhà làm bằng cành cây, trát bùn người da đỏ Navaho ở
-hogback	ack) /'hɔgzbæk/
+hogback	dây núi đồi sống trâu (có sống nhọn)
 hogcote	chuồng lợn
 hogg	cừu non chưa xén lông; lông cừu xén lần đầu
 hoggery	nơi nuôi lợn
@@ -33812,8 +33799,8 @@ hot	nóng, nóng bức
 hotbed	luống đất bón phân tươi
 hotbrain	người nóng nảy, người nóng vội; người bộp chộp
 hotch	cựa quạy; nhúch nhích luôn; không yên một chổ
-hotchpot	odge) /'hɔdʤpɔdʤ/ (hotchpotch) /'hɔtʃpɔtʃ/
-hotchpotch	odge) /'hɔdʤpɔdʤ/ (hotchpotch) /'hɔtʃpɔtʃ/
+hotchpot	món hổ lốn; món thịt cừu hầm rau
+hotchpotch	món hổ lốn; món thịt cừu hầm rau
 hotel	khách sạn
 hotelier	chủ khách sạn
 hotfoot	mau, gấp, vội vàng
@@ -34535,9 +34522,9 @@ iata	công ty chuyên chở hàng không quốc tế (International  Air Transpo
 iatrogenic	(thuộc chứng bệnh) gây ra do khám bệnh hoặc điều trị
 iba	cơ quan phát thanh độc lập (Independent Broadcasting Authority)
 iberian	(thuộc) I-bê-ri (xứ cũ gồm Bồ-ddào-nha và I-pha-nho)
-ibex	oat) /'rɔkgout/
+ibex	(động vật học) dê rừng núi An-pơ
 ibexes	xem ibex
-ibices	oat) /'rɔkgout/
+ibices	(động vật học) dê rừng núi An-pơ
 ibid	cùng ở cuốn sách đó hoặc đoạn đó v v...
 ibidem	((viết tắt) ibid,  ib) trong cuốn sách này, trong cùng chương này, trong cùng đoạn này
 ibis	(động vật học) cò quăm
@@ -36630,7 +36617,6 @@ inexplosive	không nổ bùng, không thể nổ
 inexpressibility	tính không thể diễn đạt được, tính không thể nói ra được, tính không thể tả được ((từ cổ,nghĩa cổ) (cũng) inexpressiveness)
 inexpressible	không thể diễn đạt được, không thể nói ra được, không thể tả được ((từ cổ,nghĩa cổ) (cũng) inexpressive)
 inexpressibleness	xem inexpressible
-inexpressibles	đùa cợt) quần
 inexpressibly	không tả nổi, không tả xiết
 inexpressive	không diễn cảm; không biểu lộ (tình cảm...); không hồn, không thần sắc (cái nhìn)
 inexpressively	xem inexpressive
@@ -39220,7 +39206,6 @@ jeeringly	cười nhạo, chế nhạo, chế giễu
 jeeves	đầy tớ trung thành; người thân tín
 jehad	chiến tranh Hồi giáo (giữa những tín đồ đạo Hồi và những người không theo đạo Hồi)
 jehovah	(kinh thánh) Giê-hô-va
-jehu	đùa cợt) người đánh xe ngựa; người đánh xe ngựa phóng bạt mạng
 jejune	tẻ nhạt, khô khan, không hấp dẫn, không gợi cảm
 jejunectomy	(y học) thủ thuật cắt ruột chay
 jejunely	xem jejune
@@ -39733,7 +39718,6 @@ kat	cũng khat
 kata	võ phương đông (kacate Nhật bản)
 katabatic	(khí tượng) thổi xuống (gió)
 katabolism	(sinh vật học) sự dị hoá
-katamorphic	đùa cợt) biến chất ở sâu
 katamorphism	(địa lý,ddịa chất) hiện tượng biến chất đới sâu
 katharevusa	tiếng Hy Lạp hiện đại tuân theo cách dùng của tiếng Hy Lạp cổ
 katharsis	sự thành tâm
@@ -40730,7 +40714,7 @@ lashing	sự đánh đập, sự quất bằng roi
 lashings	Nhiều; thừa mứa
 lashkar	doanh trại quân đội Ân
 lass	cô gái, thiếu nữ
-lassie	thân mật) cô gái, thiếu nữ
+lassie	em yêu quí
 lassitude	sự mệt nhọc, sự mệt mỏi, sự uể oải
 lasso	dây thòng lọng (dùng để bắt thú vật)
 lassoer	người bắt bằng dây thòng lọng
@@ -41553,7 +41537,7 @@ linage	số lượng tin tính theo dòng
 linalool	(hoá học) linalola
 linchpin	đinh chốt trục xe; chốt sắt hình S
 linctus	xirô trị ho
-linden	ree) /'laimtri:/
+linden	(thực vật học) cây đoan
 line	dây, dây thép
 line	đường; tuyến; dòng; băng truyền l. at infinity đường thẳng ở vô tận
 lineage	nòi giống, dòng, dòng giống, dòng dõi
@@ -41956,7 +41940,7 @@ lofty	cao, cao ngất
 log	khúc gỗ mới đốn, khúc gỗ mới xẻ
 log	lôga
 log	vận tốc kế
-logan	tone) /'lɔgənstoun/
+logan	đá cheo leo
 loganberry	<thực> quả mâm xôi
 logaoedic	adj
 logarithm	(toán học) loga
@@ -43109,12 +43093,12 @@ manganiferous	(hoá học) có mangan
 manganite	(khoáng chất) manganit
 mangano	tiền tố
 mange	(thú y học) bệnh lở ghẻ
-mangel	urzel) /'mæɳgl'wə:zl/ (mangold) /'mæɳgəld/ (mangold-wurzel) /'mæɳgəld'wə:zl/
+mangel	(thực vật học) củ cải to ((thường) dùng làm thức ăn cho vật nuôi)
 manger	máng ăn (ngựa, trâu, bò...)
 mangle	(nghành dệt) máy cán là
 mango	quả xoài
 mangoes	quả xoài
-mangold	urzel) /'mæɳgl'wə:zl/ (mangold) /'mæɳgəld/ (mangold-wurzel) /'mæɳgəld'wə:zl/
+mangold	(thực vật học) củ cải to ((thường) dùng làm thức ăn cho vật nuôi)
 mangonel	máy bắn đá
 mangosteen	(thực vật học) cây măng cụt
 mangrove	(thực vật học) cây đước
@@ -43569,7 +43553,6 @@ mateless	không có bạn, không có đôi
 matelot	(hàng hải),  (từ lóng) thuỷ thủ
 matelote	như matelotte
 matelotte	Cách viết khác : matelote 
-mater	ngôn ngữ nhà trường),  (từ lóng) mẹ, bà bô, bà via
 materfamilias	bà chủ gia đình
 material	vật chất
 material	vật chất; vật liệu chất
@@ -45144,7 +45127,6 @@ mixedness	tính chất lẫn lộn, tính chất pha trộn, tính chất ô h�
 mixer	(máy tính) tầng trộn, bộ trộn, máy trộn
 mixer	người trộn, máy trộn
 mixible	xem mixable
-mixology	đùa cợt) thuật pha rượu côctay; tài pha rượu côctay
 mixture	sự hỗn hợp
 mixture	sự pha trộn, sự hỗn hợp
 mizen	(hàng hải) cột buồm phía lái ((cũng) mizen mast)
@@ -46515,7 +46497,7 @@ needleful	đoạn chỉ xâu kim (mỗi lần)
 needless	không cần thiết, thừa, vô ích
 needlessly	thừa, vô ích
 needlewoman	người đàn bà làm nghề vá may
-needlework	raft) /'ni:dlkrɑ:ft/
+needlework	việc vá may
 needments	những thứ cần dùng (đặc biệt là để đi du lịch)
 needs	(tục ngữ) túng phải tính
 needy	nghèo túng
@@ -46813,7 +46795,7 @@ night	đêm, tối, cảnh tối tăm
 nightcap	màn ngủ
 nightfall	lúc sẩm tối, lúc chập tối, lúc hoàng hôn
 nightingale	(động vật học) chim sơn ca
-nightjar	wl) /'fə:naul/
+nightjar	(động vật học) cú muỗi
 nightly	về đêm, đêm đêm
 nightman	công nhân vệ sinh, người đổ thùng
 nightmare	cơn ác mộng
@@ -48026,7 +48008,7 @@ oilcan	thùng dầu
 oilcloth	vải dầu
 oildom	khu vực có dầu
 oiled	có tra dầu
-oilengine	ngine) /'ɔil,endʤin/
+oilengine	máy chạy dầu
 oiler	tàu chở dầu
 oilery	giếng dầu
 oilfield	vùng có dầu
@@ -48598,19 +48580,16 @@ oracular	(thuộc) lời sấm, (thuộc) thẻ bói
 oracularity	tính chất tiên tri (của một câu nói)
 oral	bằng lời nói, nói miệng
 orally	bằng cách nói miệng, bằng lời
-orang	tan) /'ɔ:rəɳ'u:tæn/
+orang	(động vật học) con đười ươi
 orange	quả cam
 orangeade	nước cam
 orangery	vườn cam
 orangy	có vị cam; giống cam
-orate	đùa cợt) khua môi múa mép, diễn thuyết
 oration	bài diễn văn, bài diễn thuyết
 orator	người diễn thuyết; nhà hùng biện
 oratorical	(thuộc) sự diễn thuyết, (thuộc) tài hùng biện
 oratorically	hùng hồn
 oratorio	(âm nhạc) Ôratô
-oratorise	đùa cợt) khua môi múa mép, diễn thuyết
-oratorize	đùa cợt) khua môi múa mép, diễn thuyết
 oratory	nhà thờ nhỏ
 oratress	người diễn thuyết; nhà hùng biện (đàn bà)
 oratrix	như oratress
@@ -50526,7 +50505,7 @@ panicum	(thực vật học) cây kê
 panification	sự làm bánh mì
 panimmunity	tính miễn dịch toàn bộ
 panivorous	ăn bánh mì
-panjandrum	mỉa mai) quan lớn, vị tai to mặt lớn
+panjandrum	công chức khệnh khạng
 panlogism	(triết học) thuyết phiếm lôgic
 panlogistic	(triết học) phiếm lôgic
 panmictic	ngẫu giao; hỗn giao
@@ -50694,7 +50673,7 @@ parachromatine	(sinh vật học) chất nhân không nhiễm sắc
 parachronism	sự lùi niên đại
 parachrosis	sự đổi màu, sự phai màu, sự bạc màu
 parachute	cái dù (để nhảy)
-parachuter	umper) /'pærəʃu:t,dʤʌmpə/
+parachuter	người nhảy dù
 parachutic	xem parachute
 parachutist	người nhảy dù
 paraclete	người bào chữa, người bênh vực, người an ủi
@@ -51037,7 +51016,7 @@ parlante	xem parlando
 parlay	(từ Mỹ,nghĩa Mỹ) sự đánh cuộc
 parlement	pháp viện tối cao (Pháp trước năm 1789)
 parley	cuộc thương lượng, cuộc đàm phán
-parleyvoo	đùa cợt) tiếng Pháp
+parleyvoo	người Pháp
 parliament	nghị viện; nghị trường
 parliamentarian	nghị sĩ hùng biện
 parliamentarism	chế độ đại nghị
@@ -51158,7 +51137,7 @@ participle	(ngôn ngữ học) động tính từ
 particle	chút, tí chút
 particle	hạt
 particolored	có nhiều màu, nhiều bộ phận khác nhau
-particoloured	oloured) /'pɑ:ti,kʌləd/
+particoloured	lẫn màu, nhiều màu
 particular	đặc biệt, đặc thù; cá biệt, riêng biệt
 particularisation	sự đặc biệt hoá, tính đặc thù hoá
 particularise	đặc biệt hoá, đặc thù hoá
@@ -51332,9 +51311,7 @@ patentee	người được cấp bằng sáng chế
 patenting	sự cấp bằng sáng chế
 patently	rõ ràng, hiển nhiên, rõ rành rành
 patentor	người có bằng sáng chế; người mua đặc quyền sáng chế
-pater	ngôn ngữ nhà trường),  (từ lóng) bố, ông bố
 patera	(kiến trúc) hoa văn nổi hình đĩa
-paterfamilias	đùa cợt) gia trưởng; cha
 paternal	của cha; thuộc cha
 paternalism	chủ nghĩa gia trưởng
 paternalist	xem paternalism
@@ -51383,7 +51360,6 @@ patly	xem pat
 patness	xem pat
 patois	thổ ngữ địa phương
 patological	(logic học) (thuộc) bệnh lý
-patresfamilias	đùa cợt) gia trưởng; cha
 patrial	(Anh) người có quyền ở lại Anh vì cha mẹ, ông bà đã sinh ở Anh
 patriarch	tộc trưởng; gia trưởng
 patriarchal	(thuộc) tộc trưởng; (thuộc) gia trưởng
@@ -51558,7 +51534,7 @@ pear	quả lê
 pearl	đường viền quanh dải đăng ten (ở áo gối...)
 pearlaceous	giống hạt trai
 pearlbarley	lúa mạch xay thành những hạt nhỏ
-pearler	isher) /pearl-fisher/
+pearler	người mò ngọc trai
 pearlies	áo có khuy xà cừ (của người bán cá, hoa quả rong)
 pearliness	tình trạng giống ngọc trai
 pearlised	Cách viết khác : pearlized 
@@ -52011,7 +51987,7 @@ peplum	váy ngắn
 peplus	xem peplos
 pepo	quả bầu nậm
 pepper	hạt tiêu, hồ tiêu
-pepperbox	aster) /'pepə,kɑ:stə/ (pepper-castor) /'pepə,kɑ:stə/
+pepperbox	lọ hạt tiêu ((cũng) pepper-pot)
 peppercorn	hội viên
 pepperiness	xem peppery
 peppering	cay
@@ -52025,7 +52001,6 @@ peppy	(từ Mỹ,nghĩa Mỹ),  (từ lóng) đầy nghị lực, đầy dũng k
 pepsin	(sinh vật học) Pepxin
 pepsinogen	(sinh vật học) pepxinogen
 peptic	(thuộc) tiêu hoá
-peptics	đùa cợt) cơ quan tiêu hoá
 peptide	(sinh (hoá học)) sự kết hợp của hai hay nhiều axit amin tạo thành chuỗi
 peptogen	thuốc tăng tiết pepxin
 peptone	Peptone
@@ -52091,7 +52066,6 @@ perdurably	xem perdurable
 perdure	kéo dài; sống lâu
 pere	cha (sau biệt hiệu của cha để phân biệt với con)
 peregrin	(từ cổ,nghĩa cổ) ngoại lai, nhập cảng
-peregrinate	đùa cợt) đi du lịch, làm một cuộc hành trình
 peregrination	cuộc du lịch, cuộc hành trình
 peregrinator	xem peregrinate
 peregrine	(từ cổ,nghĩa cổ) ngoại lai, nhập cảng
@@ -52359,7 +52333,6 @@ permeant	xem permeate
 permease	chất giúp một chất khác dễ thấm vào tế bào
 permeate	thấm vào, thấm qua
 permeation	sự thấm, sự thấm vào, sự thấm qua
-permian	đùa cợt) (thuộc) hệ pecmi
 permiscible	(từ hiếm) có thể hỗn hợp
 permissibility	tính cho phép được; tính chấp nhận được, tính dung được
 permissible	cho phép được
@@ -52686,7 +52659,7 @@ petulantly	xem petulant
 petunia	(thực vật học) cây thuốc lá cảnh
 petuntse	đất trắng (để làm đồ sứ ở Trung quốc)
 pew	ghế dài có tựa trong nhà thờ
-pewage	ent) /'pju:rent/
+pewage	tiền thuê chỗ ngồi (trong nhà thờ)
 pewit	(động vật học) chim te te
 pewter	hợp kim thiếc
 peyote	xương rồng Mêhicô (loại nhỏ thân tròn)
@@ -53217,7 +53190,6 @@ phrenological	(thuộc) não tướng học
 phrenologist	nhà não tướng học
 phrenology	khoa tướng số
 phretium	(sinh vật học) quần xã bể chứa nhân tạo
-phrontistery	đùa cợt) nơi trầm tư mặc tưởng
 phthiriasis	(y học) bệnh chấy rận
 phthisical	(y học) (thuộc) bệnh lao
 phthisis	bệnh lao; bệnh lao phổi
@@ -53365,7 +53337,7 @@ pictorial	có hình ảnh; trực quan
 pictoriality	xem pictorial
 pictorially	bằng hình tượng, bằng tranh ảnh
 picture	bức tranh, bức ảnh, bức vẽ
-picturedrome	heatre) /'piktʃə,θiətə/
+picturedrome	rạp chiếu bóng, rạp xi nê ((cũng) picture_show)
 picturesque	đẹp, đẹp như tranh; đáng vẽ nên tranh (phong cảnh...)
 picturesquely	đẹp, gây ấn tượng mạnh
 picturesqueness	tính đẹp, tính như tranh
@@ -54567,7 +54539,7 @@ polhode	(cơ học) đường tâm quay (trên mặt phẳng động) pôlodi
 polibureau	bộ chính trị
 poliburo	bộ chính trị
 police	cảnh sát, công an (lực lượng, tổ chức...)
-policeman	fficer) /pə'li:s'ɔfisə/
+policeman	cảnh sát, công an
 policewoman	số nhiều là policewomen, viết tắt là PW
 policlinic	bệnh xá; bệnh viện ngoại tr
 policy	chính sách (của chính phủ, đảng...)
@@ -55030,7 +55002,7 @@ poppy	(thực vật học) cây thuốc phiện
 poppycock	(từ Mỹ,nghĩa Mỹ),  (từ lóng) chuyện vớ vẩn, chuyện nhảm nhí, chuyện vô nghĩa lý; điều vớ vẩn, điều nhảm nhí, điều vô nghĩa lý
 popshop	hiệu cầm đ
 popsicle	<Mỹ> kem que
-popsy	opsy) /'pɔpsi'wɔpsi/
+popsy	cô gái (tiếng gọi thân mật)
 populace	dân chúng, quần chúng
 popular	(thuộc) nhân dân, của nhân dân, do nhân dân
 popularisation	sự đại chúng hoá
@@ -55250,7 +55222,7 @@ potableness	xem potable
 potables	((thường)(đùa cợt)) đồ uống, những thứ uống được
 potamic	(thuộc) sông
 potamology	(địa lý,địa chất) khoa sông ngòi, môn sông ngòi
-potash	sh) /'pə:læʃ/
+potash	(hoá học) Kali cacbonat, bồ tạt ((từ cổ,nghĩa cổ) (cũng) potass)
 potass	(từ cổ,nghĩa cổ) (như) potash
 potassic	xem potassium
 potassium	(hoá học) kali
@@ -55412,7 +55384,6 @@ pram	tàu đáy bằng (để vận chuyển hàng lên tàu, ở biển Ban-tí
 prance	sự nhảy dựng lên, động tác nhảy dựng lên
 prancer	xem prance
 prancingly	xem prance
-prandial	đùa cợt) (thuộc) bữa ăn
 prandially	xem prandial
 prang	(hàng không),  (từ lóng) ném bom trúng (mục tiêu)
 prank	trò chơi ác, trò chơi khăm, trò đùa nhả
@@ -55891,7 +55862,7 @@ preordainment	xem preordain
 preordination	xem preordain
 preovarian	(giải phẫu) trước buồng trứng
 preovulatory	trước khi rụng trứng
-prep	ngôn ngữ nhà trường),  (từ lóng) sự soạn bài; bài soạn
+prep	trường dự bị
 prepackaged	đã đóng gói trước
 prepacked	xem prepackaged
 prepacks	hàng đóng gói sẵn
@@ -56871,7 +56842,7 @@ proof	(phép) chứng minh
 proof	chứng, chứng cớ, bằng chứng
 proofer	xem proof
 proofless	không có chứng cớ, không có bằng chứng
-prop	ngôn ngữ nhà trường) (từ lóng),  (viết tắt) của proposition, mệnh đề
+prop	(hàng không) (từ lóng) (viết tắt) của propeller
 propaedeutic	dự bị (giáo dục...)
 propaedeutical	dự bị (giáo dục...)
 propaedeutics	giáo dục dự bị
@@ -58082,7 +58053,7 @@ pycnostyle	(kiến trúc) hàng cột sít nhau
 pycnotic	thoái hoá tế bào
 pycnoxylic	thuộc gỗ cứng, thuộc gỗ chắc
 pyebald	xem piebald
-pyedog	og) /'paidɔg/ (pie-dog) /'paidɔg/
+pyedog	(Anh-Ân) chó hoang
 pyelitis	(y học) viêm bể thận
 pyelogram	(y học) ảnh chụp tia X quang bể thận
 pyelographic	xem pyelography
@@ -59124,7 +59095,7 @@ rarefied	đã loâng đi (không khí)
 rarefy	làm loãng (không khí)
 rarely	hiếm, hiếm có, ít có
 rareness	sự hiếm có, sự ít c
-rareripe	ipe) /'reiðraip/
+rareripe	chín sớm, chín trước mùa
 raring	<thgt> nôn nóng, quá háo hức
 rarity	sự hiếm có, sự ít có; vật hiếm có, của hiếm
 rascal	kẻ
@@ -59153,7 +59124,7 @@ ratafia	rượu hạnh
 ratal	tổng số tiền thuế địa phương
 ratan	(thực vật học) cây mây, cây song
 rataplan	tiếng trống tùng tùng
-ratatat	at) /ræt'tæt/
+ratatat	tiếng gõ cọc cọc (gõ cửa...)
 ratatouille	món xúp rau của miền Nam nước pháp
 ratbag	(từ lóng) một người khó chơi, khó chịu
 ratch	lắp bánh cóc vào
@@ -60905,7 +60876,7 @@ restaurateur	người quản lý, giám đốc, chủ (khách sạn, hiệu ăn)
 restful	yên tĩnh; thuận tiện cho sự nghỉ ngơi
 restfully	yên tựnh; thuận tiện cho sự nghỉ ngơi, cho (cảm giác) nghỉ ngơi
 restfulness	sự yên tĩnh; tình trạng thuận tiện cho sự nghỉ ngơi
-resthome	ome) /'resthoum/
+resthome	nhà nghỉ
 restibilis	(thực vật học) cây nhiều năm
 restibrachium	(giải phẫu) cuống dưới tiểu não
 restif	xem restive
@@ -61515,7 +61486,7 @@ rifeness	sự lan tràn, sự lưu hành, sự thịnh hành, sự hoành hành
 riff	đoạn ngắn những nốt nhạc được lặp lại trong âm nhạc dân gian
 riffle	mang đâi (để đãi vàng)
 rifle	đường rânh xoắn (ở nòng súng)
-riflegreen	reen) /'raifi'gri:n/
+riflegreen	lục sẫm
 rifleman	(quân sự) lính mang súng trường
 riflemen	<qsự> lính mang súng trường
 riflery	những phát súng trường
@@ -61875,7 +61846,7 @@ roseate	hồng, màu hồng
 rosebay	<Mỹ>  <thực> cây đỗ quyên; một giống cây đỗ quyên
 rosebud	nụ hoa hồng
 rosemary	(thực vật học) cây hương thảo
-roseola	ash) /'rouzræʃ/
+roseola	(y học) ban đào
 roseolar	bị ban đào
 rosette	nơ hoa hồng (để trang điểm...)
 rosewood	gỗ hồng mộc
@@ -62237,7 +62208,6 @@ ruthlessness	tính tàn nhẫn, tính nhẫn tâm
 rutilant	đỏ chói; sáng chói
 ruttish	dâm đãng; hiếu sắc
 rutty	có nhiều vết lún (của bánh xe)
-rux	ngôn ngữ nhà trường),  (từ lóng) cơn giận dữ
 rv	bản kinh thánh đã được hiệu ứng (Revised  Version) (of the Bible)
 rybbly	có nhiều gạch vụn bỏ đi, có nhiều đá vụn bỏ đi
 rye	(thực vật học) lúa mạch đen
@@ -62717,7 +62687,6 @@ sapindaceous	(thực vật học) (thuộc) họ bồ hòn
 sapless	không có nhựa
 sapling	cây nhỏ
 sapodilla	(thực vật học) cây hồng xiêm, cây xapôchê
-saponaceous	đùa cợt) có chất xà phòng; giống xà phòng ((nghĩa đen) & (nghĩa bóng))
 saponifiable	có thể hoá xà phòng
 saponification	sự hoá xà phòng
 saponified	đã hoá xà phòng
@@ -62828,7 +62797,6 @@ sarrusphore	kèn xarut
 sarsaparilla	(thực vật học) cây thổ phục linh
 sarsen	khối sa thạch (do băng cuốn đi trong thời kỳ băng hà)
 sarsenet	tơ mịn (để làm lót...)
-sartor	đùa cợt) thợ may
 sartorial	(thuộc) thợ may; (thuộc) cách nay mặc
 sartorii	số nhiều
 sartorius	số nhiều sartorii
@@ -62974,7 +62942,7 @@ saxhorn	(âm nhạc) Xacooc (nhạc khí)
 saxicavous	khoét đá, đục đá
 saxicoline	(sinh vật học) sống trên đá, mọc trên đá
 saxicolous	sống trên đá, mọc trên đá
-saxifrage	reak) 
+saxifrage	(thực vật học) cỏ tai hùm
 saxon	(thuộc) Xắc-xông
 saxony	len xacxoni (của Đức)
 saxophone	(âm nhạc) Xacxô (nhạc khí)
@@ -63046,7 +63014,7 @@ scan	đọc thử xem có đúng âm luật và nhịp điệu (thơ)
 scandal	việc xúc phạm đến công chúng; việc làm cho công chúng phẫn nộ; việc xấu xa; việc nhục nhã
 scandalise	làm cho (ai) chướng tai gai mắt (vì một điều gì trái đạo đức, xúc phạm)
 scandalize	xúc phạm đến ý thức luân thường đạo lý của (ai)
-scandalmonger	earer) 
+scandalmonger	kẻ gièm pha, kẻ nói xấu sau lưng
 scandalmongering	sự gièm pha; sự tung tin gièm pha
 scandalous	xúc phạm đến công chúng, gây phẫn nộ trong công chúng; xấu xa, nhục nhã
 scandalously	chướng; khiếm nhã, đáng hổ thẹn, đáng kinh tởm
@@ -63133,7 +63101,7 @@ scattering	số lượng những thứ được tung rắc
 scattily	điên; khùng
 scattiness	sự điên, sự khùng
 scatty	(từ lóng) bộp chộp; ngờ nghệch, thộn
-scaup	uck) 
+scaup	(động vật học) vịt bãi
 scaur	vách núi lởm chởm
 scavenge	quét, quét dọn (đường...)
 scavenger	công nhân quét đường
@@ -63518,7 +63486,7 @@ scribbler	người viết bôi bác, người viết vội vã, người viết 
 scribbling	chữ viết vội vàng
 scribe	mô tả; điền thêm; đánh dấu
 scribe	người viết, người biết viết
-scriber	ron) 
+scriber	mũi (nhọn đề) kẻ vạch cưa
 scribing	sự vạch dấu
 scrim	vải lót (nệm ghế...)
 scrimmage	cuộc ẩu đả; sự cãi lộn, sự tranh cướp
@@ -63597,7 +63565,6 @@ scuff	(như) scruff
 scuffer	cái cày xới, sự lật cỏ
 scuffing	sự cà mòn, sự cọ mòn
 scuffle	sự chen lấn, sự xô đẩy; cuộc ẩu đả
-scug	ngôn ngữ nhà trường),  (từ lóng) thằng thộn
 sculduggery	(từ Mỹ,nghĩa Mỹ), (đùa cợt) sự lừa bịp
 scull	chèo thuyền bằng chèo đôi; chèo (thuyền)
 sculler	người chèo đôi
@@ -64631,7 +64598,7 @@ shaft	(cơ học) trục
 shaft	cán (giáo, mác...), tay cầm
 shafting	(kỹ thuật) sự truyền động trục chung
 shag	chòm lông, bờm tóc
-shagbark	ark) 
+shagbark	(thực vật học) cây hồ đào trắng
 shagged	rất mệt mỏi
 shaggily	bờm xờm, lộn xộn
 shagginess	vẻ bờm xờm, vẻ xồm xoàm
@@ -64679,7 +64646,7 @@ shameless	không biết thẹn, không biết xấu hổ, vô liêm sỉ, trở 
 shamelessly	không biết hổ thẹn, không biết xấu hổ, vô liêm sỉ, trở trẽn, trơ tráo
 shamelessness	sự không biết thẹn, sự không biết xấu hổ, sự vô liêm sỉ, sự trơ trẽn
 shammer	người giả bộ, người giả vờ, người vờ vĩnh; người giả mạo
-shammy	eader) 
+shammy	da sơn dương, da cừu, da dê (da thuộc) ((cũng) chamois)
 shampoo	thuốc gội đầu
 shamrock	cây lá chụm hoa (cây có ba lá hoặc cây chua me đất, người Ai-len lấy hình cụm lá ba chiếc của các cây này làm quốc huy)
 shandrydan	xe bò, xe cút kít
@@ -64774,7 +64741,7 @@ sheepman	người nuôi cừu
 sheepshank	cẳng cừu
 sheepskin	da cừu (để đóng sách...)
 sheer	chỉ là; đúng là; hoàn toàn, tuyệt đối
-sheers	egs) 
+sheers	(hàng hải) cần trục nạng
 sheet	khăn trải giường
 sheet	tầng; tờ
 sheeter	máy cắt tấm
@@ -64949,7 +64916,7 @@ shoddy	vải tái sinh
 shoe	giày
 shoebill	(động vật học) cò mỏ giày
 shoeblack	người đánh giày, em bé đánh giày
-shoehorn	ift) 
+shoehorn	cái bót (để đi giày)
 shoeless	không có giày; không đi giày, đi chân không
 shoemaker	thợ đóng giày
 shoemaking	nghề đóng giày
@@ -66072,7 +66039,7 @@ smocking	cách trang trí (trên áo) theo hình tổ ong
 smog	khói lẫn sương
 smokable	có thể hút được
 smoke	khói
-smoked	ried) 
+smoked	hun khói, sấy khói (thịt...)
 smokeless	không có khói
 smokelessness	sự không có khói
 smoker	người hút thuốc, người nghiện thuốc
@@ -66099,7 +66066,7 @@ smoothing	sự san bằng; làm nhẵn
 smoothly	một cách êm ả; một cách trôi chảy
 smoothness	sự phẳng phiu, sự mượt mà, sự bình lặng
 smoothness	tính trơn
-smoothspoken	ongued) 
+smoothspoken	dịu dàng, ngọt xớt; ngọt như mía lùi (người)
 smoothy	<thgt> người khéo mồm, người cư xử một cách ngọt xớt (thường là đàn ông)
 smorgasbord	bữa ăn với nhiều món nóng hay nguội phục vụ trong quán ăn
 smorrebrod	xan-úych Đan mạch
@@ -66138,7 +66105,7 @@ snail	con ốc sên, con sên
 snaillery	nơi nuôi ốc sên
 snaillike	giống như sên, chậm như sên
 snake	con rắn
-snakeroot	oot) 
+snakeroot	cây chữa rắn cắn (nhiều loài cây khác nhau)
 snakeskin	da rắn
 snakiness	sự độc ác, sự nanh ác, sự quỷ quyệt, sự thâm hiểm, sự nham hiểm; sự bất nhân
 snaking	sự lượn ngoằn ngoèo
@@ -66188,7 +66155,6 @@ snib	(Ê-cốt) then cửa, chốt cửa sổ
 snick	vết khía, vết khứa
 snicker	tiếng ngựa hí
 snickerer	cười khúc khích
-snickersnee	đùa cợt) dao (dùng làm vũ khí)
 snicket	(Bắc Anh) đường hẹp hai bên là bụi cây
 snide	(từ lóng) giả, giả mạo
 snidely	<thgt> giả, giả mạo
@@ -66416,12 +66382,12 @@ soiless	sạch, không có vết bẩn
 soiling	sự vấy bẩn; làm bẩn
 soilless	sạch, không có vết bẩn
 soilure	vết nhơ
-soja	ean) 
+soja	(thực vật học) đậu tương, đậu nành
 sojourn	sự ở lại ít lâu, sự ở lại ít bữa
 sojourner	người lưu lại, người tạm trú
 soke	quyền tài phán
 sokeman	người dưới quyền xét xử của người khác
-sol	đùa cợt) mặt trời
+sol	(âm nhạc) xon (nốt) ((cũng) soh)
 sola	của solum
 solace	sự an ủi, sự uý lạo; niềm khuây khoả
 solan	(động vật học) chim điên
@@ -66499,8 +66465,8 @@ solidify	làm cho đặc lại, làm cho rắn lại; làm cho đông đặc
 solidity	sự vững chắc, sự rắn chắc, sự kiên cố
 solidly	một cách vững vàng và chắc chắn
 solidness	sự vững chắc; tính chất vững chắc, trạng thái vững chắc
-solidungular	oofed) 
-solidungulate	oofed) 
+solidungular	có một móng guốc (thú vật) ((cũng) soliped)
+solidungulate	có một móng guốc (thú vật) ((cũng) soliped)
 solidus	(cổ La Mã) tiền vàng
 solifidian	(tôn giáo) người theo thuyết duy tín
 solifluction	(địa chất) sự truồi đất
@@ -66863,7 +66829,7 @@ sowkar	chủ ngân hàng người Hin-đu
 sown	gieo
 sox	(từ Mỹ,nghĩa Mỹ) bít tất
 soy	tương, nước tương
-soya	ean) 
+soya	(thực vật học) đậu tương, đậu nành
 sozzled	(từ lóng) say bí tỉ
 sp	chính tả (spelling)  (nhất là trên các bản viết đã sửa chữa)
 spa	suối khoáng
@@ -67340,7 +67306,7 @@ spindle	(kỹ thuật) trục
 spindle	mọc thẳng lên, mọc vút lên
 spindling	người thon thon, người dong dỏng, người mảnh khảnh
 spindly	người thon thon, người dong dỏng, người mảnh khảnh
-spindrift	rift) 
+spindrift	bụi nước (giọt nước nhỏ do sóng vỗ bắn lên)
 spine	xương sống
 spined	có xương sống
 spinel	(khoáng chất) Spinen
@@ -67574,7 +67540,6 @@ spontaneousness	tính tự động, tính tự ý
 spontoon	(sử học) cái thương, cái giáo
 spoof	(từ lóng) sự lừa gạt, sự lừa phỉnh, sự đánh lừa
 spoofer	(từ lóng) kẻ đánh lừa, kẻ bịp
-spook	đùa cợt) ma quỷ
 spookiness	tình trạng gợi lên sự sợ hãi, sự làm cho hoảng sợ; tính chất như ma quỷ
 spookish	có ma quỷ; như ma quỷ
 spooky	có ma quỷ; như ma quỷ
@@ -67583,7 +67548,7 @@ spool	ống chỉ, ống cuộn (chỉ, phim...), cái vòng (câu quăng)
 spooler	Một chương trình thường nằm trong số những trình tiện ích của hệ điều hành, dùng để hướng các lệnh in cất tạm vào một tệp trên đựa hoặc trong RAM thay vì vào máy in, sau đó sẽ phát các lệnh in này ra khỏi bộ xử lý trung tâm CPU) rỗi
 spooling	(1) Một tiến trình mà trong đó nhiều thiết bị vào ra dường như hoạt động đồng thời, trong khi thực tế hệ thống đưa dữ liệu vào hoặc ra qua bộ đệm
 spoon	cái thìa
-spoonbeak	ill) 
+spoonbeak	(động vật học) có thìa
 spooner	người nói ngọng
 spoonerism	sự nói ngọng
 spooney	khờ dại, quỷnh
@@ -67824,7 +67789,6 @@ squaring	sự nâng lên lũy thừa bậc hai
 squarish	hơi vuông, vuông vuông
 squarrose	(sinh vật học) nhám, ráp những vảy
 squarrous	(sinh vật học) nhám, ráp những vảy
-squarson	đùa cợt) mục sư địa chủ
 squash	quả bí
 squashily	mềm dễ bẹt; bùn nhão (đất)
 squashiness	chất mềm dễ bẹt; bùn nhão (đất)
@@ -68278,7 +68242,7 @@ steelwork	đồ dùng bằng thép
 steelworker	công nhân ngành thép
 steely	làm bằng thép
 steelyard	cái cân dọc
-steenbok	uck) 
+steenbok	(động vật học) linh dương Nam Phi
 steening	thành giếng bằng đá
 steenkirk	(sử học) cái ca vát
 steep	dốc
@@ -68668,7 +68632,7 @@ stockroom	buồng kho (để hàng hoá)
 stockwhip	roi da dài có cán để chăn gia súc
 stocky	bè bè chắc nịch
 stockyard	bãi rào chăn nuôi
-stodge	ngôn ngữ nhà trường),  (từ lóng) thức ăn khó tiêu
+stodge	bữa ăn nô nê, bữa đẫy; bữa cổ
 stodgily	khó tiêu, nặng bụng (thức ăn)
 stodginess	tính khó tiêu
 stodgy	khó tiêu, nặng bụng (thức ăn)
@@ -69174,7 +69138,7 @@ stunk	mùi hôi thối
 stunner	(từ lóng) người cừ khôi, người rất thú vị
 stunning	làm choáng váng, làm bất tỉnh nhân sự
 stunningly	xem stunning
-stunsail	ail) 
+stunsail	(hàng hải) buồm phụ
 stunt	(từ Mỹ,nghĩa Mỹ) sự làm cằn cỗi, sự làm còi cọc
 stunted	bị ức chế sinh trưởng; kìm hãm; còi cọc
 stuntedness	sự bị ức chế sinh trưởng; kìm hãm; còi cọc
@@ -70014,7 +69978,7 @@ summerlike	(thuộc) mùa hè; như mùa hè
 summerly	(thuộc) mùa hè; như mùa hè
 summersault	sự nhảy lộn nhào
 summerset	sự nhảy lộn nhào
-summertime	ime) 
+summertime	mùa hạ, mùa hè
 summery	(thuộc) mùa hè; như mùa hè
 summing	tổng, phép cộng
 summit	đỉnh, chóp, ngọn
@@ -70798,7 +70762,7 @@ swordsman	nhà kiếm thuật
 swordsmanship	kiếm thuật, thuật đánh kiếm
 swore	lời thề
 sworn	lời thề
-swot	ngôn ngữ nhà trường),  (từ lóng) sự học gạo
+swot	học sinh học gạo
 swotter	người học gạo
 swum	sự bơi lội
 swung	sự đua đưa, sự lúc lắc; độ đu đưa, độ lắc
@@ -71355,7 +71319,7 @@ tankproof	(quân sự) chống tăng
 tanna	(Anh-Ân) đồn lính
 tannage	sự thuộc da
 tanner	thợ thuộc da
-tannery	ouse) 
+tannery	xưởng thuộc da
 tannic	(hoá học) Tanic
 tannin	(hoá học) Tanin
 tanning	sự thuộc da
@@ -71636,7 +71600,7 @@ teenager	Cách viết khác : teener
 teener	thiếu niên, thiếu nữ
 teens	tuổi thanh thiếu niên (từ 13 đến 19), tuổi thanh xuân
 teensy	<thgt> nhỏ xíu, bé tí, tí xíu
-teeny	eeny) 
+teeny	(thông tục) nhỏ xíu, rất nhỏ
 teepee	lều vải (của người da đỏ)
 teer	bôi, trát
 teeter	(từ Mỹ,nghĩa Mỹ) ván bập bênh (trò chơi của trẻ con)
@@ -72311,7 +72275,7 @@ thievishly	trộm cắp, gian trá
 thievishness	tính hay trộm cắp
 thigh	bắp đùi, bắp vế
 thill	càng xe, gọng xe
-thiller	orse) 
+thiller	ngựa kéo xe
 thimble	cái đê (dùng để khâu tay)
 thimbleful	hớp, ngụm
 thimblerig	trò bài tây
@@ -72363,7 +72327,7 @@ thither	(từ cổ,nghĩa cổ) tới đó, theo hướng đó
 thitherward	về phía đó
 thitherwards	về phía đó
 tho	viết tắt của though
-thole	in) 
+thole	cọc chèo
 thong	dây da
 thoraces	<phẫu> ngực (phần thân thể giữa cổ và bụng)
 thoracic	(giải phẫu),  (động vật học) (thuộc) ngực, ở ngực
@@ -72594,7 +72558,7 @@ tilde	dấu sóng (dùng thay từ lặp lại trong từ điển)
 tilde	dấu sóng, dấu ngã (~)
 tile	ngói (để lợp nhà)
 tiler	thợ làm ngói
-tilery	ork) 
+tilery	lò ngói
 tiling	sự lợp ngói
 till	ngăn kéo để tiền
 tillable	có thể trồng trọt cày cấy được (đất...)
@@ -72660,7 +72624,7 @@ tinker	thợ hàn nồi
 tinkle	tiếng leng keng (chuông...)
 tinkler	người rung (chuông...)
 tinkling	tiếng leng keng
-tinman	mith) 
+tinman	thợ thiếc
 tinned	tráng thiếc
 tinner	công nhân mỏ thiếc
 tinnery	sự khai thác (mỏ) thiếc
@@ -72671,7 +72635,7 @@ tinpot	kém, không có giá trị
 tinsel	kim tuyến
 tinselled	được trang điểm bằng kim tuyến
 tinselly	được trang điểm bằng kim tuyến
-tinsman	mith) 
+tinsman	thợ thiếc
 tinsmith	như tinman
 tinsnips	kéo cắt tôn, sắt, kim loại
 tinstuff	(địa lý) quặng thiếc
@@ -72841,7 +72805,6 @@ tollbooth	(Ê-cốt) (từ cổ,nghĩa cổ) nhà tù, nhà giam
 toller	người kéo chuông
 tollhouse	phòng thuế
 tollman	người thu thuế (cầu, đường, chợ...)
-tolly	ngôn ngữ nhà trường),  (từ lóng) cây nến
 toluene	(hoá học) Toluen
 tom	(viết tắt) của Thomas
 tomahawk	cái rìu (của người da đỏ)
@@ -72865,7 +72828,7 @@ tomming	(từ Mỹ, nghĩa Mỹ) (khinh) "làm chú Tôm" (ám chỉ nhân vật
 tommy	(Tommy) người lính Anh ((cũng) Tommy Atkins)
 tomnoddy	thằng ngốc, thằng đần
 tomography	phương pháp rọi kiếng, chụp X quang các phần trong cơ thể, sự rọi kiếng, sự chụp X quang
-tomorrow	orrow) 
+tomorrow	mai, ngày mai
 tompion	nút miệng súng
 tomtit	loại chim sẻ ngô (nhất là chim sẻ ngô xanh)
 tomtom	cái trống cơm
@@ -72884,7 +72847,7 @@ tonguelet	lưỡi con
 tonguey	thuộc lưỡi
 tonic	(thuộc) âm; (âm nhạc) (thuộc) âm chủ
 tonicity	tính chất bổ (của một chất, một vị thuốc); tính làm cho cường
-tonight	ight) 
+tonight	đêm nay, tối nay
 tonitrual	(hiếm) kêu như sấm; kêu oang oang; vang dội
 tonk	(từ lóng) đánh thắng dễ dàng (người nào)
 tonkin	miền bắc Việt Nam thời Pháp thuộc; Bắc Kỳ
@@ -72974,7 +72937,6 @@ topsides	phần nổi (của tàu thuyền trên mặt nước)
 topsman	(phương ngữ) người quản gia; người quản lý
 topsoil	(nông nghiệp) tầng đất mặt; lớp đất cay
 topsyturvy	sự lộn nhào; sự đảo lộn, lộn bậy, lộn xộn; hỗn loạn
-topsyturvydom	đùa cợt) tình trạng đảo lộn, tình trạng lộn xộn; tình trạng hỗn loạn
 toque	mũ vải (của đàn bà)
 tor	núi đá nhọn; mỏm núi, ngọn núi
 torc	(khảo cổ học) vòng cổ ((cũng) torque)
@@ -73140,7 +73102,7 @@ towered	có tháp
 towering	cao, cao ngất, cao vượt hẳn lên
 towery	có tháp
 town	thành phố, thị xã
-townee	ngôn ngữ nhà trường),  (từ lóng) dân hàng phố (ở một thành phố có trường đại học, mà không phải là học sinh)
+townee	(thông tục) dân thành phố (mù tịt về những việc ở nông thôn)
 townie	<ngôn ngữ nhà trường><lóng> dân hàng phố (ở một thành phố có trường đại học, mà không phải là học sinh)
 townlet	thị trấn
 townsfolk	dân thành thị
@@ -73470,7 +73432,6 @@ transmittance	sự truyền
 transmitter	(điều khiển học) máy phát
 transmitter	người truyền; vật truyền
 transmitting	(điều khiển học) truyền (đạt)
-transmogrification	đùa cợt) sự làm biến hình, sự làm biến hoá
 transmogrify	đùa làm biến hình, làm biến hoá
 transmontane	bên kia núi
 transmutability	tính biến đổi, tính biến hoá
@@ -74101,7 +74062,7 @@ trona	(khoáng vật học) trona
 trone	(Xcôtlân) xem tron
 troop	đoàn, lũ, đàn, đám, bọn, toán
 trooper	kỵ binh; lính đơn vị thiết giáp
-troopship	ransport) 
+troopship	tàu chở lính
 troostite	(khoáng vật học) trustit
 trope	(văn học) phép chuyển nghĩa
 trophallactic	dinh dưỡng tương hỗ; nuôi lẫn nhau; trao đổi qua lại thức ăn
@@ -74521,7 +74482,7 @@ tussle	cuộc ẩu đả, cuộc đánh nhau
 tussock	bụi (cỏ); mớ (tóc)
 tussore	lụa tuytxo ((từ Mỹ,nghĩa Mỹ) (cũng) tussah)
 tussur	lụa tuytxo ((từ Mỹ,nghĩa Mỹ) (cũng) tussah)
-tut	ut) 
+tut	rõ khỉ!; thôi đi!
 tutee	người kèm cặp, người dạy kèm, người trông coi
 tutelage	sự giám hộ
 tutelar	(thuộc) sự giám hộ
@@ -75221,7 +75182,6 @@ unbidden	tự ý, không ai bảo
 unbigoted	không tin mù quáng
 unbilled	không được quảng cáo, không đăng quảng cáo; không có tên trong danh
 unbind	mở, cởi, thả, tháo
-unbirthday	đùa cợt) không đúng vào ngày sinh (quà tặng)
 unbishop	cách chức giám mục
 unbitted	được tháo hàm thiếc (ngựa)
 unblamable	không khiển trách được
@@ -79650,7 +79610,7 @@ verbena	(thực vật học) cỏ roi ngựa
 verberate	rung rinh, lay động
 verberation	sem verberate
 verbiage	sự nói dài
-verbicide	đùa cợt) người dùng từ ẩu
+verbicide	sự dùng từ ẩu
 verbify	động từ hoá; dùng làm động từ
 verbigerate	lặp đi lặp lại những câu chữ vô nghĩa (một dạng của chứng mất ngôn)
 verbigeration	xem verbigerate
@@ -80555,7 +80515,6 @@ vs	chống, chống lại, đấu với (nhất là trong thể thao)  (versus)
 vso	chương trình tự nguyện phục vụ ở các nước đang phát triển (Voluntary  Service
 vto	(máy bay) lên thẳng (vertical  take-off)
 vtol	cất cánh và hạ cánh theo phương thẳng đứng (vertical take-off and landing)
-vulcan	thân mật) thần lửa
 vulcanic	thuộc lửa, ngọn lửa
 vulcanisation	sự lưu hoá (cao su)
 vulcanise	lưu hoá (cao su)
@@ -80623,7 +80582,6 @@ wagerer	người đánh cuộc
 waggery	thói đùa dai
 waggish	nói đùa; tinh nghịch
 waggishness	tính bông đùa; tính tinh nghịch
-waggle	thân mật) sự lắc, sự lúc lắc, sự vẫy, sự ve vẩy ((cũng) wag)
 waggly	lúc lắc, ve vẩy
 waggon	xe ngựa, xe bò (chở hàng)
 waggonage	sự chuyên chở bằng xe, tàu
@@ -80788,7 +80746,7 @@ was	thì, là
 wash	sự tắm rửa, sự tắm gội, sự rửa ráy
 washable	có thể giặt được (vải)
 washbrew	(tiếng địa phương) chè kiều mạch
-washday	ay) 
+washday	ngày giặt quần áo (ở nhà)
 washed	được rửa sạch, được tắm sạch
 washer	người giặt, người rửa
 washerman	thợ giặt
@@ -81602,7 +81560,7 @@ woodmen	người đẵn gỗ; tiều phu
 woodpecker	(động vật học) chim gõ kiến
 woodpile	đống gỗ
 woodprint	tranh khắc gỗ, bản khắc gỗ
-woodshed	ouse) 
+woodshed	lều chứa củi
 woodside	bìa rừng
 woodsman	(từ Mỹ,nghĩa Mỹ) (như) woodman
 woodsy	(thuộc) rừng
@@ -82039,7 +81997,7 @@ zion	tín ngưỡng của người Do Thái
 zionism	chủ nghĩa phục quốc (Do thái)
 zionist	người theo chủ nghĩa phục quốc (Do thái)
 zip	tiếng rít (của đạn bay); tiếng xé vải
-zipper	astener) 
+zipper	khoá kéo (ở áo...)
 zippered	có khoá kéo; có phéc-mơ-tuya
 zippy	hăng hái, nhiệt tình
 zircon	(khoáng chất) ziricon
@@ -82124,4 +82082,4 @@ zymosis	sự lên men
 zymotechnics	thuật làm lên men
 zymotic	(y học) (thuộc) sự lên men
 zymurgy	khoa nghiên cứu sự lên men
-82126
+82084

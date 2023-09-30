@@ -56,7 +56,7 @@ int main()
 
 			isValid = checkValid(word);
 		}
-		else if (s[0] == '-' && !hasMeaning)
+		else if (s[0] == '-' && s[1] == ' ' && !hasMeaning)
 		{
 			hasMeaning = true;
 
