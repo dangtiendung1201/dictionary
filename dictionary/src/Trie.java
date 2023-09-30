@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static java.lang.Math.min;
+
 public class Trie {
     static final int ALPHABET_SIZE = 26 + 1;
     private final Node root; // the root of the Trie.
@@ -9,7 +11,9 @@ public class Trie {
         root = new Node();
     }
 
-    /** Map character int both lower and upper case to integer.
+    /**
+     * Map character int both lower and upper case to integer.
+     *
      * @param c the mapped character, assume that c is '-', 'a...z' or 'A...Z'.
      * @return integer value of c, in range [0..26].
      */
@@ -23,6 +27,14 @@ public class Trie {
         return c - 'A' + 1;
     }
 
+    public static void main(String[] args) {
+        Trie T = new Trie();
+        T.addWord(new Word("Love", "Yêu thương"));
+        T.addWord(new Word("House", "Ngôi nhà"));
+        T.addWord(new Word("Rice", "Cơm"));
+        System.out.println(T.allTargetWord());
+    }
+
     /**
      * Add a word to Trie.
      *
@@ -31,13 +43,15 @@ public class Trie {
      * @param word    the added word.
      */
     private void addWord(Node current, int depth, Word word) {
-        if (depth == word.getWORD_TARGET().length()) {
+        if (depth == word.getWordTarget().length()) {
             current.formedWord.add(word);
             current.updateCandidateWords();
             return;
         }
-        int id = mapCharToInt(word.getWORD_TARGET().charAt(depth));
-        if (current.next[id] == null) current.next[id] = new Node();
+        int id = mapCharToInt(word.getWordTarget().charAt(depth));
+        if (current.next[id] == null) {
+            current.next[id] = new Node();
+        }
         addWord(current.next[id], depth + 1, word);
         current.updateCandidateWords();
     }
@@ -52,11 +66,37 @@ public class Trie {
     }
 
     /**
+     * Remove a word from Trie.
+     *
+     * @param current current node.
+     * @param depth   depth of current node.
+     * @param word    removed word.
+     */
+    private void removeWord(Node current, int depth, Word word) {
+        if (depth == word.getWordTarget().length()) {
+            current.formedWord.remove(word);
+            current.updateCandidateWords();
+            return;
+        }
+        int id = mapCharToInt(word.getWordTarget().charAt(depth));
+        if (current.next[id] == null) {
+            return;
+        }
+        removeWord(current.next[id], depth + 1, word);
+        current.updateCandidateWords();
+        if (current.next[id].meaningless()) current.next[id] = null;
+    }
+
+    public void removeWord(Word word) {
+        removeWord(root, 0, word);
+    }
+
+    /**
      * Get the node that form this prefix.
      *
      * @param current current node.
      * @param depth   the depth of current node.
-     * @param prefix  the prefix you wante to form.
+     * @param prefix  the prefix you want to form.
      * @return The node from this prefix
      */
     private Node getNodeFormPrefix(Node current, int depth, String prefix) {
@@ -101,13 +141,87 @@ public class Trie {
         return res;
     }
 
+    /**
+     * All distinct word target in Trie.
+     *
+     * @param current current Node.
+     * @return ArrayList of word target.
+     */
+    private ArrayList<String> allTargetWord(Node current) {
+        ArrayList<String> res = new ArrayList<>();
+        if (!current.formedWord.isEmpty()) {
+            res.add(current.formedWord.get(0).getWordTarget());
+        }
+        for (int i = 0; i < ALPHABET_SIZE; i++) {
+            if (current.next[i] != null) {
+                res.addAll(allTargetWord(current.next[i]));
+            }
+        }
+        return res;
+    }
+
+    public ArrayList<String> allTargetWord() {
+        return allTargetWord(root);
+    }
+
+    /**
+     * The minimum number of operations (insert, edit, remove) on a character, using dynamic programming.
+     * of s to become t, used for suggesting word.
+     *
+     * @param s string s.
+     * @param t string t.
+     * @return minimum number of operations.
+     */
+    private int minimumEditDistance(String s, String t) {
+        int n = s.length(), m = t.length();
+        int[][] dp = new int[n + 1][m + 1];
+        dp[0][1] = 1;
+        dp[1][0] = 1;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1);
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1]);
+                } else {
+                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + 1);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+
+    /**
+     * If the user enters the wrong word, suggested words are listed.
+     *
+     * @return suggested words.
+     */
+    public ArrayList<String> searchSuggestions(String enteredWord) {
+        final int SUGGEST_SIZE = 10;
+        ArrayList<String> ret = new ArrayList<>();
+        ArrayList<String> allTargetWord = allTargetWord();
+        for (int i = 0; i < SUGGEST_SIZE && !allTargetWord.isEmpty(); i++) {
+            int min = minimumEditDistance(enteredWord, allTargetWord.get(0));
+            int id = 0;
+            for (int j = 1; j < allTargetWord.size(); j++) {
+                int op = minimumEditDistance(enteredWord, allTargetWord.get(j));
+                if (op < min) {
+                    op = min;
+                    id = j;
+                }
+            }
+            ret.add(allTargetWord.get(id));
+            allTargetWord.remove(id);
+        }
+        return ret;
+    }
+
     private static class Node {
         // by this node, used for searching word.
         static final int MAX_CANDIDATE_SIZE = 10; // Maximum number of the offered word.
         private final Node[] next; // pointer to child of this Node.
         private final ArrayList<Word> formedWord; // All words that this node form because maybe
         // one word can have many meanings.
-        private final ArrayList<Word> candidateWords; // Some words that contain the prefix formed
+        private final ArrayList<Word> candidateWords; // Some words that contain the prefix formed by this tnode.
 
         Node() {
             next = new Node[ALPHABET_SIZE];
@@ -138,5 +252,9 @@ public class Trie {
             }
         }
 
+        // if a node doesn't have any child forming a word, it's meaningless.
+        public boolean meaningless() {
+            return candidateWords.isEmpty();
+        }
     }
 }
