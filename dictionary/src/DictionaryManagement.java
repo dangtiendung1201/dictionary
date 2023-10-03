@@ -32,7 +32,11 @@ public class DictionaryManagement {
     }
 
     public void removeWord(Word word) {
+        T.removeWord(word);
+    }
 
+    public void removeWord(String wordTarget) {
+        T.removeWord(wordTarget);
     }
 
     public void dictionaryExportToFile(String path) {
