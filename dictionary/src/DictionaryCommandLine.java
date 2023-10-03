@@ -13,7 +13,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
      * Show all words alphabetically.
      */
     public void showAllWords() {
-
+        System.out.println("Show all words. ");
+        System.out.println(dictionarySearcher(""));
     }
 
     /**
