@@ -29,6 +29,7 @@ public class DictionaryCommandLine extends DictionaryManagement{
         System.out.println("Add new words to dictionary.");
         System.out.println("Input the number of words: ");
         int n = sc.nextInt();
+        String tmp = sc.nextLine();
         for (int i = 0; i < n; i ++) {
             System.out.println("Input vocabulary: ");
             String wordTarget = sc.nextLine();
