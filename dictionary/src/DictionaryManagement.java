@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static java.lang.Math.min;
 
@@ -41,5 +42,21 @@ public class DictionaryManagement {
 
     public void dictionaryExportToFile(String path) {
 
+    }
+
+    public static void main(String[] args) {
+        DictionaryManagement DM = new DictionaryManagement();
+        DM.addWord(new Word("House", "Căn nhà"));
+        DM.addWord(new Word("Home", "Ngôi nhà"));
+        DM.addWord(new Word("Household", "Căn hộ"));
+        DM.addWord(new Word("Mouse", "Con chuột"));
+        Scanner s = new Scanner(System.in);
+        String pat = s.nextLine();
+        try{
+            ArrayList<Word> arrayList = DM.dictionaryLookUp(pat);
+            System.out.println(arrayList);
+        } catch (IllegalArgumentException ignored){
+            System.out.println(DM.searchSuggestions(pat));
+        }
     }
 }
