@@ -55,6 +55,18 @@ public class DictionaryCommandLine extends DictionaryManagement {
         }
     }
 
+    /**
+     * Insert data from file.
+     */
+    public void insertFromFile() {
+        System.out.println("Add vocabulary from file. ");
+        System.out.println("Input file path: ");
+        Scanner sc = new Scanner(System.in);
+        String path = sc.nextLine();
+        insertFromFile(path);
+        System.out.println("Done.");
+    }
+
     // Show the menu.
     public void dictionaryAdvanced() {
         while (curAction != 0) {
@@ -90,7 +102,9 @@ public class DictionaryCommandLine extends DictionaryManagement {
                 case 5:
                     lookUpWord();
                     break;
-
+                case 8:
+                    insertFromFile();
+                    break;
             }
         }
 
