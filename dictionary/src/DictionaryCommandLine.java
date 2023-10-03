@@ -1,26 +1,41 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DictionaryCommandLine extends DictionaryManagement{
+public class DictionaryCommandLine extends DictionaryManagement {
     private int curAction = 1;
-    // Show all words alphabetically.
+
+    public static void main(String[] args) {
+        DictionaryCommandLine test = new DictionaryCommandLine();
+        test.dictionaryAdvanced();
+    }
+
+    /**
+     * Show all words alphabetically.
+     */
     public void showAllWords() {
 
     }
 
-    // Call insertFromCommandline() function from DictionaryManagement and showAllWords()
+    /**
+     * Call insertFromCommandline() function from DictionaryManagement and showAllWords().
+     */
     public void dictionaryBasic() {
     }
 
     // Search the word.
-    public ArrayList<Word> dictionarySearcher(String searchWord){
+    public ArrayList<Word> dictionarySearcher(String searchWord) {
         return super.dictionarySearcher(searchWord);
     }
 
-    // Lookup the word.
+    /**
+     * Look up for the word.
+     */
     public void lookUpWord() {
         System.out.println("Look up word.");
-        System.out.println();
+        System.out.println("Input the word you want to look up: ");
+        Scanner sc = new Scanner(System.in);
+        String lookUpWord = sc.nextLine();
+        System.out.println(dictionaryLookUp(lookUpWord));
     }
 
     // Add word to dictionary.
@@ -30,7 +45,7 @@ public class DictionaryCommandLine extends DictionaryManagement{
         System.out.println("Input the number of words: ");
         int n = sc.nextInt();
         String tmp = sc.nextLine();
-        for (int i = 0; i < n; i ++) {
+        for (int i = 0; i < n; i++) {
             System.out.println("Input vocabulary: ");
             String wordTarget = sc.nextLine();
             System.out.println("Input word's explanation: ");
@@ -56,7 +71,7 @@ public class DictionaryCommandLine extends DictionaryManagement{
             System.out.println("Your action: ");
             Scanner sc = new Scanner(System.in);
             curAction = sc.nextInt();
-            switch (curAction){
+            switch (curAction) {
                 case 0:
                     break;
                 case 1:
@@ -72,16 +87,11 @@ public class DictionaryCommandLine extends DictionaryManagement{
                     showAllWords();
                     break;
                 case 5:
-
+                    lookUpWord();
                     break;
 
             }
         }
 
-    }
-
-    public static void main(String[] args) {
-        DictionaryCommandLine test = new DictionaryCommandLine();
-        test.dictionaryAdvanced();
     }
 }
