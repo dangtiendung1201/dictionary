@@ -7,6 +7,7 @@ public class Word {
             if (!validCharacter(word_target.charAt(i))) {
                 throw new IllegalArgumentException("This word has an invalid character!");
             }
+            word_target = word_target.toLowerCase();
         }
         wordTarget = word_target;
         wordExplain = word_explain;
@@ -36,7 +37,7 @@ public class Word {
     }
 
     public String toString() {
-        return "Word[" + "wordTarget=" + wordTarget + ",wordExplain=" + wordExplain + "]";
+        return wordTarget + "  :       " + wordExplain;
     }
 
     @Override
@@ -45,5 +46,10 @@ public class Word {
             return another.wordExplain.equals(this.wordExplain) && another.wordTarget.equals(this.wordTarget);
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        Word w = new Word("Table", "Bàn");
+        System.out.println(w);
     }
 }
