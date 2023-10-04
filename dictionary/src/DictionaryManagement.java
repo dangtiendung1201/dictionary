@@ -1,4 +1,6 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.io.File;
 import java.util.Scanner;
 
 import static java.lang.Math.min;
@@ -9,8 +11,50 @@ public class DictionaryManagement {
     DictionaryManagement() {
         T = new Trie();
     }
-    public void insertFromFile(String path) {
 
+    /**
+     * Insert data from a .txt file.
+     * @param path  data file path
+     */
+    public void insertFromFile(String path) {
+        try {
+            File myObj = new File(path);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                addWord(getWordFromLine(data));
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Get word from a line with English word and its definition are seperated by a tab (/t)
+     * @param data a line with format: "wordTarget '\t' wordExplain"
+     * @return Word
+     */
+    private Word getWordFromLine(String data) {
+        String wordTarget = "";
+        String wordExplain = "";
+        boolean isWordTarget = true;
+        for (int i = 0; i < data.length(); i ++) {
+            char cur = data.charAt(i);
+            if (cur == '\t') {
+                isWordTarget = false;
+                continue;
+            }
+            if (isWordTarget) {
+                wordTarget += cur;
+            }
+            else {
+                wordExplain += cur;
+            }
+        }
+        return new Word(wordTarget, wordExplain);
     }
 
     public ArrayList<Word> dictionaryLookUp(String s) {
