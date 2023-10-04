@@ -222,13 +222,15 @@ public class Trie {
      */
     private int minimumEditDistance(String s, String t) {
         int n = s.length(), m = t.length();
+        s = " " + s;
+        t = " " + t;
         int[][] dp = new int[n + 1][m + 1];
         dp[0][1] = 1;
         dp[1][0] = 1;
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
                 dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1);
-                if (s.charAt(i) == s.charAt(j)) {
+                if (s.charAt(i) == t.charAt(j)) {
                     dp[i][j] = min(dp[i][j], dp[i - 1][j - 1]);
                 } else {
                     dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + 1);
