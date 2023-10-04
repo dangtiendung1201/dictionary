@@ -36,7 +36,11 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Input the word you want to look up: ");
         Scanner sc = new Scanner(System.in);
         String lookUpWord = sc.nextLine();
-        System.out.println(dictionaryLookUp(lookUpWord));
+        try{
+            System.out.println(dictionaryLookUp(lookUpWord));
+        } catch (IllegalArgumentException ignored) {
+            System.out.println("This word doesn't exist in the dictionary!");
+        }
     }
 
     // Add word to dictionary.
@@ -51,7 +55,12 @@ public class DictionaryCommandLine extends DictionaryManagement {
             String wordTarget = sc.nextLine();
             System.out.println("Input word's explanation: ");
             String wordExplain = sc.nextLine();
-            addWord(new Word(wordTarget, wordExplain));
+            try{
+                addWord(new Word(wordTarget, wordExplain));
+            } catch (IllegalArgumentException ignored) {
+                System.out.println("This word has some invalid characters");
+            }
+
         }
     }
 
@@ -67,10 +76,20 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Done.");
     }
 
+    private void printGap() {
+        for(int i = 0; i < 30; i ++) {
+            System.out.println();
+        }
+        System.out.println("----------------------------------------");
+    }
+
     // Show the menu.
     public void dictionaryAdvanced() {
+        System.out.println("\n\nWelcome to My Dictionary!\n\n");
+
+        System.out.println("\n\n\n----------------------------------------\n\n\n");
+
         while (curAction != 0) {
-            System.out.println("Welcome to My Dictionary!");
             System.out.println("[0] Exit");
             System.out.println("[1] Add");
             System.out.println("[2] Remove");
@@ -84,6 +103,9 @@ public class DictionaryCommandLine extends DictionaryManagement {
             System.out.println("Your action: ");
             Scanner sc = new Scanner(System.in);
             curAction = sc.nextInt();
+
+            printGap();
+
             switch (curAction) {
                 case 0:
                     break;
@@ -106,6 +128,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
                     insertFromFile();
                     break;
             }
+
+            printGap();
         }
 
     }
