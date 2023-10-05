@@ -145,11 +145,11 @@ public class Hangman extends GameManagement {
             printHint();
             System.out.println("Guess a letter: ");
 
-            try (Scanner sc = new Scanner(System.in)) {
-                char guess = sc.next().charAt(0);
+            Scanner sc = new Scanner(System.in);
+            char guess = sc.next().charAt(0);
 
-                checkGuess(guess);
-            }
+            checkGuess(guess);
+
             if (health == 0) {
                 state = State.LOSE;
             }
