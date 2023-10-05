@@ -113,7 +113,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
                         addWord();
                         break;
                     case 2:
-                        //removeWord();
+                        removeWord();
                         break;
                     case 3:
                         //updateWord();
@@ -134,5 +134,14 @@ public class DictionaryCommandLine extends DictionaryManagement {
             }
         }
 
+    }
+
+    private void removeWord() {
+        System.out.println("Remove word.");
+        System.out.println("Input the word you want to remove: ");
+        Scanner sc = new Scanner(System.in);
+        String removeWord = sc.nextLine();
+        removeWord(removeWord);
+        System.out.println("Done.");
     }
 }
