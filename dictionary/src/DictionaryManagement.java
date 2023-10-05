@@ -19,13 +19,14 @@ public class DictionaryManagement {
         DM.addWord(new Word("Home", "Ngôi nhà"));
         DM.addWord(new Word("Household", "Căn hộ"));
         DM.addWord(new Word("Mouse", "Con chuột"));
-        Scanner s = new Scanner(System.in);
-        String pat = s.nextLine();
-        try {
-            ArrayList<Word> arrayList = DM.dictionaryLookUp(pat);
-            System.out.println(arrayList);
-        } catch (IllegalArgumentException ignored) {
-            System.out.println(DM.searchSuggestions(pat));
+        try (Scanner s = new Scanner(System.in)) {
+            String pat = s.nextLine();
+            try {
+                ArrayList<Word> arrayList = DM.dictionaryLookUp(pat);
+                System.out.println(arrayList);
+            } catch (IllegalArgumentException ignored) {
+                System.out.println(DM.searchSuggestions(pat));
+            }
         }
     }
 
