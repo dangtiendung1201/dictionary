@@ -26,7 +26,7 @@ public class DictionaryManagement {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("File not found!");
             e.printStackTrace();
         }
 

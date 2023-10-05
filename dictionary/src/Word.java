@@ -10,7 +10,7 @@ public class Word {
             word_target = word_target.toLowerCase();
         }
         wordTarget = word_target;
-        wordExplain = word_explain;
+        wordExplain = word_explain + "\n";
     }
 
     private static boolean validCharacter(char c) {
@@ -18,6 +18,11 @@ public class Word {
             return true;
         }
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+    }
+
+    public static void main(String[] args) {
+        Word w = new Word("Table", "Bàn");
+        System.out.println(w);
     }
 
     public String getWordTarget() {
@@ -33,11 +38,11 @@ public class Word {
     }
 
     public void setWordExplain(String wordExplain) {
-        this.wordExplain = wordExplain;
+        this.wordExplain = wordExplain + "\n";
     }
 
     public String toString() {
-        return wordTarget + "  :       " + wordExplain;
+        return wordTarget + '\t' + wordExplain;
     }
 
     @Override
@@ -46,10 +51,5 @@ public class Word {
             return another.wordExplain.equals(this.wordExplain) && another.wordTarget.equals(this.wordTarget);
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        Word w = new Word("Table", "Bàn");
-        System.out.println(w);
     }
 }

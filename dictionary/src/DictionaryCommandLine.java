@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DictionaryCommandLine extends DictionaryManagement {
@@ -36,7 +37,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Input the word you want to look up: ");
         Scanner sc = new Scanner(System.in);
         String lookUpWord = sc.nextLine();
-        try{
+        try {
             System.out.println(dictionaryLookUp(lookUpWord));
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
@@ -55,12 +56,11 @@ public class DictionaryCommandLine extends DictionaryManagement {
             String wordTarget = sc.nextLine();
             System.out.println("Input word's explanation: ");
             String wordExplain = sc.nextLine();
-            try{
+            try {
                 addWord(new Word(wordTarget, wordExplain));
             } catch (IllegalArgumentException ignored) {
                 System.out.println("This word has some invalid characters");
             }
-
         }
     }
 
@@ -77,7 +77,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
     }
 
     private void printGap() {
-        for(int i = 0; i < 30; i ++) {
+        for (int i = 0; i < 30; i++) {
             System.out.println();
         }
         System.out.println("----------------------------------------");
@@ -88,48 +88,50 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("\n\nWelcome to My Dictionary!\n\n");
 
         System.out.println("\n\n\n----------------------------------------\n\n\n");
-
         while (curAction != 0) {
-            System.out.println("[0] Exit");
-            System.out.println("[1] Add");
-            System.out.println("[2] Remove");
-            System.out.println("[3] Update");
-            System.out.println("[4] Display");
-            System.out.println("[5] Lookup");
-            System.out.println("[6] Search");
-            System.out.println("[7] Game");
-            System.out.println("[8] Import from file");
-            System.out.println("[9] Export to file");
-            System.out.println("Your action: ");
-            Scanner sc = new Scanner(System.in);
-            curAction = sc.nextInt();
+            try {
+                System.out.println("[0] Exit");
+                System.out.println("[1] Add");
+                System.out.println("[2] Remove");
+                System.out.println("[3] Update");
+                System.out.println("[4] Display");
+                System.out.println("[5] Lookup");
+                System.out.println("[6] Search");
+                System.out.println("[7] Game");
+                System.out.println("[8] Import from file");
+                System.out.println("[9] Export to file");
+                System.out.println("Your action: ");
+                Scanner sc = new Scanner(System.in);
+                curAction = sc.nextInt();
+                if (curAction < 0 || curAction > 9) throw new InputMismatchException();
+                printGap();
 
-            printGap();
-
-            switch (curAction) {
-                case 0:
-                    break;
-                case 1:
-                    addWord();
-                    break;
-                case 2:
-                    //removeWord();
-                    break;
-                case 3:
-                    //updateWord();
-                    break;
-                case 4:
-                    showAllWords();
-                    break;
-                case 5:
-                    lookUpWord();
-                    break;
-                case 8:
-                    insertFromFile();
-                    break;
+                switch (curAction) {
+                    case 0:
+                        break;
+                    case 1:
+                        addWord();
+                        break;
+                    case 2:
+                        //removeWord();
+                        break;
+                    case 3:
+                        //updateWord();
+                        break;
+                    case 4:
+                        showAllWords();
+                        break;
+                    case 5:
+                        lookUpWord();
+                        break;
+                    case 8:
+                        insertFromFile();
+                        break;
+                }
+                printGap();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input!");
             }
-
-            printGap();
         }
 
     }
