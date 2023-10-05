@@ -10,7 +10,7 @@ public class Word {
             word_target = word_target.toLowerCase();
         }
         wordTarget = word_target;
-        wordExplain = word_explain + "\n";
+        wordExplain = word_explain;
     }
 
     private static boolean validCharacter(char c) {
@@ -38,7 +38,7 @@ public class Word {
     }
 
     public void setWordExplain(String wordExplain) {
-        this.wordExplain = wordExplain + "\n";
+        this.wordExplain = wordExplain;
     }
 
     public String toString() {

@@ -15,18 +15,14 @@ public class DictionaryCommandLine extends DictionaryManagement {
      */
     public void showAllWords() {
         System.out.println("Show all words. ");
-        System.out.println(dictionarySearcher(""));
+        showWordList(super.allDictionaryWord());
+        waitEnter();
     }
 
     /**
      * Call insertFromCommandline() function from DictionaryManagement and showAllWords().
      */
     public void dictionaryBasic() {
-    }
-
-    // Search the word.
-    public ArrayList<Word> dictionarySearcher(String searchWord) {
-        return super.dictionarySearcher(searchWord);
     }
 
     /**
@@ -42,6 +38,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
+        waitEnter();
     }
 
     // Add word to dictionary.
@@ -62,6 +59,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
                 System.out.println("This word has some invalid characters");
             }
         }
+        waitEnter();
     }
 
     /**
@@ -77,6 +75,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         path = System.getProperty("user.dir") + "\\src\\" + path;
         System.out.println(path);
         insertFromFile(path);
+        waitEnter();
     }
 
     private void printGap() {
@@ -84,6 +83,12 @@ public class DictionaryCommandLine extends DictionaryManagement {
             System.out.println();
         }
         System.out.println("----------------------------------------");
+    }
+
+    private void waitEnter() {
+        System.out.println("Press enter to continue...");
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
     }
 
     // Show the menu.
@@ -127,6 +132,9 @@ public class DictionaryCommandLine extends DictionaryManagement {
                     case 5:
                         lookUpWord();
                         break;
+                    case 6:
+                        searchWord();
+                        break;
                     case 8:
                         insertFromFile();
                         break;
@@ -142,6 +150,20 @@ public class DictionaryCommandLine extends DictionaryManagement {
 
     }
 
+    private void searchWord() {
+        System.out.println("Search word.");
+        System.out.println("Input the word you want to search: ");
+        Scanner sc = new Scanner(System.in);
+        String searchWord = sc.nextLine();
+        ArrayList<Word> words = dictionarySearcher(searchWord);
+        try {
+            showWordList(words);
+        } catch (IllegalArgumentException ignored) {
+            System.out.println("This prefix doesn't exist in the dictionary!");
+        }
+        waitEnter();
+    }
+
     private void exportToFile() {
         System.out.println("Export to file.");
         System.out.println("Input file name: ");
@@ -149,6 +171,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         String path = sc.nextLine();
         path = System.getProperty("user.dir") + "\\src\\" + path;
         exportToFile(path);
+        waitEnter();
     }
 
     private void updateWord() {
@@ -166,6 +189,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
+        waitEnter();
     }
 
     private void removeWord() {
@@ -179,5 +203,6 @@ public class DictionaryCommandLine extends DictionaryManagement {
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
+        waitEnter();
     }
 }

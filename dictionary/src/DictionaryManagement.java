@@ -99,6 +99,10 @@ public class DictionaryManagement {
         return new Word(wordTarget, wordExplain);
     }
 
+    public ArrayList<Word> allDictionaryWord() {
+        return T.allWords();
+    }
+
     public ArrayList<Word> dictionaryLookUp(String s) {
         return T.lookUpWord(s);
     }
@@ -128,7 +132,11 @@ public class DictionaryManagement {
         T.removeWord(wordTarget);
     }
 
-    public void dictionaryExportToFile(String path) {
-
+    public void showWordList(ArrayList<Word> wordList) {
+        System.out.printf("%-10s %-32s %-32s\n", "STT", "| English", "| Vietnamese");
+        for (int i = 0; i < wordList.size(); i++) {
+            System.out.printf("%-10d %-32s %-32s\n", i + 1, "| " + wordList.get(i).getWordTarget(),
+                    "| " + wordList.get(i).getWordExplain());
+        }
     }
 }
