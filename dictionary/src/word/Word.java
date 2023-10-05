@@ -1,3 +1,5 @@
+package word;
+
 public class Word {
     private String wordTarget;
     private String wordExplain;
@@ -20,6 +22,11 @@ public class Word {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
     }
 
+    public static void main(String[] args) {
+        Word w = new Word("Table", "Bàn");
+        System.out.println(w);
+    }
+
     public String getWordTarget() {
         return wordTarget;
     }
@@ -37,19 +44,15 @@ public class Word {
     }
 
     public String toString() {
-        return wordTarget + "  :       " + wordExplain;
+        return wordTarget + '\t' + wordExplain;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Word another) {
+        if (obj instanceof Word) {
+            Word another = (Word) obj;
             return another.wordExplain.equals(this.wordExplain) && another.wordTarget.equals(this.wordTarget);
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        Word w = new Word("Table", "Bàn");
-        System.out.println(w);
     }
 }
