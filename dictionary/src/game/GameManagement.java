@@ -37,9 +37,9 @@ public class GameManagement {
             System.out.println("[2] Guess The Word");
             System.out.println("[3] Multiple Choice");
             System.out.println("Your action: ");
-            Scanner sc = new Scanner(System.in);
-            curGame = sc.nextInt();
-
+            try (Scanner sc = new Scanner(System.in)) {
+                curGame = sc.nextInt();
+            }
             if (curGame < 0 || curGame > 3)
                 throw new InputMismatchException();
             printGap();

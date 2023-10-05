@@ -161,7 +161,7 @@ public class Trie {
      */
     public ArrayList<Word> lookUpWord(String word) {
         Node tail = getNodeFormPrefix(root, 0, word);
-        ArrayList<Word> res = (ArrayList<Word>) tail.formedWord.clone();
+        ArrayList<Word> res = new ArrayList<>(tail.formedWord);
         if (res.isEmpty()) {
             throw new IllegalArgumentException("This word doesn't exist in the dictionary!");
         }
@@ -176,7 +176,7 @@ public class Trie {
      */
     public ArrayList<Word> searchWord(String prefix) {
         Node tail = getNodeFormPrefix(root, 0, prefix);
-        ArrayList<Word> res = (ArrayList<Word>) tail.candidateWords.clone();
+        ArrayList<Word> res = new ArrayList<>(tail.candidateWords);
         if (res.isEmpty()) {
             throw new IllegalArgumentException("This prefix doesn't exist in the dictionary");
         }
