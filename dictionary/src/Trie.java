@@ -80,6 +80,9 @@ public class Trie {
      * @param word    removed word.
      */
     private void removeWord(Node current, int depth, Word word) {
+        if (current.formedWord.isEmpty()) {
+            throw new IllegalArgumentException("This word doesn't exist in the dictionary!");
+        }
         if (depth == word.getWordTarget().length()) {
             current.formedWord.remove(word);
             current.updateCandidateWords();

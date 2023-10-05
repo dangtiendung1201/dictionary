@@ -69,9 +69,13 @@ public class DictionaryCommandLine extends DictionaryManagement {
      */
     public void insertFromFile() {
         System.out.println("Add vocabulary from file. ");
-        System.out.println("Input file path: ");
+//        System.out.println("[1] Input file path: ");
+//        System.out.println("[2] Input file name with current path: ");
+        System.out.println("Input file name: ");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
+        path = System.getProperty("user.dir") + "\\src\\" + path;
+        System.out.println(path);
         insertFromFile(path);
     }
 
@@ -126,6 +130,9 @@ public class DictionaryCommandLine extends DictionaryManagement {
                     case 8:
                         insertFromFile();
                         break;
+                    case 9:
+                        exportToFile();
+                        break;
                 }
                 printGap();
             } catch (InputMismatchException e) {
@@ -133,6 +140,15 @@ public class DictionaryCommandLine extends DictionaryManagement {
             }
         }
 
+    }
+
+    private void exportToFile() {
+        System.out.println("Export to file.");
+        System.out.println("Input file name: ");
+        Scanner sc = new Scanner(System.in);
+        String path = sc.nextLine();
+        path = System.getProperty("user.dir") + "\\src\\" + path;
+        exportToFile(path);
     }
 
     private void updateWord() {
