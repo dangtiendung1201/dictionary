@@ -87,6 +87,8 @@ public class Hangman extends GameManagement {
     }
 
     private void printHint() {
+        System.out.print("Hint: ");
+
         for (int i = 0; i < word.getWordTarget().length(); i++) {
             if (guessed[i]) {
                 System.out.print(word.getWordTarget().charAt(i));
@@ -107,27 +109,30 @@ public class Hangman extends GameManagement {
         health--;
     }
 
-    private void checkGuess(char guess) {
+    public void checkGuess(char guess) {
         guess = Character.toLowerCase(guess);
 
-        int pos = -1;
+        boolean isCorrect = false;
 
         for (int i = 0; i < word.getWordTarget().length(); i++) {
-            if (word.getWordTarget().charAt(i) == guess && !guessed[i]) {
-                pos = i;
-                break;
+            if (word.getWordTarget().charAt(i) == guess) {
+                if (!guessed[i]) {
+                    updateRightGuess(i);
+
+                    isCorrect = true;
+                } else {
+                    System.out.println("You have already guessed this letter!");
+                    return;
+                }
             }
         }
 
-        System.out.println(pos);
-
-        if (pos == -1) {
+        if (!isCorrect) {
             updateWrongGuess();
             System.out.println("Incorrect guess!");
             if (maxGuess - health >= 0 && maxGuess - health < figure.length)
                 System.out.println(figure[maxGuess - health]);
         } else {
-            updateRightGuess(pos);
             System.out.println("Correct guess!");
         }
     }
@@ -135,7 +140,7 @@ public class Hangman extends GameManagement {
     public void start() {
         System.out.println("You are playing Hangman");
 
-        word = new Word("table", "Bàn");
+        word = new Word("mississippi", "hihi");
         guessed = new boolean[word.getWordTarget().length()];
         for (int i = 0; i < word.getWordTarget().length(); i++) {
             guessed[i] = false;
@@ -161,6 +166,7 @@ public class Hangman extends GameManagement {
 
         if (state == State.WIN) {
             System.out.println("You win!");
+            System.out.println("The word is: " + word.getWordTarget());
         } else {
             System.out.println("You lose!");
         }
