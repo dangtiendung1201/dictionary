@@ -5,6 +5,73 @@ import java.util.Scanner;
 import word.Word;
 
 public class Hangman extends GameManagement {
+    static private final int maxGuess = 8;
+    static private final String figure[] = {
+            "   -------------    \n" +
+                    "   |                \n" +
+                    "   |                \n" +
+                    "   |                \n" +
+                    "   |                \n" +
+                    "   |                  \n" +
+                    " -----                \n",
+
+            "   -------------    \n" +
+                    "   |           |    \n" +
+                    "   |                \n" +
+                    "   |                \n" +
+                    "   |                \n" +
+                    "   |     \n" +
+                    " -----   \n",
+
+            "   -------------    \n" +
+                    "   |           |    \n" +
+                    "   |           0    \n" +
+                    "   |                \n" +
+                    "   |                \n" +
+                    "   |     \n" +
+                    " -----   \n",
+
+            "   -------------    \n" +
+                    "   |           |    \n" +
+                    "   |           0    \n" +
+                    "   |           |    \n" +
+                    "   |                \n" +
+                    "   |     \n" +
+                    " -----   \n",
+
+            "   -------------    \n" +
+                    "   |           |    \n" +
+                    "   |           0    \n" +
+                    "   |          /|    \n" +
+                    "   |                \n" +
+                    "   |     \n" +
+                    " -----   \n",
+
+            "   -------------    \n" +
+                    "   |           |    \n" +
+                    "   |           0    \n" +
+                    "   |          /|\\  \n" +
+                    "   |                \n" +
+                    "   |     \n" +
+                    " -----   \n",
+
+            "   -------------    \n" +
+                    "   |           |    \n" +
+                    "   |           0    \n" +
+                    "   |          /|\\  \n" +
+                    "   |          /     \n" +
+                    "   |     \n" +
+                    " -----   \n",
+
+            "   -------------    \n" +
+                    "   |           |    \n" +
+                    "   |           0    \n" +
+                    "   |          /|\\  \n" +
+                    "   |          / \\  \n" +
+                    "   |     \n" +
+                    " -----   \n"
+    };
+
     enum State {
         WIN, LOSE, PLAYING
     }
@@ -14,7 +81,8 @@ public class Hangman extends GameManagement {
     private boolean[] guessed;
 
     public Hangman() {
-        super();
+        health = maxGuess;
+        point = 0;
         state = State.PLAYING;
     }
 
@@ -32,55 +100,69 @@ public class Hangman extends GameManagement {
 
     private void updateRightGuess(int pos) {
         guessed[pos] = true;
+        point++;
     }
 
-    private void printRightGuess() {
-        printGap();
-        printHint();
-    }
-
-    private void printWrongGuess() {
-        printGap();
-        printHint();
-    }
-    
     private void updateWrongGuess() {
-        reduceHealth();
+        health--;
     }
 
-    private boolean checkGuess(String guess) {
-        int pos = word.getWordTarget().indexOf(guess);
+    private void checkGuess(char guess) {
+        guess = Character.toLowerCase(guess);
+
+        int pos = -1;
+
+        for (int i = 0; i < word.getWordTarget().length(); i++) {
+            if (word.getWordTarget().charAt(i) == guess && !guessed[i]) {
+                pos = i;
+                break;
+            }
+        }
+
+        System.out.println(pos);
 
         if (pos == -1) {
             updateWrongGuess();
-            printWrongGuess();
-            return false;
+            System.out.println("Incorrect guess!");
+            if (maxGuess - health >= 0 && maxGuess - health < figure.length)
+                System.out.println(figure[maxGuess - health]);
+        } else {
+            updateRightGuess(pos);
+            System.out.println("Correct guess!");
         }
-
-        updateRightGuess(pos);
-        printRightGuess();
-        return true;
     }
 
     public void start() {
         System.out.println("You are playing Hangman");
 
-        word = new Word("Table", "Bàn");
+        word = new Word("table", "Bàn");
         guessed = new boolean[word.getWordTarget().length()];
+        for (int i = 0; i < word.getWordTarget().length(); i++) {
+            guessed[i] = false;
+        }
 
         while (state == State.PLAYING) {
-            // Print the hint
-
+            printHint();
             System.out.println("Guess a letter: ");
 
             Scanner sc = new Scanner(System.in);
-            String guess = sc.nextLine().substring(0, 1);
+            char guess = sc.next().charAt(0);
 
-            if (checkGuess(guess)) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("Incorrect!");
+            checkGuess(guess);
+
+            if (health == 0) {
+                state = State.LOSE;
             }
+
+            if (point == word.getWordTarget().length()) {
+                state = State.WIN;
+            }
+        }
+
+        if (state == State.WIN) {
+            System.out.println("You win!");
+        } else {
+            System.out.println("You lose!");
         }
     }
 }

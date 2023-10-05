@@ -215,7 +215,6 @@ public class DictionaryCommandLine extends DictionaryManagement {
     }
 
     private void startGame() {
-        System.out.println("Start game.");
         GameManagement game = new GameManagement();
         game.printMenu();
     }
