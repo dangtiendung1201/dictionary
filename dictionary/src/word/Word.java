@@ -1,4 +1,4 @@
-
+package word;
 
 public class Word {
     private String wordTarget;

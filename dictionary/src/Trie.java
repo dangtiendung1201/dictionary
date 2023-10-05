@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+import word.Word;
+
 import static java.lang.Math.min;
 
 public class Trie {

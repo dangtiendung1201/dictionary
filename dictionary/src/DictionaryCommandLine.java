@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import word.Word;
 import game.*;
 
 public class DictionaryCommandLine extends DictionaryManagement {

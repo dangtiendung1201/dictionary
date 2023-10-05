@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import word.Word;
+
 public class DictionaryManagement {
     private final Trie T;
 
