@@ -72,10 +72,6 @@ public class Hangman extends GameManagement {
                     " -----   \n"
     };
 
-    enum State {
-        WIN, LOSE, PLAYING
-    }
-
     private Word word;
     private State state;
     private boolean[] guessed;
