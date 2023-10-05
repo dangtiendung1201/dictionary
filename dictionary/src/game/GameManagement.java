@@ -4,6 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameManagement {
+    enum State {
+        WIN, LOSE, PLAYING
+    }
+
     protected int point;
     protected int health;
     private int curGame; // 0 is None, 1 is Hangman, 2 is Guess the Word, 3 is Multiple Choice
@@ -50,6 +54,10 @@ public class GameManagement {
                 case 1:
                     Hangman hangman = new Hangman();
                     hangman.start();
+                    break;
+                case 2:
+                    GuessTheWord guessTheWord = new GuessTheWord();
+                    guessTheWord.start();
                     break;
             }
             printGap();
