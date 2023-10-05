@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import game.*;
+
 public class DictionaryCommandLine extends DictionaryManagement {
     private int curAction = 1;
 
@@ -20,7 +22,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
     }
 
     /**
-     * Call insertFromCommandline() function from DictionaryManagement and showAllWords().
+     * Call insertFromCommandline() function from DictionaryManagement and
+     * showAllWords().
      */
     public void dictionaryBasic() {
     }
@@ -67,12 +70,12 @@ public class DictionaryCommandLine extends DictionaryManagement {
      */
     public void insertFromFile() {
         System.out.println("Add vocabulary from file. ");
-//        System.out.println("[1] Input file path: ");
-//        System.out.println("[2] Input file name with current path: ");
+        // System.out.println("[1] Input file path: ");
+        // System.out.println("[2] Input file name with current path: ");
         System.out.println("Input file name: ");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
-        path = System.getProperty("user.dir") + "\\src\\" + path;
+        path = System.getProperty("user.dir") + "/src/" + path;
         System.out.println(path);
         insertFromFile(path);
         waitEnter();
@@ -111,7 +114,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
                 System.out.println("Your action: ");
                 Scanner sc = new Scanner(System.in);
                 curAction = sc.nextInt();
-                if (curAction < 0 || curAction > 9) throw new InputMismatchException();
+                if (curAction < 0 || curAction > 9)
+                    throw new InputMismatchException();
                 printGap();
 
                 switch (curAction) {
@@ -134,6 +138,9 @@ public class DictionaryCommandLine extends DictionaryManagement {
                         break;
                     case 6:
                         searchWord();
+                        break;
+                    case 7:
+                        startGame();
                         break;
                     case 8:
                         insertFromFile();
@@ -204,5 +211,11 @@ public class DictionaryCommandLine extends DictionaryManagement {
             System.out.println("This word doesn't exist in the dictionary!");
         }
         waitEnter();
+    }
+
+    private void startGame() {
+        System.out.println("Start game.");
+        GameManagement game = new GameManagement();
+        game.printMenu();
     }
 }

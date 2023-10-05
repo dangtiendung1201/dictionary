@@ -1,3 +1,5 @@
+
+
 public class Word {
     private String wordTarget;
     private String wordExplain;
@@ -47,7 +49,8 @@ public class Word {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Word another) {
+        if (obj instanceof Word) {
+            Word another = (Word) obj;
             return another.wordExplain.equals(this.wordExplain) && another.wordTarget.equals(this.wordTarget);
         }
         return false;
