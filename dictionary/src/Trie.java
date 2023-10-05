@@ -35,7 +35,7 @@ public class Trie {
         T.addWord(new Word("Home", "Gia đình"));
         T.addWord(new Word("House", "Căn nhà"));
         System.out.println(T.allWords());
-        T.removeWord(new Word("Home", "Ngôi nhà"));
+        T.removeWord(new Word("Hoe", "Ngôi nhà"));
         System.out.println(T.allWords());
 
     }
@@ -102,6 +102,9 @@ public class Trie {
      * @param wordTarget wordTarget needs to remove.
      */
     private void removeWord(Node current, int depth, String wordTarget) {
+        if (current.formedWord.isEmpty()) {
+            throw new IllegalArgumentException("This word doesn't exist in the dictionary!");
+        }
         if (depth == wordTarget.length()) {
             size -= current.formedWord.size();
             current.formedWord.removeIf(w -> w.getWordTarget().equals(wordTarget));
