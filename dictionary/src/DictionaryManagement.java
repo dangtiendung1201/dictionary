@@ -24,10 +24,11 @@ public class DictionaryManagement {
                 String data = myReader.nextLine();
                 addWord(getWordFromLine(data));
             }
+            System.out.println("Done.");
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
     }

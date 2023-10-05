@@ -73,7 +73,6 @@ public class DictionaryCommandLine extends DictionaryManagement {
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
         insertFromFile(path);
-        System.out.println("Done.");
     }
 
     private void printGap() {
@@ -116,7 +115,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
                         removeWord();
                         break;
                     case 3:
-                        //updateWord();
+                        updateWord();
                         break;
                     case 4:
                         showAllWords();
@@ -136,12 +135,33 @@ public class DictionaryCommandLine extends DictionaryManagement {
 
     }
 
+    private void updateWord() {
+        try {
+            System.out.println("Update word.");
+            System.out.println("Input the word you want to update: ");
+            Scanner sc = new Scanner(System.in);
+            String updateWord = sc.nextLine();
+            System.out.println("Input the new word: ");
+            String newWord = sc.nextLine();
+            System.out.println("Input the new explanation: ");
+            String newExplain = sc.nextLine();
+            super.removeWord(updateWord);
+            super.addWord(new Word(newWord, newExplain));
+        } catch (IllegalArgumentException ignored) {
+            System.out.println("This word doesn't exist in the dictionary!");
+        }
+    }
+
     private void removeWord() {
-        System.out.println("Remove word.");
-        System.out.println("Input the word you want to remove: ");
-        Scanner sc = new Scanner(System.in);
-        String removeWord = sc.nextLine();
-        removeWord(removeWord);
-        System.out.println("Done.");
+        try {
+            System.out.println("Remove word.");
+            System.out.println("Input the word you want to remove: ");
+            Scanner sc = new Scanner(System.in);
+            String removeWord = sc.nextLine();
+            removeWord(removeWord);
+            System.out.println("Done.");
+        } catch (IllegalArgumentException ignored) {
+            System.out.println("This word doesn't exist in the dictionary!");
+        }
     }
 }
