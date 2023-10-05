@@ -6,9 +6,11 @@ import static java.lang.Math.min;
 public class Trie {
     static final int ALPHABET_SIZE = 26 + 1;
     private final Node root; // the root of the Trie.
+    private int size;
 
     Trie() {
         root = new Node();
+        size = 0;
     }
 
     /**
@@ -29,15 +31,21 @@ public class Trie {
 
     public static void main(String[] args) {
         Trie T = new Trie();
-        T.addWord(new Word("Love", "Yêu thương"));
-        T.addWord(new Word("House", "Ngôi nhà"));
-        T.addWord(new Word("Rice", "Cơm"));
-        System.out.println(T.allTargetWord());
+        T.addWord(new Word("Home", "Ngôi nhà"));
+        T.addWord(new Word("Home", "Gia đình"));
+        T.addWord(new Word("House", "Căn nhà"));
+        System.out.println(T.allWords());
+        T.removeWord(new Word("Hoe", "Ngôi nhà"));
+        System.out.println(T.allWords());
+
+    }
+
+    public int size() {
+        return size;
     }
 
     /**
      * Add a word to Trie.
-     *
      * @param current current node.
      * @param depth   the depth of current node.
      * @param word    the added word.
@@ -46,6 +54,7 @@ public class Trie {
         if (depth == word.getWordTarget().length()) {
             current.formedWord.add(word);
             current.updateCandidateWords();
+            size++;
             return;
         }
         int id = mapCharToInt(word.getWordTarget().charAt(depth));
@@ -58,7 +67,6 @@ public class Trie {
 
     /**
      * Add a word to Trie.
-     *
      * @param word added word.
      */
     public void addWord(Word word) {
@@ -67,15 +75,18 @@ public class Trie {
 
     /**
      * Remove a word from Trie.
-     *
      * @param current current node.
      * @param depth   depth of current node.
      * @param word    removed word.
      */
     private void removeWord(Node current, int depth, Word word) {
+        if (current.formedWord.isEmpty()) {
+            throw new IllegalArgumentException("This word doesn't exist in the dictionary!");
+        }
         if (depth == word.getWordTarget().length()) {
             current.formedWord.remove(word);
             current.updateCandidateWords();
+            size--;
             return;
         }
         int id = mapCharToInt(word.getWordTarget().charAt(depth));
@@ -87,13 +98,42 @@ public class Trie {
         if (current.next[id].meaningless()) current.next[id] = null;
     }
 
+    /**
+     * Remove all words that have the wordTarget equals to wordTarget.
+     * @param current    current node.
+     * @param depth      the depth of the current node.
+     * @param wordTarget wordTarget needs to remove.
+     */
+    private void removeWord(Node current, int depth, String wordTarget) {
+        if (current.formedWord.isEmpty()) {
+            throw new IllegalArgumentException("This word doesn't exist in the dictionary!");
+        }
+        if (depth == wordTarget.length()) {
+            size -= current.formedWord.size();
+            current.formedWord.removeIf(w -> w.getWordTarget().equals(wordTarget));
+            size += current.formedWord.size();
+            current.updateCandidateWords();
+            return;
+        }
+        int id = mapCharToInt(wordTarget.charAt(depth));
+        if (current.next[id] == null) {
+            return;
+        }
+        removeWord(current.next[id], depth + 1, wordTarget);
+        current.updateCandidateWords();
+        if (current.next[id].meaningless()) current.next[id] = null;
+    }
+
     public void removeWord(Word word) {
         removeWord(root, 0, word);
     }
 
+    public void removeWord(String wordTarget) {
+        removeWord(root, 0, wordTarget);
+    }
+
     /**
      * Get the node that form this prefix.
-     *
      * @param current current node.
      * @param depth   the depth of current node.
      * @param prefix  the prefix you want to form.
@@ -147,21 +187,35 @@ public class Trie {
      * @param current current Node.
      * @return ArrayList of word target.
      */
-    private ArrayList<String> allTargetWord(Node current) {
+    private ArrayList<String> allTargetWords(Node current) {
         ArrayList<String> res = new ArrayList<>();
         if (!current.formedWord.isEmpty()) {
             res.add(current.formedWord.get(0).getWordTarget());
         }
         for (int i = 0; i < ALPHABET_SIZE; i++) {
             if (current.next[i] != null) {
-                res.addAll(allTargetWord(current.next[i]));
+                res.addAll(allTargetWords(current.next[i]));
             }
         }
         return res;
     }
 
-    public ArrayList<String> allTargetWord() {
-        return allTargetWord(root);
+    public ArrayList<String> allTargetWords() {
+        return allTargetWords(root);
+    }
+
+    private ArrayList<Word> allWords(Node current) {
+        ArrayList<Word> res = new ArrayList<>(current.formedWord);
+        for (int i = 0; i < ALPHABET_SIZE; i++) {
+            if (current.next[i] != null) {
+                res.addAll(allWords(current.next[i]));
+            }
+        }
+        return res;
+    }
+
+    public ArrayList<Word> allWords() {
+        return allWords(root);
     }
 
     /**
@@ -174,13 +228,15 @@ public class Trie {
      */
     private int minimumEditDistance(String s, String t) {
         int n = s.length(), m = t.length();
+        s = " " + s;
+        t = " " + t;
         int[][] dp = new int[n + 1][m + 1];
         dp[0][1] = 1;
         dp[1][0] = 1;
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
                 dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1);
-                if (s.charAt(i) == s.charAt(j)) {
+                if (s.charAt(i) == t.charAt(j)) {
                     dp[i][j] = min(dp[i][j], dp[i - 1][j - 1]);
                 } else {
                     dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + 1);
@@ -192,13 +248,12 @@ public class Trie {
 
     /**
      * If the user enters the wrong word, suggested words are listed.
-     *
      * @return suggested words.
      */
     public ArrayList<String> searchSuggestions(String enteredWord) {
         final int SUGGEST_SIZE = 10;
         ArrayList<String> ret = new ArrayList<>();
-        ArrayList<String> allTargetWord = allTargetWord();
+        ArrayList<String> allTargetWord = allTargetWords();
         for (int i = 0; i < SUGGEST_SIZE && !allTargetWord.isEmpty(); i++) {
             int min = minimumEditDistance(enteredWord, allTargetWord.get(0));
             int id = 0;
