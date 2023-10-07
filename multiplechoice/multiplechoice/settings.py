@@ -55,24 +55,25 @@ ROBOTSTXT_OBEY = True
 #    "multiplechoice.middlewares.MultiplechoiceDownloaderMiddleware": 543,
 #}
 ROTATING_PROXY_LIST = [
-    'http://hgwan1.vinaproxy.net:50001',
-    'http://hgwan2.vinaproxy.net:50002',
-    'http://hgwan3.vinaproxy.net:50003',
-    'http://hgwan4.vinaproxy.net:50004',
-    'http://hgwan5.vinaproxy.net:50005',
-    'http://hgwan6.vinaproxy.net:50006',
-    'http://hgwan7.vinaproxy.net:50007',
-    'http://hgwan8.vinaproxy.net:50008',
-    'http://tn2.vinaproxy.net:4102',
+    'http://wcaxjgxo:jrcuy2g8t5un@67.227.119.209:6538',
     'http://tn2.vinaproxy.net:4101',
+    'http://tn2.vinaproxy.net:4102',
+    'http://hgwan1.vinaproxy.net:50001',
+    'http://hgwan1.vinaproxy.net:50002',
+    'http://hgwan1.vinaproxy.net:50003',
+    'http://hgwan1.vinaproxy.net:50004',
+    'http://hgwan1.vinaproxy.net:50005',
+    'http://hgwan1.vinaproxy.net:50006',
+    'http://hgwan1.vinaproxy.net:50007',
+    'http://hgwan1.vinaproxy.net:50008',
 ]
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
     'scrapy_fake_useragent.middleware.RetryUserAgentMiddleware': 401,
-    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+    # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
 FAKEUSERAGENT_PROVIDERS = [
     'scrapy_fake_useragent.providers.FakeUserAgentProvider',  # This is the first provider we'll try
