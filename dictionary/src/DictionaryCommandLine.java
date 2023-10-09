@@ -12,7 +12,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         DictionaryCommandLine test = new DictionaryCommandLine();
         test.dictionaryAdvanced();
     }
-    
+
     /**
      * Show all words alphabetically.
      */
@@ -163,8 +163,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Input the word you want to search: ");
         Scanner sc = new Scanner(System.in);
         String searchWord = sc.nextLine();
-        ArrayList<Word> words = dictionarySearcher(searchWord);
         try {
+            ArrayList<Word> words = dictionarySearcher(searchWord);
             showWordList(words);
         } catch (IllegalArgumentException ignored) {
             System.out.println("This prefix doesn't exist in the dictionary!");
