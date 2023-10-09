@@ -1,5 +1,6 @@
 package game;
 
+import question.Question;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
