@@ -76,7 +76,8 @@ public class DictionaryManagement {
     }
 
     /**
-     * Get word from a line with English word and its definition are seperated by a tab (/t)
+     * Get word from a line with English word and its definition are seperated by a
+     * tab (/t)
      *
      * @param data a line with format: "wordTarget '\t' wordExplain"
      * @return Word
