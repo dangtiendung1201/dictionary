@@ -12,7 +12,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         DictionaryCommandLine test = new DictionaryCommandLine();
         test.dictionaryAdvanced();
     }
-
+    
     /**
      * Show all words alphabetically.
      */
@@ -76,7 +76,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Input file name: ");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
-        path = System.getProperty("user.dir") + "/src/" + path;
+        path = System.getProperty("user.dir") + "/dictionary/data/" + path;
         System.out.println(path);
         insertFromFile(path);
         waitEnter();
@@ -177,7 +177,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Input file name: ");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
-        path = System.getProperty("user.dir") + "\\src\\" + path;
+        path = System.getProperty("user.dir") + "/dictionary/data/" + path;
         exportToFile(path);
         waitEnter();
     }
