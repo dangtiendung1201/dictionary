@@ -73,9 +73,9 @@ public class MultipleChoice extends GameManagement {
     }
 
     private void printQuestion() {
-        String tmp = question.getExample();
-        tmp = tmp.replace(question.getWord(), "______");
-        System.out.println("Question: " + tmp);
+        String questionScript = question.getExample();
+        questionScript = questionScript.replaceAll("(?i)" + question.getWord(), "______");
+        System.out.println("Question: " + questionScript);
     }
 
     private void printAnswer() {
