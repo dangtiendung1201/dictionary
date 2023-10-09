@@ -2,26 +2,26 @@ package game;
 
 public class Question {
     private String word;
-    private String question;
+    private String example;
 
-    public Question(String word, String question) {
+    public Question(String word, String example) {
         this.word = word;
-        this.question = question;
+        this.example = example;
     }
 
     public String getWord() {
         return word;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getExample() {
+        return example;
     }
 
     public void setWord(String word) {
         this.word = word;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setExample(String example) {
+        this.example = example;
     }
 }
