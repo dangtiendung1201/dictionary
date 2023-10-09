@@ -76,7 +76,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Input file name: ");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
-        path = System.getProperty("user.dir") + "/src/" + path;
+        path = System.getProperty("user.dir") + "/dictionary/data/" + path;
         System.out.println(path);
         insertFromFile(path);
         waitEnter();
@@ -159,12 +159,12 @@ public class DictionaryCommandLine extends DictionaryManagement {
     }
 
     private void searchWord() {
-        System.out.println("Search word.");
-        System.out.println("Input the word you want to search: ");
-        Scanner sc = new Scanner(System.in);
-        String searchWord = sc.nextLine();
-        ArrayList<Word> words = dictionarySearcher(searchWord);
         try {
+            System.out.println("Search word.");
+            System.out.println("Input the word you want to search: ");
+            Scanner sc = new Scanner(System.in);
+            String searchWord = sc.nextLine();
+            ArrayList<Word> words = dictionarySearcher(searchWord);
             showWordList(words);
         } catch (IllegalArgumentException ignored) {
             System.out.println("This prefix doesn't exist in the dictionary!");
@@ -177,7 +177,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
         System.out.println("Input file name: ");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
-        path = System.getProperty("user.dir") + "\\src\\" + path;
+        path = System.getProperty("user.dir") + "/dictionary/data/" + path;
         exportToFile(path);
         waitEnter();
     }

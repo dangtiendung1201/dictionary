@@ -66,7 +66,7 @@ public class DictionaryManagement {
             java.io.FileWriter myWriter = new java.io.FileWriter(path);
             ArrayList<Word> words = T.allWords();
             for (Word word : words) {
-                myWriter.write(word.toString());
+                myWriter.write(word.getWordTarget() + "\t" + word.getWordExplain() + "\n");
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -76,7 +76,8 @@ public class DictionaryManagement {
     }
 
     /**
-     * Get word from a line with English word and its definition are seperated by a tab (/t)
+     * Get word from a line with English word and its definition are seperated by a
+     * tab (/t)
      *
      * @param data a line with format: "wordTarget '\t' wordExplain"
      * @return Word
