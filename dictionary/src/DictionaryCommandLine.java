@@ -159,11 +159,11 @@ public class DictionaryCommandLine extends DictionaryManagement {
     }
 
     private void searchWord() {
-        System.out.println("Search word.");
-        System.out.println("Input the word you want to search: ");
-        Scanner sc = new Scanner(System.in);
-        String searchWord = sc.nextLine();
         try {
+            System.out.println("Search word.");
+            System.out.println("Input the word you want to search: ");
+            Scanner sc = new Scanner(System.in);
+            String searchWord = sc.nextLine();
             ArrayList<Word> words = dictionarySearcher(searchWord);
             showWordList(words);
         } catch (IllegalArgumentException ignored) {
