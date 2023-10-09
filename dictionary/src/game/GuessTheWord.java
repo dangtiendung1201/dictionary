@@ -4,58 +4,58 @@ import java.util.Scanner;
 import word.Word;
 
 public class GuessTheWord extends GameManagement {
-    static private final int maxGuess = 5;
+	static private final int maxGuess = 5;
 
-    private Word word;
-    private State state;
+	private Word word;
+	private State state;
 
-    public GuessTheWord() {
-        health = maxGuess;
-        point = 0;
-        state = State.PLAYING;
-    }
+	public GuessTheWord() {
+		health = maxGuess;
+		point = 0;
+		state = State.PLAYING;
+	}
 
-    private void printHint() {
-        System.out.println("This word has " + word.getWordTarget().length() + " characters.");
-        System.out.println("Meaning: " + word.getWordExplain());
-    }
+	private void printHint() {
+		System.out.println("This word has " + word.getWordTarget().length() + " characters.");
+		System.out.println("Meaning: " + word.getWordExplain());
+	}
 
-    private void checkGuess(String guess) {
-        guess = guess.toLowerCase();
-        
-        if (guess.equals(word.getWordTarget())) {
-            state = State.WIN;
-            return;
-        }
+	private void checkGuess(String guess) {
+		guess = guess.toLowerCase();
 
-        health--;
-        System.out.println("Wrong guess! You have " + health + " guesses left.");
-    }
+		if (guess.equals(word.getWordTarget())) {
+			state = State.WIN;
+			return;
+		}
 
-    public void start() {
-        System.out.println("You are playing Guess The Word");
+		health--;
+		System.out.println("Wrong guess! You have " + health + " guesses left.");
+	}
 
-        word = new Word("mississippi", "hihi");
-        printHint();
+	public void start() {
+		System.out.println("You are playing Guess The Word");
 
-        while (state == State.PLAYING) {
-            System.out.println("Guess a word: ");
+		word = new Word("mississippi", "hihi");
+		printHint();
 
-            Scanner sc = new Scanner(System.in);
-            String guess = sc.nextLine();
+		while (state == State.PLAYING) {
+			System.out.println("Guess a word: ");
 
-            checkGuess(guess);
+			Scanner sc = new Scanner(System.in);
+			String guess = sc.nextLine();
 
-            if (health == 0) {
-                state = State.LOSE;
-            }
-        }
+			checkGuess(guess);
 
-        if (state == State.WIN) {
-            System.out.println("You win!");
-            System.out.println("The word is: " + word.getWordTarget());
-        } else {
-            System.out.println("You lose!");
-        }
-    }
+			if (health == 0) {
+				state = State.LOSE;
+			}
+		}
+
+		if (state == State.WIN) {
+			System.out.println("You win!");
+			System.out.println("The word is: " + word.getWordTarget());
+		} else {
+			System.out.println("You lose!");
+		}
+	}
 }
