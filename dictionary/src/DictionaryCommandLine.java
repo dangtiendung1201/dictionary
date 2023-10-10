@@ -18,7 +18,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
      */
     public void showAllWords() {
         System.out.println("Show all words. ");
-        showWordList(super.allDictionaryWord());
+        showWordList(allDictionaryWord());
         waitEnter();
     }
 
@@ -38,7 +38,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
         Scanner sc = new Scanner(System.in);
         String lookUpWord = sc.nextLine();
         try {
-            System.out.println(dictionaryLookUp(lookUpWord));
+            ArrayList<Word> words = dictionaryLookUp(lookUpWord);
+            showWordList(words);
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
@@ -192,8 +193,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
             String newWord = sc.nextLine();
             System.out.println("Input the new explanation: ");
             String newExplain = sc.nextLine();
-            super.removeWord(updateWord);
-            super.addWord(new Word(newWord, newExplain));
+            removeWord(updateWord);
+            addWord(new Word(newWord, newExplain));
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
