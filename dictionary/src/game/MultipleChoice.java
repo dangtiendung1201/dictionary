@@ -10,7 +10,24 @@ import java.util.Scanner;
 public class MultipleChoice extends GameManagement {
     private static int maxQuestion = 33482;
 
-    private ArrayList<Question> dataFile = new ArrayList<Question>();
+    private static ArrayList<Question> dataFile = new ArrayList<Question>();
+    static {
+        System.out.println("Reading data from Multiple Choice...");
+
+        try {
+            Scanner sc = new Scanner(
+                    new File(System.getProperty("user.dir") + "/dictionary/data/MultipleChoiceData.txt"));
+
+            while (sc.hasNext()) {
+                String tmp[] = sc.nextLine().split("\t");
+                dataFile.add(new Question(tmp[0], tmp[1]));
+            }
+
+            sc.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+    }
     private State state;
     private Question question;
     private String[] answer = new String[4];
@@ -20,23 +37,6 @@ public class MultipleChoice extends GameManagement {
         point = 0;
         health = 3;
         state = State.PLAYING;
-    }
-
-    private void getDataFromFile() {
-        System.out.println("Reading data from file...");
-
-        try {
-            Scanner sc = new Scanner(new File("dictionary/data/MultipleChoiceData.txt"));
-            
-            while (sc.hasNext()) {
-                String tmp[] = sc.nextLine().split("\t");
-                dataFile.add(new Question(tmp[0], tmp[1]));
-            }
-            
-            sc.close();
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
-        }
     }
 
     private void generateQuestion() {
@@ -104,7 +104,6 @@ public class MultipleChoice extends GameManagement {
 
     public void start() {
         System.out.println("You are playing Multiple Choice Game");
-        getDataFromFile();
 
         while (state == State.PLAYING) {
             generateQuestion();

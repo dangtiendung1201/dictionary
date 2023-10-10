@@ -18,7 +18,7 @@ public class DictionaryCommandLine extends DictionaryManagement {
      */
     public void showAllWords() {
         System.out.println("Show all words. ");
-        showWordList(super.allDictionaryWord());
+        showWordList(allDictionaryWord());
         waitEnter();
     }
 
@@ -38,7 +38,8 @@ public class DictionaryCommandLine extends DictionaryManagement {
         Scanner sc = new Scanner(System.in);
         String lookUpWord = sc.nextLine();
         try {
-            System.out.println(dictionaryLookUp(lookUpWord));
+            ArrayList<Word> words = dictionaryLookUp(lookUpWord);
+            showWordList(words);
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
@@ -188,12 +189,18 @@ public class DictionaryCommandLine extends DictionaryManagement {
             System.out.println("Input the word you want to update: ");
             Scanner sc = new Scanner(System.in);
             String updateWord = sc.nextLine();
-            System.out.println("Input the new word: ");
-            String newWord = sc.nextLine();
-            System.out.println("Input the new explanation: ");
+            ArrayList<Word> words = dictionaryLookUp(updateWord);
+            showWordList(words);
+            System.out.println("Choose number of the word you want to update: ");
+            int updateIndex = sc.nextInt();
+            Word targetWord = words.get(updateIndex - 1);
+            if (updateIndex < 1 || updateIndex > words.size())
+                throw new IllegalArgumentException();
+            System.out.println("Input new explanation: ");
             String newExplain = sc.nextLine();
-            super.removeWord(updateWord);
-            super.addWord(new Word(newWord, newExplain));
+            newExplain = sc.nextLine();
+            removeWord(targetWord);
+            addWord(new Word(targetWord.getWordTarget(), newExplain));
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
@@ -206,8 +213,13 @@ public class DictionaryCommandLine extends DictionaryManagement {
             System.out.println("Input the word you want to remove: ");
             Scanner sc = new Scanner(System.in);
             String removeWord = sc.nextLine();
-            removeWord(removeWord);
-            System.out.println("Done.");
+            ArrayList<Word> words = dictionaryLookUp(removeWord);
+            showWordList(words);
+            System.out.println("Choose number of the word you want to remove: ");
+            int removeIndex = sc.nextInt();
+            if (removeIndex < 1 || removeIndex > words.size())
+                throw new IllegalArgumentException();
+            removeWord(words.get(removeIndex - 1));
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
