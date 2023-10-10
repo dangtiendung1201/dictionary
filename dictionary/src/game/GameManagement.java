@@ -45,7 +45,7 @@ public class GameManagement {
 			curGame = sc.nextInt();
 
 			if (curGame < 0 || curGame > 3)
-				throw new InputMismatchException();
+				throw new InputMismatchException("Invalid action!");
 			printGap();
 
 			switch (curGame) {
@@ -64,7 +64,6 @@ public class GameManagement {
 					multipleChoice.start();
 					break;
 			}
-			printGap();
 		}
 	}
 }

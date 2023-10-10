@@ -26,7 +26,7 @@ public class MultipleChoice extends GameManagement {
         System.out.println("Reading data from file...");
 
         try {
-            Scanner sc = new Scanner(new File("dictionary/data/MultipleChoiceData.txt"));
+            Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/dictionary/data/MultipleChoiceData.txt"));
             
             while (sc.hasNext()) {
                 String tmp[] = sc.nextLine().split("\t");
