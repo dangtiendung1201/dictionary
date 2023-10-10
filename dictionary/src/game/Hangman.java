@@ -7,9 +7,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hangman extends GameManagement {
-	static private final int maxWord = 77229;
-	static private final int maxGuess = 8;
-	static private final String figure[] = {
+	private static final int maxWord = 77229;
+	private static final int maxGuess = 8;
+	private static final String figure[] = {
 			"   -------------    \n" +
 					"   |                \n" +
 					"   |                \n" +
@@ -75,7 +75,23 @@ public class Hangman extends GameManagement {
 					" -----   \n"
 	};
 
-	private ArrayList<String> dataFile = new ArrayList<String>();
+	private static ArrayList<String> dataFile = new ArrayList<String>();
+	static {
+		System.out.println("Reading data from Hangman...");
+
+		try {
+			Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/dictionary/data/HangmanData.txt"));
+
+			while (sc.hasNext()) {
+				String tmp = sc.nextLine();
+				dataFile.add(tmp);
+			}
+
+			sc.close();
+		} catch (IOException e) {
+			System.out.println("Error: " + e);
+		}
+	}
 	private String word;
 	private State state;
 	private boolean[] guessed;
@@ -139,23 +155,6 @@ public class Hangman extends GameManagement {
 		}
 	}
 
-	private void getDataFromFile() {
-		System.out.println("Reading data from file...");
-
-		try {
-			Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/dictionary/data/HangmanData.txt"));
-
-			while (sc.hasNext()) {
-				String tmp = sc.nextLine();
-				dataFile.add(tmp);
-			}
-
-			sc.close();
-		} catch (IOException e) {
-			System.out.println("Error: " + e);
-		}
-	}
-
 	private void getRandomWord() {
 		Random rand = new Random();
 		int index = rand.nextInt(maxWord);
@@ -165,7 +164,6 @@ public class Hangman extends GameManagement {
 	public void start() {
 		System.out.println("You are playing Hangman");
 
-		getDataFromFile();
 		getRandomWord();
 
 		guessed = new boolean[word.length()];
