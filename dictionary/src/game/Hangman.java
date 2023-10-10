@@ -1,10 +1,13 @@
 package game;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
-import word.Word;
-
 public class Hangman extends GameManagement {
+	static private final int maxWord = 77229;
 	static private final int maxGuess = 8;
 	static private final String figure[] = {
 			"   -------------    \n" +
@@ -72,7 +75,8 @@ public class Hangman extends GameManagement {
 					" -----   \n"
 	};
 
-	private Word word;
+	ArrayList<String> dataFile = new ArrayList<String>();
+	private String word;
 	private State state;
 	private boolean[] guessed;
 
@@ -85,9 +89,9 @@ public class Hangman extends GameManagement {
 	private void printHint() {
 		System.out.print("Hint: ");
 
-		for (int i = 0; i < word.getWordTarget().length(); i++) {
+		for (int i = 0; i < word.length(); i++) {
 			if (guessed[i]) {
-				System.out.print(word.getWordTarget().charAt(i));
+				System.out.print(word.charAt(i));
 			} else {
 				System.out.print("_");
 			}
@@ -110,8 +114,8 @@ public class Hangman extends GameManagement {
 
 		boolean isCorrect = false;
 
-		for (int i = 0; i < word.getWordTarget().length(); i++) {
-			if (word.getWordTarget().charAt(i) == guess) {
+		for (int i = 0; i < word.length(); i++) {
+			if (word.charAt(i) == guess) {
 				if (!guessed[i]) {
 					updateRightGuess(i);
 
@@ -133,12 +137,37 @@ public class Hangman extends GameManagement {
 		}
 	}
 
+	private void getDataFromFile() {
+		System.out.println("Reading data from file...");
+
+		try {
+			Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/dictionary/data/HangmanData.txt"));
+
+			while (sc.hasNext()) {
+				String tmp = sc.nextLine();
+				dataFile.add(tmp);
+			}
+
+			sc.close();
+		} catch (IOException e) {
+			System.out.println("Error: " + e);
+		}
+	}
+
+	private void getRandomWord() {
+		Random rand = new Random();
+		int index = rand.nextInt(maxWord);
+		word = dataFile.get(index);
+	}
+
 	public void start() {
 		System.out.println("You are playing Hangman");
 
-		word = new Word("mississippi", "hihi");
-		guessed = new boolean[word.getWordTarget().length()];
-		for (int i = 0; i < word.getWordTarget().length(); i++) {
+		getDataFromFile();
+		getRandomWord();
+		
+		guessed = new boolean[word.length()];
+		for (int i = 0; i < word.length(); i++) {
 			guessed[i] = false;
 		}
 
@@ -155,16 +184,17 @@ public class Hangman extends GameManagement {
 				state = State.LOSE;
 			}
 
-			if (point == word.getWordTarget().length()) {
+			if (point == word.length()) {
 				state = State.WIN;
 			}
 		}
 
 		if (state == State.WIN) {
 			System.out.println("You win!");
-			System.out.println("The word is: " + word.getWordTarget());
+			System.out.println("The word is: " + word);
 		} else {
 			System.out.println("You lose!");
+			System.out.println("The correct word is: " + word);
 		}
 	}
 }
