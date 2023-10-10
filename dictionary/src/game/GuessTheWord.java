@@ -6,14 +6,30 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import question.Question;
 import word.Word;
 
 public class GuessTheWord extends GameManagement {
-	static private final int maxWord = 82084;
-	static private final int maxGuess = 5;
+	private static final int maxWord = 82084;
+	private static final int maxGuess = 5;
 
-	private ArrayList<Word> dataFile = new ArrayList<Word>();
+	private static ArrayList<Word> dataFile = new ArrayList<Word>();
+	static {
+		System.out.println("Reading data from Guess The Word...");
+
+		try {
+			Scanner sc = new Scanner(
+					new File(System.getProperty("user.dir") + "/dictionary/data/GuessTheWordData.txt"));
+
+			while (sc.hasNext()) {
+				String tmp[] = sc.nextLine().split("\t");
+				dataFile.add(new Word(tmp[0], tmp[1]));
+			}
+
+			sc.close();
+		} catch (IOException e) {
+			System.out.println("Error: " + e);
+		}
+	}
 	private Word word;
 	private State state;
 
@@ -40,33 +56,15 @@ public class GuessTheWord extends GameManagement {
 		System.out.println("Wrong guess! You have " + health + " guesses left.");
 	}
 
-	private void getDataFromFile() {
-		System.out.println("Reading data from file...");
-
-        try {
-            Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/dictionary/data/GuessTheWordData.txt"));
-            
-            while (sc.hasNext()) {
-                String tmp[] = sc.nextLine().split("\t");
-                dataFile.add(new Word(tmp[0], tmp[1]));
-            }
-            
-            sc.close();
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
-        }
-	}
-
 	private void getRandomWord() {
 		Random rand = new Random();
-        int index = rand.nextInt(maxWord);
-        word = dataFile.get(index);
+		int index = rand.nextInt(maxWord);
+		word = dataFile.get(index);
 	}
 
 	public void start() {
 		System.out.println("You are playing Guess The Word");
 
-		getDataFromFile();
 		getRandomWord();
 
 		printHint();
