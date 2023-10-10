@@ -75,10 +75,11 @@ public class Hangman extends GameManagement {
 					" -----   \n"
 	};
 
-	ArrayList<String> dataFile = new ArrayList<String>();
+	private ArrayList<String> dataFile = new ArrayList<String>();
 	private String word;
 	private State state;
 	private boolean[] guessed;
+	private boolean[] guessedCharacter = new boolean[26];
 
 	public Hangman() {
 		health = maxGuess;
@@ -112,20 +113,21 @@ public class Hangman extends GameManagement {
 	public void checkGuess(char guess) {
 		guess = Character.toLowerCase(guess);
 
+		if (guessedCharacter[guess - 'a']) {
+			System.out.println("You have already guessed this letter!");
+			return;
+		}
+
 		boolean isCorrect = false;
 
 		for (int i = 0; i < word.length(); i++) {
-			if (word.charAt(i) == guess) {
-				if (!guessed[i]) {
-					updateRightGuess(i);
-
-					isCorrect = true;
-				} else {
-					System.out.println("You have already guessed this letter!");
-					return;
-				}
+			if (word.charAt(i) == guess && !guessed[i]) {
+				updateRightGuess(i);
+				isCorrect = true;
 			}
 		}
+
+		guessedCharacter[guess - 'a'] = true;
 
 		if (!isCorrect) {
 			updateWrongGuess();
@@ -165,7 +167,7 @@ public class Hangman extends GameManagement {
 
 		getDataFromFile();
 		getRandomWord();
-		
+
 		guessed = new boolean[word.length()];
 		for (int i = 0; i < word.length(); i++) {
 			guessed[i] = false;
