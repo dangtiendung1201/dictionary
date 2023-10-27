@@ -42,6 +42,11 @@ public class DictionaryCommandLine extends DictionaryManagement {
             showWordList(words);
         } catch (IllegalArgumentException ignored) {
             System.out.println("This word doesn't exist in the dictionary!");
+            ArrayList<String> suggestions = searchSuggestions(lookUpWord);
+            System.out.println("Did you mean: ");
+            for (int i = 0; i < suggestions.size(); i++) {
+                System.out.println("[" + (i + 1) + "] " + suggestions.get(i));
+            }  
         }
         waitEnter();
     }
