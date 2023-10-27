@@ -31,3 +31,4 @@ bin/
 
 ### Java ###
 *.class
+target/
