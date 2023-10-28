@@ -9,17 +9,17 @@
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>20</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>20</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
+            <version>20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
             <version>20</version>
         </dependency>
         <dependency>
@@ -41,7 +41,7 @@
         <sourceDirectory>dictionary/src</sourceDirectory>
         <resources>
             <resource>
-                <directory>dictionary/data</directory>
+                <directory>dictionary/resourses</directory>
             </resource>
         </resources>
 
