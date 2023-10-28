@@ -37,7 +37,8 @@ public class TranslateAPI extends Service {
     public static String prettify(String json_text) {
         JsonElement json = JsonParser.parseString(json_text);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        return gson.toJson(json);
+        String result = gson.toJson(json.getAsJsonArray().get(0).getAsJsonObject().get("translations").getAsJsonArray().get(0).getAsJsonObject().get("text"));
+        return result.substring(1, result.length() - 1);
     }
 
     public static void main(String[] args) {

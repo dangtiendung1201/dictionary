@@ -21,3 +21,24 @@
     -fx-background-radius: 20;
     -fx-border-radius: 20;
 }
+
+/* API */
+.sentence-text {
+    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+}
+.language-choice {
+    -fx-font-family: 'Quicksand-Bold';
+    -fx-font-size: 20;
+    -fx-text-fill: #000000;
+}
+.translate-button {
+    -fx-font-family: 'Quicksand-Bold';
+    -fx-font-size: 20;
+    -fx-text-fill: #000000;
+    -fx-border-color: green;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-color: yellow;
+}
