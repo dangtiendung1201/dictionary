@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../Font/Quicksand.ttf');
+}
+
+/* General */
+.transparent-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+
+.root {
+    -fx-background-color: linear-gradient(to top right, #7f7fd5, #91eae4);
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.container {
+    -fx-background-color: #e8ebe6;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
