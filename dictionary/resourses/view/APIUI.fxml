@@ -28,7 +28,11 @@
             <Font name="Arial" size="90.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="ouputBox" editable="false" layoutX="620.0" layoutY="300.0" prefHeight="250.0" prefWidth="495.0" promptText="Output here" styleClass="sentence-text" stylesheets="@../style/Style.css" />
+      <TextArea fx:id="outputBox" layoutX="620.0" layoutY="300.0" prefHeight="250.0" prefWidth="495.0" promptText="Output here" styleClass="sentence-text" stylesheets="@../style/Style.css" wrapText="true">
+         <font>
+            <Font name="Arial" size="90.0" />
+         </font>
+      </TextArea>
       <ComboBox fx:id="originalLangBox" layoutX="173.0" layoutY="234.0" prefHeight="45.0" prefWidth="200.0" promptText="English" styleClass="language-choice" stylesheets="@../style/Style.css" />
       <ComboBox fx:id="translatedLangBox" layoutX="762.0" layoutY="234.0" prefHeight="45.0" prefWidth="200.0" promptText="Vietnamese" styleClass="language-choice" stylesheets="@../style/Style.css" />
       <Button fx:id="translateBtn" layoutX="470.0" layoutY="232.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="translate-button" stylesheets="@../style/Style.css" text="Translate" />

@@ -17,7 +17,7 @@ public class TranslateAPI extends Service {
     OkHttpClient client = new OkHttpClient();
 
     // This function performs a POST request.
-    public String Post(String sentence, String originalLanguage, String translatedLanguage) throws IOException {
+    private String Post(String sentence, String originalLanguage, String translatedLanguage) throws IOException {
         String json = "[{\"Text\": \"" + sentence + "\"}]";
         RequestBody body = RequestBody.create(json.getBytes());
         Request request = new Request.Builder()
@@ -34,11 +34,26 @@ public class TranslateAPI extends Service {
     }
 
     // This function prettifies the json response.
-    public static String prettify(String json_text) {
+    private static String prettify(String json_text) {
         JsonElement json = JsonParser.parseString(json_text);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String result = gson.toJson(json.getAsJsonArray().get(0).getAsJsonObject().get("translations").getAsJsonArray().get(0).getAsJsonObject().get("text"));
         return result.substring(1, result.length() - 1);
+    }
+
+    private String getLanguageCode(String language) {
+        switch (language) {
+            case "English":
+                return "en";
+            case "Vietnamese":
+                return "vi";
+            default:
+                return "";
+        }
+    }
+
+    public String translate(String sentence, String originalLanguage, String translatedLanguage) throws IOException {
+        return prettify(Post(sentence, getLanguageCode(originalLanguage), getLanguageCode(translatedLanguage)));
     }
 
     public static void main(String[] args) {
