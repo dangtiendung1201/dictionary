@@ -15,11 +15,11 @@ import java.util.ResourceBundle;
 
 public class DictionaryController extends Controller implements Initializable {
     @FXML
-    public Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
+    private Tooltip dictionaryBtnTip, gameBtnTip, APIBtnTip, exitBtnTip;
     @FXML
-    public Button dictionaryBtn, gameBtn, APIBtn, exitBtn;
+    private Button dictionaryBtn, gameBtn, APIBtn, exitBtn;
     @FXML
-    public AnchorPane container;
+    private AnchorPane container;
 
     private void setNode(Node node) {
         container.getChildren().clear();
@@ -37,10 +37,10 @@ public class DictionaryController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tooltip1.setShowDelay(Duration.seconds(0.5));
-        tooltip2.setShowDelay(Duration.seconds(0.5));
-        tooltip3.setShowDelay(Duration.seconds(0.5));
-        tooltip4.setShowDelay(Duration.seconds(0.5));
+        dictionaryBtnTip.setShowDelay(Duration.seconds(0.5));
+        gameBtnTip.setShowDelay(Duration.seconds(0.5));
+        APIBtnTip.setShowDelay(Duration.seconds(0.5));
+        exitBtnTip.setShowDelay(Duration.seconds(0.5));
 
         // dictionaryBtn.setOnAction(actionEvent -> {
         // try {
@@ -63,7 +63,11 @@ public class DictionaryController extends Controller implements Initializable {
         // });
 
         dictionaryBtn.setOnAction(actionEvent -> {
-            System.out.println("Dictionary");
+            try {
+                showPane("/view/TranslationUI.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         gameBtn.setOnAction(actionEvent -> {
