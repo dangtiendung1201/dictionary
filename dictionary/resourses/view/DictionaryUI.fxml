@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../Style/Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DictionaryController">
-   <AnchorPane fx:id="container" layoutX="50.0" layoutY="50.0" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/Style.css" />
-   <Button fx:id="dictionaryBtn" layoutX="1210.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/Style.css">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DictionaryController">
+   <AnchorPane fx:id="container" layoutX="50.0" layoutY="50.0" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/style.css" />
+   <Button fx:id="dictionaryBtn" layoutX="1210.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/style.css">
       <tooltip>
          <Tooltip fx:id="tooltip1" text="Dictionary" />
       </tooltip>
@@ -22,7 +22,7 @@
          </ImageView>
       </graphic>
    </Button>
-   <Button fx:id="gameBtn" layoutX="1210.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/Style.css">
+   <Button fx:id="gameBtn" layoutX="1210.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/style.css">
       <tooltip>
          <Tooltip fx:id="tooltip2" text="Game" />
       </tooltip>
@@ -37,7 +37,7 @@
          </ImageView>
       </graphic>
    </Button>
-   <Button fx:id="APIBtn" layoutX="1209.0" layoutY="450.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/Style.css">
+   <Button fx:id="APIBtn" layoutX="1209.0" layoutY="450.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/style.css">
       <tooltip>
          <Tooltip fx:id="tooltip3" text="API" />
       </tooltip>
@@ -52,7 +52,7 @@
          </ImageView>
       </graphic>
    </Button>
-   <Button fx:id="exitBtn" layoutX="1210.0" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/Style.css">
+   <Button fx:id="exitBtn" layoutX="1210.0" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="transparent-button" stylesheets="@../style/style.css">
       <tooltip>
          <Tooltip fx:id="tooltip4" text="Exit" />
       </tooltip>
