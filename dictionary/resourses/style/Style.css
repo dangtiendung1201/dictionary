@@ -22,6 +22,52 @@
     -fx-border-radius: 20;
 }
 
+/* Translation */
+.search-box {
+    -fx-background-color: transparent;
+}
+.search-field {
+    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-size: 20;
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-color: #ffffff;
+}
+.wordlist-box, .definition-box {
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+}
+.wordlist-title {
+    -fx-font-family: 'Quicksand-Bold';
+    -fx-font-size: 20;
+    -fx-text-fill: #000000;
+}
+.wordlist-content {
+    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-size: 20;
+    -fx-text-fill: #000000;
+}
+.english-word {
+    -fx-font-family: 'Quicksand-Bold';
+    -fx-font-size: 20;
+    -fx-text-fill: #000000;
+}
+.pronunciation-field, .wordtype-field, .meaning-field, .example-field, .relatedword-field {
+    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-size: 15;
+    -fx-text-fill: #000000;
+    -fx-background-color: #ffffff;
+}
+.suggest-alert {
+    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-size: 12;
+    -fx-text-alignment: center;
+    -fx-text-fill: red;
+}
+
 /* API */
 .sentence-text {
     -fx-font-family: 'Quicksand-Regular';
