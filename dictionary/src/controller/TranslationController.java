@@ -1,5 +1,7 @@
 package controller;
 
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import javafx.util.Duration;
 
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import service.SpeechAPI;
 
 public class TranslationController extends Controller {
     @FXML
@@ -35,6 +38,12 @@ public class TranslationController extends Controller {
     }
 
     private void handleSoundBtn() {
+        SpeechAPI voice = new SpeechAPI();
+        try {
+            voice.speak("how");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("Sound button clicked");
     }
 
@@ -42,8 +51,7 @@ public class TranslationController extends Controller {
         System.out.println("Update button clicked");
         if (confirmBtn.isVisible()) {
             confirmBtn.setVisible(false);
-        }
-        else {
+        } else {
             confirmBtn.setVisible(true);
         }
     }
@@ -52,8 +60,7 @@ public class TranslationController extends Controller {
         System.out.println("Delete button clicked");
         if (confirmBtn.isVisible()) {
             confirmBtn.setVisible(false);
-        }
-        else {
+        } else {
             confirmBtn.setVisible(true);
         }
     }
@@ -139,27 +146,27 @@ public class TranslationController extends Controller {
         resultList.getItems().add("Noi");
 
         searchBtn.setOnAction(e -> {
-            handleSearchBtn();   
+            handleSearchBtn();
         });
 
         lookUpBtn.setOnAction(e -> {
-            handleLookUpBtn();   
+            handleLookUpBtn();
         });
 
         soundBtn.setOnAction(e -> {
-            handleSoundBtn();   
+            handleSoundBtn();
         });
 
         updateBtn.setOnAction(e -> {
-            handleUpdateBtn();   
+            handleUpdateBtn();
         });
 
         deleteBtn.setOnAction(e -> {
-            handleDeleteBtn();   
+            handleDeleteBtn();
         });
 
         confirmBtn.setOnAction(e -> {
-            handleConfirmBtn();   
+            handleConfirmBtn();
         });
 
         favoriteOnBtn.setOnAction(e -> {
