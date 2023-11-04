@@ -54,6 +54,7 @@ public class TranslateAPI extends Service {
         Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
         String result = gson.toJson(json.getAsJsonArray().get(0).getAsJsonObject().get("translations").getAsJsonArray()
                 .get(0).getAsJsonObject().get("text"));
+        result = result.replace("\\n", "\n");
         return result.substring(1, result.length() - 1);
     }
 
