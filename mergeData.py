@@ -65,8 +65,8 @@ for i in db:
         else:
             result += 'Not Available\t'
     if i in soha and soha[i]['related'] != 'None':
-        result += soha[i]['related'] + '\t'
+        result += soha[i]['related']
     else:
-        result += 'Not Available\t'
+        result += 'Not Available'
     out.write(result + '\n')
 out.close()
