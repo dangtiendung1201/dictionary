@@ -43,7 +43,7 @@ for i in db:
     if db[i]['pronounce'] != '':
         result += db[i]['pronounce'] + '\t'
     else:
-        result += 'Not Available\t'
+        result += 'N/A\t'
     # if have ":" in meaning
     if ':' in db[i]['meaning']:
         # substring db[i]['meaning'] from 0 to before ":" and assign to wordType
@@ -63,10 +63,10 @@ for i in db:
         if i in game:
             result += game[i]['example'] + '\t'
         else:
-            result += 'Not Available\t'
+            result += 'N/A\t'
     if i in soha and soha[i]['related'] != 'None':
         result += soha[i]['related']
     else:
-        result += 'Not Available'
+        result += 'N/A'
     out.write(result + '\n')
 out.close()
