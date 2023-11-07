@@ -1,15 +1,18 @@
+package management;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import trie.Trie;
 import word.Word;
 
 public class DictionaryManagement {
     private final Trie T;
 
-    DictionaryManagement() {
+    public DictionaryManagement() {
         T = new Trie();
     }
 

@@ -1,3 +1,5 @@
+package trie;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,10 +9,10 @@ import static java.lang.Math.min;
 
 public class Trie {
     static final int ALPHABET_SIZE = 26 + 1;
-    private final Node root; // the root of the Trie.
+    private final Node root; // the root of the trie.Trie.
     private int size;
 
-    Trie() {
+    public Trie() {
         root = new Node();
         size = 0;
     }
@@ -47,7 +49,7 @@ public class Trie {
     }
 
     /**
-     * Add a word to Trie.
+     * Add a word to trie.Trie.
      * @param current current node.
      * @param depth   the depth of current node.
      * @param word    the added word.
@@ -68,7 +70,7 @@ public class Trie {
     }
 
     /**
-     * Add a word to Trie.
+     * Add a word to trie.Trie.
      * @param word added word.
      */
     public void addWord(Word word) {
@@ -76,7 +78,7 @@ public class Trie {
     }
 
     /**
-     * Remove a word from Trie.
+     * Remove a word from trie.Trie.
      * @param current current node.
      * @param depth   depth of current node.
      * @param word    removed word.
@@ -178,7 +180,7 @@ public class Trie {
     }
 
     /**
-     * All distinct word target in Trie.
+     * All distinct word target in trie.Trie.
      *
      * @param current current Node.
      * @return ArrayList of word target.

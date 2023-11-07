@@ -12,6 +12,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import service.SpeechAPI;
+import word.Word;
+
+import java.util.List;
 
 public class TranslationController extends Controller {
     @FXML
@@ -23,28 +26,53 @@ public class TranslationController extends Controller {
     @FXML
     private TextArea pronunciationBox, wordTypeBox, meaningBox, exampleBox, relatedWordBox;
     @FXML
-    private Label englishWord, headerList;
+    private Label englishWord, headerList, notAvailableAlert;
     @FXML
     private ListView<String> resultList;
 
     private void handleSearchBtn() {
-        System.out.println("Search button clicked");
-        System.out.println(searchBox.getText());
+        String searchedWord = searchBox.getText();
+        searchBox.clear();
+        englishWord.setText("");
+        notAvailableAlert.setVisible(false);
+        try {
+            List<Word> searchList = management.dictionarySearcher(searchedWord);
+            resultList.getItems().clear();
+            for(Word w : searchList) {
+                String s = w.getWordTarget();
+                resultList.getItems().add(s);
+            }
+        } catch (IllegalArgumentException e) {
+            notAvailableAlert.setVisible(true);
+        }
     }
 
     private void handleLookUpBtn() {
-        System.out.println("Look up button clicked");
-        System.out.println(searchBox.getText());
+        String lookedUpWord = searchBox.getText();
+        resultList.getItems().clear();
+        notAvailableAlert.setVisible(false);
+        englishWord.setText(lookedUpWord);
+        meaningBox.clear();
+        try {
+            List<Word> searchList = management.dictionaryLookUp(lookedUpWord);
+            String allMeaning = "";
+            for(Word w : searchList) {
+                String s = w.getWordExplain();
+                allMeaning += s + "\n";
+            }
+            meaningBox.setText(allMeaning);
+        } catch (IllegalArgumentException e) {
+            notAvailableAlert.setVisible(true);
+        }
     }
 
     private void handleSoundBtn() {
         SpeechAPI voice = new SpeechAPI();
         try {
-            voice.speak("how");
+            voice.speak(englishWord.getText());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Sound button clicked");
     }
 
     private void handleUpdateBtn() {
@@ -85,7 +113,20 @@ public class TranslationController extends Controller {
 
     // Call lookup fuction
     private void handleResultList() {
-        System.out.println(resultList.getSelectionModel().getSelectedItem());
+        String chosenWord = resultList.getSelectionModel().getSelectedItem();
+        englishWord.setText(chosenWord);
+        notAvailableAlert.setVisible(false);
+        try {
+            List<Word> searchList = management.dictionaryLookUp(chosenWord);
+            String allMeaning = "";
+            for(Word w : searchList) {
+                String s = w.getWordExplain();
+                allMeaning += s + "\n";
+            }
+            meaningBox.setText(allMeaning);
+        } catch (IllegalArgumentException e){
+            notAvailableAlert.setVisible(true);
+        }
     }
 
     @FXML
@@ -131,19 +172,7 @@ public class TranslationController extends Controller {
         // Set default value for headerList
         headerList.setText("Search result");
 
-        // Set default value for resultList
-        resultList.getItems().add("No result");
-        resultList.getItems().add("Truong");
-        resultList.getItems().add("Dai");
-        resultList.getItems().add("Hoc");
-        resultList.getItems().add("Cong");
-        resultList.getItems().add("Nghe");
-        resultList.getItems().add("Khung");
-        resultList.getItems().add("Hon");
-        resultList.getItems().add("Bach");
-        resultList.getItems().add("Khoa");
-        resultList.getItems().add("Ha");
-        resultList.getItems().add("Noi");
+        notAvailableAlert.setVisible(false);
 
         searchBtn.setOnAction(e -> {
             handleSearchBtn();
