@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1139.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TranslationController">
+<AnchorPane prefHeight="620.0" prefWidth="1139.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TranslationController">
    <children>
-        <Pane prefHeight="100.0" prefWidth="1140.0">
+        <Pane prefHeight="100.0" prefWidth="1140.0" stylesheets="@../style/style.css">
             <children>
             <Label fx:id="notAvailableAlert" alignment="CENTER" layoutX="370.0" layoutY="70.0" prefHeight="30.0" prefWidth="300.0" styleClass="suggest-alert" stylesheets="@../style/style.css" text="Không có từ này. Hãy xem những gợi ý" textAlignment="CENTER">
                <graphic>
