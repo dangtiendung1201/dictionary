@@ -12,18 +12,18 @@ import javafx.scene.layout.AnchorPane;
 
 public class GameController extends Controller {
     @FXML
-    private AnchorPane gamePane;
+    protected AnchorPane gamePane;
     @FXML
     private Button hangmanBtn, mcBtn, gtwBtn;
     @FXML
     private Tooltip hangmanBtnTip, mcBtnTip, gtwBtnTip;
 
-    private void setNode(Node node) {
+    protected void setNode(Node node) {
         gamePane.getChildren().clear();
         gamePane.getChildren().add(node);
     }
 
-    private void showPane(String path) {
+    protected void showPane(String path) {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource(path));
             setNode(pane);
@@ -49,8 +49,8 @@ public class GameController extends Controller {
 
         mcBtn.setOnAction(actionEvent -> {
             try {
-                // showPane("/view/MultipleChoiceUI.fxml");
-                System.out.println("Multiple Choice");
+                showPane("/view/MultipleChoiceUI.fxml");
+                // System.out.println("Multiple Choice");
             } catch (Exception e) {
                 e.printStackTrace();
             }
