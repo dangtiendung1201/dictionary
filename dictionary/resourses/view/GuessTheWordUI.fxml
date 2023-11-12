@@ -8,16 +8,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HangmanController">
+<AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GuessTheWordController">
    <children>
-      <ImageView fx:id="hangmanImg" fitHeight="262.0" fitWidth="198.0" layoutX="916.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icon/hangman/hangman0.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="hintText" layoutX="37.0" layoutY="45.0" prefHeight="132.0" prefWidth="316.0" text="Hint" />
-      <Label fx:id="wordText" layoutX="37.0" layoutY="216.0" prefHeight="106.0" prefWidth="263.0" text="Word" />
-      <Label fx:id="resultText" layoutX="14.0" layoutY="349.0" prefHeight="122.0" prefWidth="263.0" text="Result" />
+      <Label fx:id="hintText" layoutX="37.0" layoutY="45.0" prefHeight="132.0" prefWidth="316.0" text="Hint" wrapText="true" />
+      <Label fx:id="resultText" layoutX="14.0" layoutY="349.0" prefHeight="122.0" prefWidth="263.0" text="Result" wrapText="true" />
       <TextField fx:id="inputText" layoutX="849.0" layoutY="310.0" promptText="Guess" />
       <Button fx:id="confirmBtn" layoutX="1035.0" layoutY="300.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="transparent-button" stylesheets="@../style/style.css">
          <graphic>
@@ -55,5 +49,7 @@
             <Tooltip fx:id="reloadBtnTip" text="Reload" />
          </tooltip>
       </Button>
+      <Label fx:id="scoreText" layoutX="188.0" layoutY="37.0" text="Score" />
+      <Label fx:id="healthText" layoutX="591.0" layoutY="29.0" text="Health" />
    </children>
 </AnchorPane>

@@ -58,8 +58,8 @@ public class GameController extends Controller {
 
         gtwBtn.setOnAction(actionEvent -> {
             try {
-                // showPane("/view/GuessTheWordUI.fxml");
-                System.out.println("Guess The Word");
+                showPane("/view/GuessTheWordUI.fxml");
+                // System.out.println("Guess The Word");
             } catch (Exception e) {
                 e.printStackTrace();
             }
