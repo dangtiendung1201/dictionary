@@ -40,8 +40,8 @@ public class GameController extends Controller {
 
         hangmanBtn.setOnAction(actionEvent -> {
             try {
-                // showPane("/view/HangmanUI.fxml");
-                System.out.println("Hangman");
+                showPane("/view/HangmanUI.fxml");
+                // System.out.println("Hangman");
             } catch (Exception e) {
                 e.printStackTrace();
             }
