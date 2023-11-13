@@ -22,20 +22,10 @@ public class SpeechAPI extends Service {
             voice.speak(text);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ngu vl");
         }
     }
 
     public static void main(String[] args) {
-        SpeechAPI speech = new SpeechAPI();
-//        Voice
-        int ntime = 3;
-        while (ntime-- != 0) {
-            try {
-                speech.speak("How?");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
+
     }
 }
