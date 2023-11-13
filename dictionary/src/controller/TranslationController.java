@@ -14,6 +14,7 @@ import javafx.scene.control.Tooltip;
 import service.SpeechAPI;
 import word.Word;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TranslationController extends Controller {
@@ -30,10 +31,18 @@ public class TranslationController extends Controller {
     @FXML
     private ListView<String> resultList;
 
+    private void clearAllBoxes() {
+        searchBox.clear();
+        pronunciationBox.clear();
+        wordTypeBox.clear();
+        meaningBox.clear();
+        exampleBox.clear();
+        relatedWordBox.clear();
+    }
+
     private void handleSearchBtn() {
         String searchedWord = searchBox.getText();
-        searchBox.clear();
-        englishWord.setText("");
+        clearAllBoxes();
         notAvailableAlert.setVisible(false);
         try {
             List<Word> searchList = management.dictionarySearcher(searchedWord);
@@ -47,6 +56,13 @@ public class TranslationController extends Controller {
         }
     }
 
+    private void setLookedUpWord(Word word) {
+        meaningBox.setText(word.getWordExplain());
+        pronunciationBox.setText(word.getIPA());
+        exampleBox.setText(word.getExamples());
+        relatedWordBox.setText(word.getRelatedWords());
+        wordTypeBox.setText(word.getWordTypes());
+    }
     private void handleLookUpBtn() {
         String lookedUpWord = searchBox.getText();
         resultList.getItems().clear();
@@ -55,14 +71,10 @@ public class TranslationController extends Controller {
         meaningBox.clear();
         try {
             List<Word> searchList = management.dictionaryLookUp(lookedUpWord);
-            String allMeaning = "";
-            for(Word w : searchList) {
-                String s = w.getWordExplain();
-                allMeaning += s + "\n";
-            }
-            meaningBox.setText(allMeaning);
+            setLookedUpWord(searchList.get(0));
         } catch (IllegalArgumentException e) {
             notAvailableAlert.setVisible(true);
+            clearAllBoxes();
         }
     }
 
@@ -76,7 +88,6 @@ public class TranslationController extends Controller {
     }
 
     private void handleUpdateBtn() {
-        System.out.println("Update button clicked");
         if (confirmBtn.isVisible()) {
             confirmBtn.setVisible(false);
         } else {
@@ -95,7 +106,22 @@ public class TranslationController extends Controller {
 
     // confirm button show only when update or delete button clicked
     private void handleConfirmBtn() {
-        System.out.println("Confirm button clicked");
+        if (confirmBtn.isVisible()) {
+            String currentWord = englishWord.getText();
+            try {
+                ArrayList<Word> wordList = management.dictionaryLookUp(currentWord);
+                Word word = wordList.get(0);
+                management.removeWord(word);
+                word.setIPA(pronunciationBox.getText());
+                word.setRelatedWords(relatedWordBox.getText());
+                word.setWordExplain(meaningBox.getText());
+                word.setExamples(exampleBox.getText());
+                word.setWordTypes(wordTypeBox.getText());
+                management.addWord(word);
+            } catch (IllegalArgumentException ignored) {
+
+            }
+        }
         confirmBtn.setVisible(false);
     }
 
@@ -118,14 +144,10 @@ public class TranslationController extends Controller {
         notAvailableAlert.setVisible(false);
         try {
             List<Word> searchList = management.dictionaryLookUp(chosenWord);
-            String allMeaning = "";
-            for(Word w : searchList) {
-                String s = w.getWordExplain();
-                allMeaning += s + "\n";
-            }
-            meaningBox.setText(allMeaning);
+            setLookedUpWord(searchList.get(0));
         } catch (IllegalArgumentException e){
             notAvailableAlert.setVisible(true);
+            clearAllBoxes();
         }
     }
 
@@ -144,32 +166,6 @@ public class TranslationController extends Controller {
         // Set default value for confirmBtn
         confirmBtn.setVisible(false);
 
-        // Set default value for searchField
-        // searchBox.setText("Ahihi");
-
-        // Set default value for pronunciationBox
-        pronunciationBox.setText("Ahihi");
-
-        // Set default value for wordTypeBox
-        wordTypeBox.setText("Ahihi");
-
-        // Set default value for meaningBox
-        meaningBox.setText("Ahihi");
-
-        // Set default value for exampleBox
-        exampleBox.setText("Ahihi");
-
-        // Set default value for relatedWordBox
-        relatedWordBox.setText("Ahihi");
-
-        // Set default value for englishWord
-        englishWord.setText("Ahihi");
-
-        // Set default value for favoriteOnBtn
-        favoriteOnBtn.setVisible(false);
-        favoriteOffBtn.setVisible(true);
-
-        // Set default value for headerList
         headerList.setText("Search result");
 
         notAvailableAlert.setVisible(false);
