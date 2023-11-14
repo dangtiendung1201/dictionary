@@ -69,7 +69,7 @@ public class TranslationController extends Controller {
     private void handleSoundBtn() {
         SpeechAPI voice = new SpeechAPI();
         try {
-            voice.speak(englishWord.getText());
+            voice.speak(englishWord.getText(), "English");
         } catch (Exception e) {
             e.printStackTrace();
         }
