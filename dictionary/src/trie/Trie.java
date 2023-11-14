@@ -274,7 +274,7 @@ public class Trie {
         private final Node[] next; // pointer to child of this Node.
         private final ArrayList<Word> formedWord; // All words that this node form because maybe
         // one word can have many meanings.
-        private final ArrayList<Word> candidateWords; // Some words that contain the prefix formed by this tnode.
+        private final ArrayList<Word> candidateWords; // Some words that contain the prefix formed by this node.
 
         Node() {
             next = new Node[ALPHABET_SIZE];

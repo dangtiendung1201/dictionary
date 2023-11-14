@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 import trie.Trie;
@@ -41,6 +43,7 @@ public class DictionaryManagement {
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
+            int x = 0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 addWord(getWordFromLine(data));
@@ -86,22 +89,27 @@ public class DictionaryManagement {
      * @return Word
      */
     private Word getWordFromLine(String data) {
-        String wordTarget = "";
-        String wordExplain = "";
-        boolean isWordTarget = true;
-        for (int i = 0; i < data.length(); i++) {
-            char cur = data.charAt(i);
-            if (cur == '\t') {
-                isWordTarget = false;
-                continue;
+        String[] info = data.split("\t");
+        String examples = info[4], relatedWords = info[5];
+
+        /*
+        int cnt = 0;
+        for(int i = 0; i < examples.length(); i ++) {
+            if (examples.charAt(i) == '|') {
+                cnt ++;
+                if (cnt % 2 == 1) {
+                    examples = examples.substring(0, i)
+                            + ":" + examples.substring(i + 1);
+                }
+                else {
+                    examples = examples.substring(0, i)
+                            + "\n" + examples.substring(i + 1);
+                }
             }
-            if (isWordTarget) {
-                wordTarget += cur;
-            } else {
-                wordExplain += cur;
-            }
-        }
-        return new Word(wordTarget, wordExplain);
+        }*/
+
+        relatedWords = relatedWords.replace(" |", ",");
+        return new Word(info[0], info[3], info[1], info[2], examples, relatedWords);
     }
 
     public ArrayList<Word> allDictionaryWord() {
