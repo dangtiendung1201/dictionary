@@ -24,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import static service.SpeechAPI.getSpeechFromText;
+import static service.SpeechRecognitionAPI.getTextFromSpeech;
 
 public class APIController extends Controller {
     private final String[] languages = {"English", "Vietnamese"};
@@ -41,8 +42,7 @@ public class APIController extends Controller {
     @FXML
     private void handleSpeech2TextBtn() {
         try {
-            SpeechRecognitionAPI speechRecognitionAPI = new SpeechRecognitionAPI();
-            String sentence = speechRecognitionAPI.getSpeech(originalLangBox.getValue());
+            String sentence = getTextFromSpeech(originalLangBox.getValue());
             inputBox.setText(sentence);
         } catch (ConnectException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

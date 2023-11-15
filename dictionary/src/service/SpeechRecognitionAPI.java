@@ -16,11 +16,10 @@ public class SpeechRecognitionAPI {
 
 
     public static void main(String[] args) throws Exception {
-        SpeechRecognitionAPI speech = new SpeechRecognitionAPI();
-        System.out.println(speech.getSpeech("Vietnamese"));
+        System.out.println(getTextFromSpeech("Vietnamese"));
     }
 
-    public String getSpeech(String language) throws Exception {
+    public static String getTextFromSpeech(String language) throws Exception {
         System.out.println("Say something...");
         config.setSpeechRecognitionLanguage(getLanguageCode(language));
         SpeechRecognizer reco = new SpeechRecognizer(config, audioConfig);
@@ -48,7 +47,7 @@ public class SpeechRecognitionAPI {
         return "";
     }
 
-    private String getLanguageCode(String language) {
+    private static String getLanguageCode(String language) {
         switch (language) {
             case "English":
                 return "en-US";
