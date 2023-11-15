@@ -80,7 +80,7 @@ public class Hangman extends GameManagement {
 		System.out.println("Reading data from Hangman...");
 
 		try {
-			Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/dictionary/data/HangmanData.txt"));
+			Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/dictionary/resourses/data/HangmanData.txt"));
 
 			while (sc.hasNext()) {
 				String tmp = sc.nextLine();

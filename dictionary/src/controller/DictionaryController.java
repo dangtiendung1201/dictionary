@@ -42,26 +42,6 @@ public class DictionaryController extends Controller implements Initializable {
         APIBtnTip.setShowDelay(Duration.seconds(0.5));
         exitBtnTip.setShowDelay(Duration.seconds(0.5));
 
-        // dictionaryBtn.setOnAction(actionEvent -> {
-        // try {
-        // AnchorPane pane =
-        // FXMLLoader.load(getClass().getResource("/view/DictionaryView.fxml"));
-        // container.getChildren().setAll(pane);
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // }
-        // });
-
-        // gameBtn.setOnAction(actionEvent -> {
-        // try {
-        // AnchorPane pane =
-        // FXMLLoader.load(getClass().getResource("/view/GameView.fxml"));
-        // container.getChildren().setAll(pane);
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // }
-        // });
-
         dictionaryBtn.setOnAction(actionEvent -> {
             try {
                 showPane("/view/TranslationUI.fxml");
@@ -71,7 +51,11 @@ public class DictionaryController extends Controller implements Initializable {
         });
 
         gameBtn.setOnAction(actionEvent -> {
-            System.out.println("Game");
+            try {
+                showPane("/view/GameUI.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         APIBtn.setOnAction(actionEvent -> {

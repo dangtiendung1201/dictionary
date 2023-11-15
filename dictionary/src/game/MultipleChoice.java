@@ -16,7 +16,7 @@ public class MultipleChoice extends GameManagement {
 
         try {
             Scanner sc = new Scanner(
-                    new File(System.getProperty("user.dir") + "/dictionary/data/MultipleChoiceData.txt"));
+                    new File(System.getProperty("user.dir") + "/dictionary/resourses/data/MultipleChoiceData.txt"));
 
             while (sc.hasNext()) {
                 String tmp[] = sc.nextLine().split("\t");
@@ -28,7 +28,6 @@ public class MultipleChoice extends GameManagement {
             System.out.println("Error: " + e);
         }
     }
-    private State state;
     private Question question;
     private String[] answer = new String[4];
     private char correctAnswer;
@@ -36,16 +35,15 @@ public class MultipleChoice extends GameManagement {
     public MultipleChoice() {
         point = 0;
         health = 3;
-        state = State.PLAYING;
     }
 
-    private void generateQuestion() {
+    public void generateQuestion() {
         Random rand = new Random();
         int index = rand.nextInt(maxQuestion);
         question = dataFile.get(index);
     }
 
-    private void generateAnswer() {
+    public void generateAnswer() {
         answer[0] = question.getWord();
 
         for (int i = 1; i < 4; i++) {
@@ -62,9 +60,7 @@ public class MultipleChoice extends GameManagement {
             answer[i] = answer[index];
             answer[index] = tmp;
         }
-    }
 
-    private void getCorrectAnswer() {
         for (int i = 0; i < 4; i++) {
             if (answer[i].equals(question.getWord())) {
                 correctAnswer = (char) (i + 'A');
@@ -73,69 +69,38 @@ public class MultipleChoice extends GameManagement {
         }
     }
 
-    private void printQuestion() {
+    public String getQuestion() {
         String questionScript = question.getExample();
         questionScript = questionScript.replaceAll("(?i)" + question.getWord(), "______");
-        System.out.println("Question: " + questionScript);
+
+        return questionScript;
     }
 
-    private void printAnswer() {
-        System.out.println("A. " + answer[0]);
-        System.out.println("B. " + answer[1]);
-        System.out.println("C. " + answer[2]);
-        System.out.println("D. " + answer[3]);
+    public String getSentence() {
+        return question.getExample();
     }
 
-    private void checkAnswer(char guess) {
-        if (guess == correctAnswer) {
-            System.out.println("Correct answer!");
-            point++;
-        } else {
-            System.out.println("Incorrect answer!");
-            System.out.println("Correct answer is " + correctAnswer);
-            health--;
-        }
+    public String getAnswer(int index) {
+        if (index == 0)
+            return "A. " + answer[0];
+        else if (index == 1)
+            return "B. " + answer[1];
+        else if (index == 2)
+            return "C. " + answer[2];
+        return "D. " + answer[3];
     }
 
-    private void printInformation() {
-        System.out.println("Your point: " + point);
-        System.out.println("Your health: " + health);
+    public String getAnswer(char index) {
+        if (index == 'A')
+            return answer[0];
+        else if (index == 'B')
+            return answer[1];
+        else if (index == 'C')
+            return answer[2];
+        return answer[3];
     }
 
-    public void start() {
-        System.out.println("You are playing Multiple Choice Game");
-
-        while (state == State.PLAYING) {
-            generateQuestion();
-            generateAnswer();
-            getCorrectAnswer();
-
-            printQuestion();
-            printAnswer();
-
-            System.out.print("Your answer: ");
-            Scanner sc = new Scanner(System.in);
-            char guess = Character.toUpperCase(sc.next().charAt(0));
-
-            checkAnswer(guess);
-
-            printInformation();
-
-            if (health == 0) {
-                state = State.LOSE;
-                break;
-            }
-
-            if (point == 10) {
-                state = State.WIN;
-                break;
-            }
-        }
-
-        if (state == State.LOSE) {
-            System.out.println("You lose!");
-        } else {
-            System.out.println("You win!");
-        }
+    public char getCorrectAnswer() {
+        return correctAnswer;
     }
 }
