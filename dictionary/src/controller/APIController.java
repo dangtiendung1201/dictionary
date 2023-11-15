@@ -6,13 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import service.ImageAnalysisAPI;
-import service.SpeechAPI;
-import service.SpeechRecognitionAPI;
 import service.TranslateAPI;
 
 import java.io.File;
@@ -23,6 +19,7 @@ import java.net.ConnectException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import static service.ImageAnalysisAPI.getTextFromImage;
 import static service.SpeechAPI.getSpeechFromText;
 import static service.SpeechRecognitionAPI.getTextFromSpeech;
 
@@ -94,10 +91,9 @@ public class APIController extends Controller {
         stage.setScene(scene);
         stage.show();
 
-        ImageAnalysisAPI imageRecognitionAPI = new ImageAnalysisAPI();
         String sentence = "";
         try {
-            sentence = imageRecognitionAPI.getTextFromImage(path);
+            sentence = getTextFromImage(path);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -119,7 +115,6 @@ public class APIController extends Controller {
     private void handleOriginalSoundBtn() {
         String sentence = inputBox.getText();
         String originalLanguage = originalLangBox.getValue();
-        SpeechAPI speechAPI = new SpeechAPI();
         try {
             getSpeechFromText(sentence, originalLanguage);
         }
