@@ -13,71 +13,71 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1139.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TranslationController">
-    <children>
-        <Pane prefHeight="100.0" prefWidth="1140.0">
+<AnchorPane prefHeight="620.0" prefWidth="1139.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TranslationController">
+   <children>
+        <Pane prefHeight="100.0" prefWidth="1140.0" stylesheets="@../style/style.css">
             <children>
-                <Label fx:id="notAvailableAlert" alignment="CENTER" layoutX="370.0" layoutY="70.0" prefHeight="30.0" prefWidth="300.0" styleClass="suggest-alert" stylesheets="@../style/style.css" text="Không có từ này. Hãy xem những gợi ý" textAlignment="CENTER">
-                    <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent-button">
-                            <image>
-                                <Image url="@../icon/warning.png" />
-                            </image>
+            <Label fx:id="notAvailableAlert" alignment="CENTER" layoutX="370.0" layoutY="70.0" prefHeight="30.0" prefWidth="300.0" styleClass="suggest-alert" stylesheets="@../style/style.css" text="Không có từ này. Hãy xem những gợi ý" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent-button">
+                     <image>
+                        <Image url="@../icon/warning.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Pane layoutX="370.0" layoutY="30.0" prefWidth="400.0" styleClass="search-box" stylesheets="@../style/style.css">
+               <children>
+                      <TextField fx:id="searchBox" prefWidth="320.0" promptText="Nhập từ" styleClass="search-field" stylesheets="@../style/style.css" />
+                  <Button fx:id="searchBtn" layoutX="320.0" layoutY="4.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                     <tooltip>
+                        <Tooltip fx:id="searchBtnTip" text="Search">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/search.png" />
+                           </image>
                         </ImageView>
-                    </graphic>
-                </Label>
-                <Pane layoutX="370.0" layoutY="30.0" prefWidth="400.0" styleClass="search-box" stylesheets="@../style/style.css">
-                    <children>
-                        <TextField fx:id="searchBox" prefWidth="320.0" promptText="Nhập từ" styleClass="search-field" stylesheets="@../style/style.css" />
-                        <Button fx:id="searchBtn" layoutX="320.0" layoutY="4.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                            <tooltip>
-                                <Tooltip fx:id="searchBtnTip" text="Search">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                            <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icon/search.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <Button fx:id="lookUpBtn" layoutX="360.0" layoutY="4.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                            <tooltip>
-                                <Tooltip fx:id="lookUpBtnTip" text="Look Up">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                            <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icon/lookup.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                    </children>
-                </Pane>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="lookUpBtn" layoutX="360.0" layoutY="4.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                     <tooltip>
+                        <Tooltip fx:id="lookUpBtnTip" text="Look Up">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/lookup.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
             </children>
         </Pane>
         <AnchorPane layoutY="120.0" prefHeight="480.0" prefWidth="1140.0" styleClass="main-searcher">
             <children>
                 <AnchorPane layoutX="305.0" prefHeight="484.0" prefWidth="840.0" styleClass="definition-box" stylesheets="@../style/style.css">
                     <children>
-                        <Pane prefHeight="480.0" prefWidth="840.0" stylesheets="@../style/style.css">
-                            <children>
-                                <TextArea fx:id="pronunciationBox" layoutX="10.0" layoutY="45.0" prefHeight="50.0" prefWidth="405.0" promptText="Pronunciation" styleClass="pronunciation-field" stylesheets="@../style/style.css" text="Pronunciation" wrapText="true" />
-                                <TextArea fx:id="wordTypeBox" layoutX="425.0" layoutY="45.0" prefHeight="50.0" prefWidth="405.0" styleClass="wordtype-field" stylesheets="@../style/style.css" text="WordType" wrapText="true" />
+                  <Pane prefHeight="480.0" prefWidth="840.0" stylesheets="@../style/style.css">
+                     <children>
+                        <TextArea fx:id="pronunciationBox" layoutX="10.0" layoutY="45.0" prefHeight="50.0" prefWidth="405.0" promptText="Pronunciation" styleClass="pronunciation-field" stylesheets="@../style/style.css" text="Pronunciation" wrapText="true" />
+                        <TextArea fx:id="wordTypeBox" layoutX="425.0" layoutY="45.0" prefHeight="50.0" prefWidth="405.0" styleClass="wordtype-field" stylesheets="@../style/style.css" text="WordType" wrapText="true" />
                                 <TextArea fx:id="meaningBox" layoutX="10.0" layoutY="100.0" prefHeight="120.0" prefWidth="820.0" styleClass="meaning-field" stylesheets="@../style/style.css" text="Meaning" wrapText="true" />
-                                <TextArea fx:id="exampleBox" layoutX="10.0" layoutY="230.0" prefHeight="120.0" prefWidth="820.0" styleClass="example-field" stylesheets="@../style/style.css" text="Example" wrapText="true" />
-                                <TextArea fx:id="relatedWordBox" layoutX="10.0" layoutY="360.0" prefHeight="110.0" prefWidth="820.0" styleClass="relatedword-field" stylesheets="@../style/style.css" text="RelatedWord" wrapText="true" />
-                                <Pane layoutX="1.0" layoutY="6.0" prefHeight="45.0" prefWidth="840.0">
-                                    <children>
+                        <TextArea fx:id="exampleBox" layoutX="10.0" layoutY="230.0" prefHeight="120.0" prefWidth="820.0" styleClass="example-field" stylesheets="@../style/style.css" text="Example" wrapText="true" />
+                        <TextArea fx:id="relatedWordBox" layoutX="10.0" layoutY="360.0" prefHeight="110.0" prefWidth="820.0" styleClass="relatedword-field" stylesheets="@../style/style.css" text="RelatedWord" wrapText="true" />
+                        <Pane layoutX="1.0" layoutY="6.0" prefHeight="45.0" prefWidth="840.0">
+                           <children>
                                         <Label fx:id="englishWord" prefHeight="40.0" prefWidth="500.0" styleClass="english-word" stylesheets="@../style/style.css" text="English" textFill="#9f45b0" wrapText="true">
                                             <font>
                                                 <Font name="System Bold" size="17.0" />
@@ -86,82 +86,82 @@
                                                 <Insets left="5.0" />
                                             </padding>
                                         </Label>
-                                        <Button fx:id="soundBtn" layoutX="550.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
+                              <Button fx:id="soundBtn" layoutX="550.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                                 <graphic>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@../icon/sound.png" />
                                                     </image>
                                                 </ImageView>
-                                            </graphic>
-                                            <tooltip>
-                                                <Tooltip fx:id="soundBtnTip" text="Sound" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="updateBtn" layoutX="605.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip fx:id="soundBtnTip" text="Sound" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="updateBtn" layoutX="605.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                                 <graphic>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@../icon/update.png" />
                                                     </image>
                                                 </ImageView>
-                                            </graphic>
-                                            <tooltip>
-                                                <Tooltip fx:id="updateBtnTip" text="Update" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="deleteBtn" layoutX="660.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip fx:id="updateBtnTip" text="Update" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="deleteBtn" layoutX="660.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                                 <graphic>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@../icon/delete.png" />
                                                     </image>
                                                 </ImageView>
-                                            </graphic>
-                                            <tooltip>
-                                                <Tooltip fx:id="deleteBtnTip" text="Delete" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="confirmBtn" layoutX="715.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/confirm.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <tooltip>
-                                                <Tooltip fx:id="confirmBtnTip" text="Confirm" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="favoriteOnBtn" layoutX="770.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/favoriteOn.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <tooltip>
-                                                <Tooltip fx:id="favoriteOnBtnTip" text="Favorite" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="favoriteOffBtn" layoutX="770.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/favoriteOff.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <tooltip>
-                                                <Tooltip fx:id="favoriteOffBtnTip" text="Favorite" />
-                                            </tooltip>
-                                        </Button>
-                                    </children>
-                                </Pane>
-                            </children>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip fx:id="deleteBtnTip" text="Delete" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="confirmBtn" layoutX="715.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/confirm.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip fx:id="confirmBtnTip" text="Confirm" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="favoriteOnBtn" layoutX="770.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/favoriteOn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip fx:id="favoriteOnBtnTip" text="Favorite" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="favoriteOffBtn" layoutX="770.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/favoriteOff.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip fx:id="favoriteOffBtnTip" text="Favorite" />
+                                 </tooltip>
+                              </Button>
+                           </children>
                         </Pane>
+                     </children>
+                  </Pane>
                     </children>
                 </AnchorPane>
                 <AnchorPane prefWidth="300.0" styleClass="wordlist-box" stylesheets="@../style/style.css">
@@ -176,5 +176,5 @@
                 </AnchorPane>
             </children>
         </AnchorPane>
-    </children>
+   </children>
 </AnchorPane>
