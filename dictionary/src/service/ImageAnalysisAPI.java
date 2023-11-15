@@ -16,21 +16,19 @@ public class ImageAnalysisAPI {
 
     public static void main(String[] args) throws Exception {
         ImageAnalysisAPI image = new ImageAnalysisAPI();
-        System.out.println(image.textFromImage("test.png"));
+        System.out.println(image.getTextFromImage("test.png"));
     }
 
     /**
      * Get text from image.
-     * @param fileName: image file name in "src/image2text" path
+     * @param path: path of image file
      * @return  text from image
      */
-    public String textFromImage(String fileName) throws Exception {
+    public String getTextFromImage(String path) throws Exception {
         String res = "";
         ArrayList<String> lines = new ArrayList<>();
         ArrayList<Float> endOfLines = new ArrayList<>();
         VisionServiceOptions serviceOptions = new VisionServiceOptions(new URL(endpoint), key);
-
-        String path = System.getProperty("user.dir") + "/dictionary/src/image2text/" + fileName;
 
         System.out.println(path);
         VisionSource imageSource = VisionSource.fromFile(path);
