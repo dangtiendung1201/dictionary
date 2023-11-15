@@ -3,6 +3,7 @@ package service;
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 
+import java.io.IOException;
 import java.net.ConnectException;
 import java.util.concurrent.Future;
 
@@ -19,7 +20,8 @@ public class SpeechRecognitionAPI {
         System.out.println(speech.getSpeech("Vietnamese"));
     }
 
-    public String getSpeech(String language) throws ConnectException, Exception {
+    public String getSpeech(String language) throws Exception {
+        System.out.println("Say something...");
         config.setSpeechRecognitionLanguage(getLanguageCode(language));
         SpeechRecognizer reco = new SpeechRecognizer(config, audioConfig);
 
@@ -40,8 +42,8 @@ public class SpeechRecognitionAPI {
 
             if (cancellation.getReason() == CancellationReason.Error) {
                 System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
-                throw new ConnectException("No internet connection.");
             }
+            throw new ConnectException("No internet connection.");
         }
         return "";
     }
