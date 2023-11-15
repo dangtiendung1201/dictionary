@@ -1,9 +1,9 @@
 package trie;
 
+import word.Word;
+
 import java.util.ArrayList;
 import java.util.Collections;
-
-import word.Word;
 
 import static java.lang.Math.min;
 
@@ -33,15 +33,46 @@ public class Trie {
         return c - 'A' + 1;
     }
 
-    public static void main(String[] args) {
-        Trie T = new Trie();
-        T.addWord(new Word("Home", "Ngôi nhà"));
-        T.addWord(new Word("Home", "Gia đình"));
-        T.addWord(new Word("House", "Căn nhà"));
-        System.out.println(T.allWords());
-        T.removeWord(new Word("Home", "Ngôi nhà"));
-        System.out.println(T.allWords());
-
+    /**
+     * The minimum number of operations (insert, edit, remove) on a character, using dynamic programming.
+     * of s to become t, used for suggesting word.
+     *
+     * @param s string s.
+     * @param t string t.
+     * @return minimum number of operations.
+     */
+    private static int minimumEditDistance(String s, String t) {
+        int n = s.length(), m = t.length();
+        s = " " + s;
+        t = " " + t;
+        int[][] dp = new int[n + 1][m + 1];
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+                dp[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        dp[0][0] = 0;
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+                if (i == 0 && j == 0) {
+                    continue;
+                }
+                if (i > 0) {
+                    dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1);
+                }
+                if (j > 0) {
+                    dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1);
+                }
+                if (i > 0 && j > 0) {
+                    if (s.charAt(i) == t.charAt(j)) {
+                        dp[i][j] = min(dp[i][j], dp[i - 1][j - 1]);
+                    } else {
+                        dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + 1);
+                    }
+                }
+            }
+        }
+        return dp[n][m];
     }
 
     public int size() {
@@ -50,6 +81,7 @@ public class Trie {
 
     /**
      * Add a word to trie.Trie.
+     *
      * @param current current node.
      * @param depth   the depth of current node.
      * @param word    the added word.
@@ -71,6 +103,7 @@ public class Trie {
 
     /**
      * Add a word to trie.Trie.
+     *
      * @param word added word.
      */
     public void addWord(Word word) {
@@ -79,6 +112,7 @@ public class Trie {
 
     /**
      * Remove a word from trie.Trie.
+     *
      * @param current current node.
      * @param depth   depth of current node.
      * @param word    removed word.
@@ -101,6 +135,7 @@ public class Trie {
 
     /**
      * Remove all words that have the wordTarget equals to wordTarget.
+     *
      * @param current    current node.
      * @param depth      the depth of the current node.
      * @param wordTarget wordTarget needs to remove.
@@ -132,6 +167,7 @@ public class Trie {
 
     /**
      * Get the node that form this prefix.
+     *
      * @param current current node.
      * @param depth   the depth of current node.
      * @param prefix  the prefix you want to form.
@@ -217,35 +253,8 @@ public class Trie {
     }
 
     /**
-     * The minimum number of operations (insert, edit, remove) on a character, using dynamic programming.
-     * of s to become t, used for suggesting word.
-     *
-     * @param s string s.
-     * @param t string t.
-     * @return minimum number of operations.
-     */
-    private int minimumEditDistance(String s, String t) {
-        int n = s.length(), m = t.length();
-        s = " " + s;
-        t = " " + t;
-        int[][] dp = new int[n + 1][m + 1];
-        dp[0][1] = 1;
-        dp[1][0] = 1;
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= m; j++) {
-                dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1);
-                if (s.charAt(i) == t.charAt(j)) {
-                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1]);
-                } else {
-                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + 1);
-                }
-            }
-        }
-        return dp[n][m];
-    }
-
-    /**
      * If the user enters the wrong word, suggested words are listed.
+     *
      * @return suggested words.
      */
     public ArrayList<String> searchSuggestions(String enteredWord) {
@@ -258,7 +267,7 @@ public class Trie {
             for (int j = 1; j < allTargetWord.size(); j++) {
                 int op = minimumEditDistance(enteredWord, allTargetWord.get(j));
                 if (op < min) {
-                    op = min;
+                    min = op;
                     id = j;
                 }
             }

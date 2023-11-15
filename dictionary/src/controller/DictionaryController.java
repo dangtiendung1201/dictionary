@@ -83,6 +83,7 @@ public class DictionaryController extends Controller implements Initializable {
         });
 
         exitBtn.setOnAction(actionEvent -> {
+            management.exportToFile("dictionary/resourses/data/merged.txt");
             System.exit(0);
         });
 

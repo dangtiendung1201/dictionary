@@ -75,6 +75,12 @@ public class TranslationController extends Controller {
         } catch (IllegalArgumentException e) {
             notAvailableAlert.setVisible(true);
             clearAllBoxes();
+
+            resultList.getItems().clear();
+            List<String> suggestions = management.searchSuggestions(lookedUpWord);
+            for(String s : suggestions) {
+                resultList.getItems().add(s);
+            }
         }
     }
 
