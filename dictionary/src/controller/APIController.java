@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import service.ImageAnalysisAPI;
+import service.SpeechAPI;
 import service.SpeechRecognitionAPI;
 import service.TranslateAPI;
 
@@ -21,6 +22,8 @@ import java.net.ConnectException;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import static service.SpeechAPI.getSpeechFromText;
 
 public class APIController extends Controller {
     private final String[] languages = {"English", "Vietnamese"};
@@ -33,8 +36,7 @@ public class APIController extends Controller {
     @FXML
     public ComboBox<String> originalLangBox, translatedLangBox;
     @FXML
-    public Button translateBtn, swapBtn, Speech2TextBtn, Image2TextBtn;
-
+    public Button translateBtn, swapBtn, Speech2TextBtn, Image2TextBtn, originalSoundBtn, translatedSoundBtn;
 
     @FXML
     private void handleSpeech2TextBtn() {
@@ -113,6 +115,30 @@ public class APIController extends Controller {
         inputBox.setText(outputBox.getText());
         outputBox.setText(temp);
     }
+    @FXML
+    private void handleOriginalSoundBtn() {
+        String sentence = inputBox.getText();
+        String originalLanguage = originalLangBox.getValue();
+        SpeechAPI speechAPI = new SpeechAPI();
+        try {
+            getSpeechFromText(sentence, originalLanguage);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleTranslatedSoundBtn() {
+        String sentence = outputBox.getText();
+        String originalLanguage = translatedLangBox.getValue();
+        try {
+            getSpeechFromText(sentence, originalLanguage);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void handleTranslateBtn() {
@@ -156,6 +182,14 @@ public class APIController extends Controller {
 
         Image2TextBtn.setOnAction(actionEvent -> {
             handleImage2SpeechBtn();
+        });
+
+        originalSoundBtn.setOnAction(actionEvent -> {
+            handleOriginalSoundBtn();
+        });
+
+        translatedSoundBtn.setOnAction(actionEvent -> {
+            handleTranslatedSoundBtn();
         });
     }
 }
