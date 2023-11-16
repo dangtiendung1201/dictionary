@@ -42,6 +42,6 @@
       <Button fx:id="Speech2TextBtn" layoutX="25.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="S2T" />
       <Button fx:id="Image2TextBtn" layoutX="25.0" layoutY="234.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="I2T" />
       <Button fx:id="originalSoundBtn" layoutX="400.0" layoutY="234.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="Spk" />
-      <Button fx:id="translatedSoundBtn" layoutX="989.0" layoutY="234.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="Spk" />
+          <Button fx:id="translatedSoundBtn" layoutX="989.0" layoutY="234.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="Spk" />
    </children>
 </AnchorPane>
