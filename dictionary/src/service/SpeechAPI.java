@@ -1,7 +1,6 @@
 package service;
 
 import com.microsoft.cognitiveservices.speech.*;
-import com.microsoft.cognitiveservices.speech.audio.*;
 
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -9,10 +8,9 @@ import java.util.concurrent.ExecutionException;
 public class SpeechAPI {
     private static String speechKey = "81baf70c342f475291fed4dcdb2d9c0c";
     private static String speechRegion = "southeastasia";
+    private static SpeechConfig speechConfig = SpeechConfig.fromSubscription(speechKey, speechRegion);
 
-    public void speak(String text, String language) throws ExecutionException, InterruptedException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription(speechKey, speechRegion);
-
+    public static void getSpeechFromText(String text, String language) throws ExecutionException, InterruptedException {
         speechConfig.setSpeechSynthesisVoiceName(getLanguageCode(language));
 
         SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
@@ -21,8 +19,7 @@ public class SpeechAPI {
 
         if (speechSynthesisResult.getReason() == ResultReason.SynthesizingAudioCompleted) {
             System.out.println("Speech synthesized to speaker for text [" + text + "]");
-        }
-        else if (speechSynthesisResult.getReason() == ResultReason.Canceled) {
+        } else if (speechSynthesisResult.getReason() == ResultReason.Canceled) {
             SpeechSynthesisCancellationDetails cancellation = SpeechSynthesisCancellationDetails.fromResult(speechSynthesisResult);
             System.out.println("CANCELED: Reason=" + cancellation.getReason());
 
@@ -43,12 +40,13 @@ public class SpeechAPI {
         System.out.println("Enter a sentence to speak: ");
         String sentence = scanner.nextLine();
         try {
-            speech.speak(sentence, "English");
+            getSpeechFromText(sentence, "English");
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
     }
-    private String getLanguageCode(String language) {
+
+    private static String getLanguageCode(String language) {
         switch (language) {
             case "English":
                 return "en-US-AriaNeural";

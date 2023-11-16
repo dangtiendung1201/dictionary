@@ -17,6 +17,8 @@ import word.Word;
 import java.util.ArrayList;
 import java.util.List;
 
+import static service.SpeechAPI.getSpeechFromText;
+
 public class TranslationController extends Controller {
     @FXML
     private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip, favoriteOnBtnTip, favoriteOffBtnTip;
@@ -85,9 +87,8 @@ public class TranslationController extends Controller {
     }
 
     private void handleSoundBtn() {
-        SpeechAPI voice = new SpeechAPI();
         try {
-            voice.speak(englishWord.getText(), "English");
+            getSpeechFromText(englishWord.getText(), "English");
         } catch (Exception e) {
             e.printStackTrace();
         }

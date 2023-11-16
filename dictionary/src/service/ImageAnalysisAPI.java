@@ -4,6 +4,7 @@ import com.azure.ai.vision.common.VisionServiceOptions;
 import com.azure.ai.vision.common.VisionSource;
 import com.azure.ai.vision.imageanalysis.*;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -11,26 +12,31 @@ import java.util.EnumSet;
 import static java.lang.Float.max;
 
 public class ImageAnalysisAPI {
-    private String key = "018dc14a6078443db9dacc4e4efb5c36";
-    private String endpoint = "https://uetdic.cognitiveservices.azure.com/";
+    private static String key = "018dc14a6078443db9dacc4e4efb5c36";
+    private static String endpoint = "https://uetdic.cognitiveservices.azure.com/";
+    private static VisionServiceOptions serviceOptions;
+
+    static {
+        try {
+            serviceOptions = new VisionServiceOptions(new URL(endpoint), key);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) throws Exception {
-        ImageAnalysisAPI image = new ImageAnalysisAPI();
-        System.out.println(image.textFromImage("test.png"));
+        System.out.println(getTextFromImage("E:\\anh.png"));
     }
 
     /**
      * Get text from image.
-     * @param fileName: image file name in "src/image2text" path
+     * @param path: path of image file
      * @return  text from image
      */
-    public String textFromImage(String fileName) throws Exception {
+    public static String getTextFromImage(String path) throws Exception {
         String res = "";
         ArrayList<String> lines = new ArrayList<>();
         ArrayList<Float> endOfLines = new ArrayList<>();
-        VisionServiceOptions serviceOptions = new VisionServiceOptions(new URL(endpoint), key);
-
-        String path = System.getProperty("user.dir") + "/dictionary/src/image2text/" + fileName;
 
         System.out.println(path);
         VisionSource imageSource = VisionSource.fromFile(path);
