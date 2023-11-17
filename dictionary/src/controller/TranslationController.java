@@ -21,9 +21,10 @@ import static service.SpeechAPI.getSpeechFromText;
 
 public class TranslationController extends Controller {
     @FXML
-    private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip, favoriteOnBtnTip, favoriteOffBtnTip;
+    private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, addBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip,
+            favoriteOnBtnTip, favoriteOffBtnTip;
     @FXML
-    private Button searchBtn, lookUpBtn, soundBtn, updateBtn, deleteBtn, confirmBtn, favoriteOnBtn, favoriteOffBtn;
+    private Button searchBtn, lookUpBtn, soundBtn, addBtn, updateBtn, deleteBtn, confirmBtn, favoriteOnBtn, favoriteOffBtn;
     @FXML
     private TextField searchBox;
     @FXML
@@ -49,7 +50,7 @@ public class TranslationController extends Controller {
         try {
             List<Word> searchList = management.dictionarySearcher(searchedWord);
             resultList.getItems().clear();
-            for(Word w : searchList) {
+            for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
             }
@@ -65,6 +66,7 @@ public class TranslationController extends Controller {
         relatedWordBox.setText(word.getRelatedWords());
         wordTypeBox.setText(word.getWordTypes());
     }
+
     private void handleLookUpBtn() {
         String lookedUpWord = searchBox.getText();
         resultList.getItems().clear();
@@ -80,7 +82,7 @@ public class TranslationController extends Controller {
 
             resultList.getItems().clear();
             List<String> suggestions = management.searchSuggestions(lookedUpWord);
-            for(String s : suggestions) {
+            for (String s : suggestions) {
                 resultList.getItems().add(s);
             }
         }
@@ -92,6 +94,10 @@ public class TranslationController extends Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void handleAddBtn() {
+        System.out.println("Add button clicked");
     }
 
     private void handleUpdateBtn() {
@@ -152,7 +158,7 @@ public class TranslationController extends Controller {
         try {
             List<Word> searchList = management.dictionaryLookUp(chosenWord);
             setLookedUpWord(searchList.get(0));
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             notAvailableAlert.setVisible(true);
             clearAllBoxes();
         }
@@ -164,6 +170,7 @@ public class TranslationController extends Controller {
         searchBtn.setTooltip(searchBtnTip);
         lookUpBtn.setTooltip(lookUpBtnTip);
         soundBtn.setTooltip(soundBtnTip);
+        addBtn.setTooltip(addBtnTip);
         updateBtn.setTooltip(updateBtnTip);
         deleteBtn.setTooltip(deleteBtnTip);
         confirmBtn.setTooltip(confirmBtnTip);
@@ -187,6 +194,10 @@ public class TranslationController extends Controller {
 
         soundBtn.setOnAction(e -> {
             handleSoundBtn();
+        });
+
+        addBtn.setOnAction(e -> {
+            handleAddBtn();
         });
 
         updateBtn.setOnAction(e -> {
