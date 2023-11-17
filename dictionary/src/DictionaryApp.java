@@ -19,6 +19,8 @@ public class DictionaryApp extends Application {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/DictionaryUI.fxml")));
             Scene scene = new Scene(root);
+            String css = Objects.requireNonNull(this.getClass().getResource("style/style.css")).toExternalForm();
+            scene.getStylesheets().add(css);
             stage.setTitle("Dictionary");
             scene.setFill(null);
             stage.setScene(scene);

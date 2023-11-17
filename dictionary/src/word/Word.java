@@ -3,13 +3,13 @@ package word;
 import java.util.ArrayList;
 
 public class Word {
-    private String wordTarget;
-    private String wordExplain;
+    private String wordTarget = "N/A";
+    private String wordExplain = "N/A";
 
-    private String IPA;
-    private String wordTypes;
-    private String relatedWords;
-    private String examples;
+    private String IPA = "N/A";
+    private String wordTypes = "N/A";
+    private String relatedWords = "N/A";
+    private String examples = "N/A";
 
     public Word(String word_target, String word_explain) {
         for (int i = 0; i < word_target.length(); i++) {
@@ -37,11 +37,6 @@ public class Word {
             return true;
         }
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
-    }
-
-    public static void main(String[] args) {
-        Word w = new Word("Table", "Bàn");
-        System.out.println(w);
     }
 
     public String getWordTarget() {
