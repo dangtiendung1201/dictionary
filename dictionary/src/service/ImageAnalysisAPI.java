@@ -11,14 +11,15 @@ import java.util.EnumSet;
 
 import static java.lang.Float.max;
 
-public class ImageAnalysisAPI {
-    private static String key = "018dc14a6078443db9dacc4e4efb5c36";
-    private static String endpoint = "https://uetdic.cognitiveservices.azure.com/";
+public class ImageAnalysisAPI extends Service {
     private static VisionServiceOptions serviceOptions;
 
     static {
+        subscriptionKey = "018dc14a6078443db9dacc4e4efb5c36";
+        endpoint = "https://uetdic.cognitiveservices.azure.com/";
+
         try {
-            serviceOptions = new VisionServiceOptions(new URL(endpoint), key);
+            serviceOptions = new VisionServiceOptions(new URL(endpoint), subscriptionKey);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -30,8 +31,9 @@ public class ImageAnalysisAPI {
 
     /**
      * Get text from image.
+     * 
      * @param path: path of image file
-     * @return  text from image
+     * @return text from image
      */
     public static String getTextFromImage(String path) throws Exception {
         String res = "";
