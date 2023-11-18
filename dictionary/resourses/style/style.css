@@ -55,7 +55,7 @@
     -fx-font-size: 20;
     -fx-text-fill: #000000;
 }
-.pronunciation-field, .wordtype-field, .meaning-field, .example-field, .relatedword-field {
+.pronunciation-field, .wordtype-field, .meaning-field, .example-field, .relatedword-field, .spell-field {
     -fx-font-family: 'Quicksand-Regular';
     -fx-font-size: 15;
     -fx-text-fill: #000000;
@@ -66,6 +66,10 @@
     -fx-font-size: 12;
     -fx-text-alignment: center;
     -fx-text-fill: red;
+}
+.button:hover {
+    -fx-background-color: #bbdefb;
+    -fx-background-radius: 5;
 }
 
 /* API */
