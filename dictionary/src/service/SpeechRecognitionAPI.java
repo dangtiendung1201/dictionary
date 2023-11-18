@@ -3,7 +3,6 @@ package service;
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 
-import java.io.IOException;
 import java.net.ConnectException;
 import java.util.concurrent.Future;
 
