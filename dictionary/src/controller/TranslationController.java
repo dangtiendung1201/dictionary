@@ -4,7 +4,6 @@ package controller;
 import alert.Alerts;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import service.T2SThread;
 import word.Word;
 
 import java.net.ConnectException;
@@ -95,14 +94,12 @@ public class TranslationController extends Controller {
     private void handleSoundBtn() {
         try {
             getSpeechFromText(englishWord.getText(), "English");
-        }
-        catch (ConnectException e) {
+        } catch (ConnectException e) {
             Alert alert = new Alerts().error("Error",
                     "No Internet Connection",
                     "Please check your internet connection.");
             alert.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alerts().error("Error",
                     "Unknown Error",
                     "There is an error, please try again.");
@@ -188,7 +185,10 @@ public class TranslationController extends Controller {
                 try {
                     management.removeWord(currentWord);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
                 }
                 currentState = STATE.NONE;
 
@@ -208,16 +208,22 @@ public class TranslationController extends Controller {
                     String wordTypes = wordTypeBox.getText().isEmpty() ? "N/A" : wordTypeBox.getText();
                     String examples = exampleBox.getText().isEmpty() ? "N/A" : exampleBox.getText();
                     String relatedWords = relatedWordBox.getText().isEmpty() ? "N/A" : relatedWordBox.getText();
-                    try {
-                        System.out.println(wordTarget);
-                        management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
-                                examples, relatedWords));
-                    } catch (IllegalArgumentException ignored) {
-                        System.out.println("Từ được thêm vào không hợp lệ!");
-                    }
 
+                    System.out.println(wordTarget);
+                    management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
+                            examples, relatedWords));
+
+
+                } catch (IllegalArgumentException ignored) {
+                    Alert alert = new Alerts().error("Error",
+                            "Invalid word",
+                            "The word is invalid, please try again");
+                    alert.show();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
                 }
                 currentState = STATE.NONE;
             }
