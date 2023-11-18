@@ -3,17 +3,23 @@ package service;
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 
-import java.io.IOException;
 import java.net.ConnectException;
 import java.util.concurrent.Future;
 
-public class SpeechRecognitionAPI {
-    private static String speechSubscriptionKey = "81baf70c342f475291fed4dcdb2d9c0c";
-    private static String serviceRegion = "southeastasia";
+public class SpeechRecognitionAPI extends Service {
+    private static SpeechConfig config;
+    private static AudioConfig audioConfig;
+    static {
+        subscriptionKey = "81baf70c342f475291fed4dcdb2d9c0c";
+        serviceRegion = "southeastasia";
 
-    private static SpeechConfig config = SpeechConfig.fromSubscription(speechSubscriptionKey, serviceRegion);
-    private static AudioConfig audioConfig = AudioConfig.fromDefaultMicrophoneInput();
-
+        try {
+            config = SpeechConfig.fromSubscription(subscriptionKey, serviceRegion);
+            audioConfig = AudioConfig.fromDefaultMicrophoneInput();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         System.out.println(getTextFromSpeech("Vietnamese"));
