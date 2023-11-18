@@ -1,22 +1,13 @@
 package controller;
 
 
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
-
+import alert.Alerts;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import service.T2SThread;
 import word.Word;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,15 +27,6 @@ public class TranslationController extends Controller {
     private Label englishWord, headerList, notAvailableAlert;
     @FXML
     private ListView<String> resultList;
-
-    private enum STATE {
-        NONE,
-        DISPLAYING,
-        UPDATING,
-        DELETING,
-        ADDING
-    }
-
     private STATE currentState = STATE.NONE;
 
     private void clearAllBoxes() {
@@ -111,14 +93,22 @@ public class TranslationController extends Controller {
     }
 
     private void handleSoundBtn() {
-            T2SThread t1 = new T2SThread();
-            // get text from speech
-            try {
-                System.out.println("Handle sound btn");
-                t1.getSpeechFromTextThread(englishWord.getText(), "English");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            getSpeechFromText(englishWord.getText(), "English");
+        }
+        catch (ConnectException e) {
+            Alert alert = new Alerts().error("Error",
+                    "No Internet Connection",
+                    "Please check your internet connection.");
+            alert.show();
+        }
+        catch (Exception e) {
+            Alert alert = new Alerts().error("Error",
+                    "Unknown Error",
+                    "There is an error, please try again.");
+            alert.show();
+        }
+
     }
 
     private void handleAddBtn() {
@@ -194,8 +184,7 @@ public class TranslationController extends Controller {
                     e.printStackTrace();
                 }
                 currentState = STATE.DISPLAYING;
-            }
-            else if (currentState == STATE.DELETING) {
+            } else if (currentState == STATE.DELETING) {
                 try {
                     management.removeWord(currentWord);
                 } catch (Exception e) {
@@ -368,6 +357,14 @@ public class TranslationController extends Controller {
         });
 
 
+    }
+
+    private enum STATE {
+        NONE,
+        DISPLAYING,
+        UPDATING,
+        DELETING,
+        ADDING
     }
 
 }
