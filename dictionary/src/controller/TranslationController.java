@@ -1,5 +1,12 @@
 package controller;
 
+
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -258,6 +265,19 @@ public class TranslationController extends Controller {
         }
     }
 
+    private void handleOnKeyTyped() {
+        resultList.getItems().clear();
+        String searchKey = searchBox.getText().trim();
+        try {
+            List<Word> searchList = management.dictionarySearcher(searchKey);
+            for(Word w : searchList) {
+                String s = w.getWordTarget();
+                resultList.getItems().add(s);
+            }
+        } catch (IllegalArgumentException e) {
+            notAvailableAlert.setVisible(true);
+        }
+      
     private void setDefaultDisplayingState() {
         pronunciationBox.setEditable(false);
         wordTypeBox.setEditable(false);
@@ -292,6 +312,14 @@ public class TranslationController extends Controller {
         headerList.setText("Search result");
 
         notAvailableAlert.setVisible(false);
+
+        // handle type key
+        searchBox.setOnKeyTyped(keyEvent -> {
+            if (!searchBox.getText().isEmpty()) {
+                handleOnKeyTyped();
+            }
+        });
+
 
         searchBtn.setOnAction(e -> {
             handleSearchBtn();
@@ -336,4 +364,5 @@ public class TranslationController extends Controller {
 
 
     }
+
 }

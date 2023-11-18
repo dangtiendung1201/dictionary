@@ -9,18 +9,17 @@ import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import service.T2SThread;
 import service.TranslateAPI;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.net.ConnectException;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import static service.ImageAnalysisAPI.getTextFromImage;
-import static service.SpeechAPI.getSpeechFromText;
 import static service.SpeechRecognitionAPI.getTextFromSpeech;
 
 public class APIController extends Controller {
@@ -40,14 +39,6 @@ public class APIController extends Controller {
     private void handleSpeech2TextBtn() {
         try {
             String sentence = getTextFromSpeech(originalLangBox.getValue());
-            inputBox.setText(sentence);
-        } catch (ConnectException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Connection Error");
-            alert.setContentText("Please check your internet connection and try again!");
-            alert.showAndWait();
-            e.printStackTrace();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -113,26 +104,35 @@ public class APIController extends Controller {
     }
     @FXML
     private void handleOriginalSoundBtn() {
-        String sentence = inputBox.getText();
-        String originalLanguage = originalLangBox.getValue();
+        T2SThread t1 = new T2SThread();
+        // get text from speech
         try {
-            getSpeechFromText(sentence, originalLanguage);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Handle sound btn");
+            t1.getSpeechFromTextThread(inputBox.getText(), originalLangBox.getValue());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
     private void handleTranslatedSoundBtn() {
-        String sentence = outputBox.getText();
-        String originalLanguage = translatedLangBox.getValue();
+        T2SThread t1 = new T2SThread();
+        // get text from speech
         try {
-            getSpeechFromText(sentence, originalLanguage);
+            System.out.println("Handle sound btn");
+            t1.getSpeechFromTextThread(outputBox.getText(), translatedLangBox.getValue());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+
+//        String sentence = outputBox.getText();
+//        String originalLanguage = translatedLangBox.getValue();
+//        try {
+//            getSpeechFromText(sentence, originalLanguage);
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
