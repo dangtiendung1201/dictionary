@@ -72,7 +72,12 @@ public class DictionaryManagement {
             java.io.FileWriter myWriter = new java.io.FileWriter(path);
             ArrayList<Word> words = T.allWords();
             for (Word word : words) {
-                myWriter.write(word.getWordTarget() + "\t" + word.getWordExplain() + "\n");
+                myWriter.write(word.getWordTarget() + "\t"
+                                + word.getIPA() + "\t"
+                                + word.getWordTypes() + "\t"
+                                + word.getWordExplain() + "\t"
+                                + word.getExamples() + "\t"
+                                + word.getRelatedWords() + "\n");
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");

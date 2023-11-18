@@ -1,5 +1,6 @@
 package controller;
 
+
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import javafx.event.EventHandler;
@@ -13,7 +14,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import service.SpeechAPI;
 import word.Word;
 
 import java.util.ArrayList;
@@ -23,17 +23,28 @@ import static service.SpeechAPI.getSpeechFromText;
 
 public class TranslationController extends Controller {
     @FXML
-    private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip, favoriteOnBtnTip, favoriteOffBtnTip;
+    private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, addBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip,
+            favoriteOnBtnTip, favoriteOffBtnTip;
     @FXML
-    private Button searchBtn, lookUpBtn, soundBtn, updateBtn, deleteBtn, confirmBtn, favoriteOnBtn, favoriteOffBtn;
+    private Button searchBtn, lookUpBtn, soundBtn, addBtn, updateBtn, deleteBtn, confirmBtn, favoriteOnBtn, favoriteOffBtn;
     @FXML
     private TextField searchBox;
     @FXML
-    private TextArea pronunciationBox, wordTypeBox, meaningBox, exampleBox, relatedWordBox;
+    private TextArea pronunciationBox, wordTypeBox, meaningBox, exampleBox, relatedWordBox, spellBox;
     @FXML
     private Label englishWord, headerList, notAvailableAlert;
     @FXML
     private ListView<String> resultList;
+
+    private enum STATE {
+        NONE,
+        DISPLAYING,
+        UPDATING,
+        DELETING,
+        ADDING
+    }
+
+    private STATE currentState = STATE.NONE;
 
     private void clearAllBoxes() {
         searchBox.clear();
@@ -42,6 +53,7 @@ public class TranslationController extends Controller {
         meaningBox.clear();
         exampleBox.clear();
         relatedWordBox.clear();
+        spellBox.clear();
     }
 
     private void handleSearchBtn() {
@@ -51,7 +63,7 @@ public class TranslationController extends Controller {
         try {
             List<Word> searchList = management.dictionarySearcher(searchedWord);
             resultList.getItems().clear();
-            for(Word w : searchList) {
+            for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
             }
@@ -60,13 +72,17 @@ public class TranslationController extends Controller {
         }
     }
 
-    private void setLookedUpWord(Word word) {
+    private void displayingWord(Word word) {
         meaningBox.setText(word.getWordExplain());
         pronunciationBox.setText(word.getIPA());
         exampleBox.setText(word.getExamples());
         relatedWordBox.setText(word.getRelatedWords());
         wordTypeBox.setText(word.getWordTypes());
+        currentState = STATE.DISPLAYING;
+        deleteBtn.setVisible(true);
+        updateBtn.setVisible(true);
     }
+
     private void handleLookUpBtn() {
         String lookedUpWord = searchBox.getText();
         resultList.getItems().clear();
@@ -75,10 +91,21 @@ public class TranslationController extends Controller {
         meaningBox.clear();
         try {
             List<Word> searchList = management.dictionaryLookUp(lookedUpWord);
-            setLookedUpWord(searchList.get(0));
+            displayingWord(searchList.get(0));
         } catch (IllegalArgumentException e) {
+
             notAvailableAlert.setVisible(true);
             clearAllBoxes();
+
+            resultList.getItems().clear();
+            List<String> suggestions = management.searchSuggestions(lookedUpWord);
+            for (String s : suggestions) {
+                resultList.getItems().add(s);
+            }
+
+            currentState = STATE.NONE;
+            deleteBtn.setVisible(false);
+            updateBtn.setVisible(false);
         }
     }
 
@@ -90,20 +117,54 @@ public class TranslationController extends Controller {
         }
     }
 
-    private void handleUpdateBtn() {
-        if (confirmBtn.isVisible()) {
-            confirmBtn.setVisible(false);
-        } else {
+    private void handleAddBtn() {
+        setDefaultDisplayingState();
+        if (currentState != STATE.ADDING) {
+
+            currentState = STATE.ADDING;
+            clearAllBoxes();
+
+            spellBox.setVisible(true);
+            spellBox.setEditable(true);
+            pronunciationBox.setEditable(true);
+            wordTypeBox.setEditable(true);
+            meaningBox.setEditable(true);
+            exampleBox.setEditable(true);
+            relatedWordBox.setEditable(true);
             confirmBtn.setVisible(true);
+
+        } else {
+            currentState = STATE.NONE;
+            confirmBtn.setVisible(false);
+            updateBtn.setVisible(false);
+            deleteBtn.setVisible(false);
+        }
+    }
+
+    private void handleUpdateBtn() {
+        setDefaultDisplayingState();
+        if (currentState != STATE.UPDATING) {
+            currentState = STATE.UPDATING;
+
+            pronunciationBox.setEditable(true);
+            wordTypeBox.setEditable(true);
+            meaningBox.setEditable(true);
+            exampleBox.setEditable(true);
+            relatedWordBox.setEditable(true);
+
+            confirmBtn.setVisible(true);
+        } else {
+            currentState = STATE.DISPLAYING;
         }
     }
 
     private void handleDeleteBtn() {
-        System.out.println("Delete button clicked");
-        if (confirmBtn.isVisible()) {
-            confirmBtn.setVisible(false);
-        } else {
+        setDefaultDisplayingState();
+        if (currentState != STATE.DELETING) {
+            currentState = STATE.DELETING;
             confirmBtn.setVisible(true);
+        } else {
+            currentState = STATE.DISPLAYING;
         }
     }
 
@@ -111,21 +172,65 @@ public class TranslationController extends Controller {
     private void handleConfirmBtn() {
         if (confirmBtn.isVisible()) {
             String currentWord = englishWord.getText();
-            try {
-                ArrayList<Word> wordList = management.dictionaryLookUp(currentWord);
-                Word word = wordList.get(0);
-                management.removeWord(word);
-                word.setIPA(pronunciationBox.getText());
-                word.setRelatedWords(relatedWordBox.getText());
-                word.setWordExplain(meaningBox.getText());
-                word.setExamples(exampleBox.getText());
-                word.setWordTypes(wordTypeBox.getText());
-                management.addWord(word);
-            } catch (IllegalArgumentException ignored) {
+            if (currentState == STATE.UPDATING) {
+                try {
+                    ArrayList<Word> wordList = management.dictionaryLookUp(currentWord);
+                    Word word = wordList.get(0);
 
+                    management.removeWord(word);
+
+                    word.setIPA(pronunciationBox.getText());
+                    word.setRelatedWords(relatedWordBox.getText());
+                    word.setWordExplain(meaningBox.getText());
+                    word.setExamples(exampleBox.getText());
+                    word.setWordTypes(wordTypeBox.getText());
+
+                    management.addWord(word);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                currentState = STATE.DISPLAYING;
+            }
+            else if (currentState == STATE.DELETING) {
+                try {
+                    management.removeWord(currentWord);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                currentState = STATE.NONE;
+
+                englishWord.setText("");
+                clearAllBoxes();
+                resultList.getItems().clear();
+                currentState = STATE.NONE;
+                deleteBtn.setVisible(false);
+                updateBtn.setVisible(false);
+
+
+            } else if (currentState == STATE.ADDING) {
+                try {
+                    String wordTarget = spellBox.getText().isEmpty() ? "N/A" : spellBox.getText();
+                    String wordExplain = meaningBox.getText().isEmpty() ? "N/A" : meaningBox.getText();
+                    String IPA = pronunciationBox.getText().isEmpty() ? "N/A" : pronunciationBox.getText();
+                    String wordTypes = wordTypeBox.getText().isEmpty() ? "N/A" : wordTypeBox.getText();
+                    String examples = exampleBox.getText().isEmpty() ? "N/A" : exampleBox.getText();
+                    String relatedWords = relatedWordBox.getText().isEmpty() ? "N/A" : relatedWordBox.getText();
+                    try {
+                        System.out.println(wordTarget);
+                        management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
+                                examples, relatedWords));
+                    } catch (IllegalArgumentException ignored) {
+                        System.out.println("Từ được thêm vào không hợp lệ!");
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                currentState = STATE.NONE;
             }
         }
         confirmBtn.setVisible(false);
+        setDefaultDisplayingState();
     }
 
     private void handleFavoriteOnBtn() {
@@ -140,17 +245,23 @@ public class TranslationController extends Controller {
         favoriteOffBtn.setVisible(false);
     }
 
-    // Call lookup fuction
+    // Call lookup function
     private void handleResultList() {
         String chosenWord = resultList.getSelectionModel().getSelectedItem();
         englishWord.setText(chosenWord);
         notAvailableAlert.setVisible(false);
         try {
             List<Word> searchList = management.dictionaryLookUp(chosenWord);
-            setLookedUpWord(searchList.get(0));
-        } catch (IllegalArgumentException e){
+            displayingWord(searchList.get(0));
+            currentState = STATE.DISPLAYING;
+            deleteBtn.setVisible(true);
+            updateBtn.setVisible(true);
+        } catch (IllegalArgumentException e) {
             notAvailableAlert.setVisible(true);
             clearAllBoxes();
+            currentState = STATE.NONE;
+            deleteBtn.setVisible(false);
+            updateBtn.setVisible(false);
         }
     }
 
@@ -166,6 +277,16 @@ public class TranslationController extends Controller {
         } catch (IllegalArgumentException e) {
             notAvailableAlert.setVisible(true);
         }
+      
+    private void setDefaultDisplayingState() {
+        pronunciationBox.setEditable(false);
+        wordTypeBox.setEditable(false);
+        meaningBox.setEditable(false);
+        exampleBox.setEditable(false);
+        relatedWordBox.setEditable(false);
+        spellBox.setEditable(false);
+        spellBox.setVisible(false);
+        confirmBtn.setVisible(false);
     }
 
     @FXML
@@ -174,14 +295,19 @@ public class TranslationController extends Controller {
         searchBtn.setTooltip(searchBtnTip);
         lookUpBtn.setTooltip(lookUpBtnTip);
         soundBtn.setTooltip(soundBtnTip);
+        addBtn.setTooltip(addBtnTip);
         updateBtn.setTooltip(updateBtnTip);
         deleteBtn.setTooltip(deleteBtnTip);
         confirmBtn.setTooltip(confirmBtnTip);
         favoriteOnBtn.setTooltip(favoriteOnBtnTip);
         favoriteOffBtn.setTooltip(favoriteOffBtnTip);
 
+        setDefaultDisplayingState();
+
         // Set default value for confirmBtn
         confirmBtn.setVisible(false);
+        deleteBtn.setVisible(false);
+        updateBtn.setVisible(false);
 
         headerList.setText("Search result");
 
@@ -205,6 +331,10 @@ public class TranslationController extends Controller {
 
         soundBtn.setOnAction(e -> {
             handleSoundBtn();
+        });
+
+        addBtn.setOnAction(e -> {
+            handleAddBtn();
         });
 
         updateBtn.setOnAction(e -> {
@@ -231,6 +361,7 @@ public class TranslationController extends Controller {
         resultList.setOnMouseClicked(e -> {
             handleResultList();
         });
+
 
     }
 

@@ -13,15 +13,18 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class TranslateAPI extends Service {
-    private static String key = "66380cc580084f81aa83c321e37fe0d0";
-    private static String location = "eastasia";
-    private static int timeout = 10000; // Milliseconds
+    private static int timeout; // Milliseconds
+    private OkHttpClient client;
 
-    // Instantiates the OkHttpClient and set timeouts.
+    public TranslateAPI() {
+        subscriptionKey = "66380cc580084f81aa83c321e37fe0d0";
+        serviceRegion = "eastasia";
+        timeout = 10000;
 
-    OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(timeout, TimeUnit.MILLISECONDS)
-            .readTimeout(timeout, TimeUnit.MILLISECONDS)
-            .writeTimeout(timeout, TimeUnit.MILLISECONDS).build();
+        client = new OkHttpClient().newBuilder().connectTimeout(timeout, TimeUnit.MILLISECONDS)
+                .readTimeout(timeout, TimeUnit.MILLISECONDS)
+                .writeTimeout(timeout, TimeUnit.MILLISECONDS).build();
+    }
 
     // This function performs a POST request.
     private String Post(String sentence, String originalLanguage, String translatedLanguage) throws IOException {
@@ -31,10 +34,10 @@ public class TranslateAPI extends Service {
                 .url("https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=" + originalLanguage
                         + "&to=" + translatedLanguage)
                 .post(body)
-                .addHeader("Ocp-Apim-Subscription-Key", key)
+                .addHeader("Ocp-Apim-Subscription-Key", subscriptionKey)
                 // location required if you're using a multi-service or regional (not global)
                 // resource.
-                .addHeader("Ocp-Apim-Subscription-Region", location)
+                .addHeader("Ocp-Apim-Subscription-Region", serviceRegion)
                 .addHeader("Content-type", "application/json")
                 .build();
         try {
