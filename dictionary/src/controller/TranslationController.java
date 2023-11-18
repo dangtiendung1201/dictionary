@@ -14,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import service.T2SThread;
 import word.Word;
 
 import java.util.ArrayList;
@@ -110,11 +111,14 @@ public class TranslationController extends Controller {
     }
 
     private void handleSoundBtn() {
-        try {
-            getSpeechFromText(englishWord.getText(), "English");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            T2SThread t1 = new T2SThread();
+            // get text from speech
+            try {
+                System.out.println("Handle sound btn");
+                t1.getSpeechFromTextThread(englishWord.getText(), "English");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
     }
 
     private void handleAddBtn() {
@@ -270,14 +274,15 @@ public class TranslationController extends Controller {
         String searchKey = searchBox.getText().trim();
         try {
             List<Word> searchList = management.dictionarySearcher(searchKey);
-            for(Word w : searchList) {
+            for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
             }
         } catch (IllegalArgumentException e) {
             notAvailableAlert.setVisible(true);
         }
-      
+    }
+
     private void setDefaultDisplayingState() {
         pronunciationBox.setEditable(false);
         wordTypeBox.setEditable(false);
