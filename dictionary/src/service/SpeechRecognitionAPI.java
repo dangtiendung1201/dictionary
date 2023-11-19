@@ -3,8 +3,11 @@ package service;
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 
+import java.io.IOException;
 import java.net.ConnectException;
 import java.util.concurrent.Future;
+
+import static com.microsoft.cognitiveservices.speech.CancellationErrorCode.ConnectionFailure;
 
 public class SpeechRecognitionAPI extends Service {
     private static SpeechConfig config;
@@ -39,7 +42,7 @@ public class SpeechRecognitionAPI extends Service {
             return result.getText();
         } else if (result.getReason() == ResultReason.NoMatch) {
             reco.close();
-            throw new Exception("Can't recognize speech.");
+            throw new IOException("Can't recognize speech.");
         } else if (result.getReason() == ResultReason.Canceled) {
             reco.close();
             CancellationDetails cancellation = CancellationDetails.fromResult(result);
@@ -47,8 +50,12 @@ public class SpeechRecognitionAPI extends Service {
 
             if (cancellation.getReason() == CancellationReason.Error) {
                 System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
+
+                if (cancellation.getErrorCode() == ConnectionFailure ) {
+                    throw new ConnectException("There is no internet connection.");
+                };
+                throw new Exception("There is an error, please try again.");
             }
-            throw new ConnectException("No internet connection.");
         }
         return "";
     }

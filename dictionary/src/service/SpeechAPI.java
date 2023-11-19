@@ -2,6 +2,7 @@ package service;
 
 import com.microsoft.cognitiveservices.speech.*;
 
+import java.net.ConnectException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
@@ -17,7 +18,7 @@ public class SpeechAPI extends Service {
         }
     }
 
-    public static void getSpeechFromText(String text, String language) throws ExecutionException, InterruptedException {
+    public static void getSpeechFromText(String text, String language) throws Exception {
         speechConfig.setSpeechSynthesisVoiceName(getLanguageCode(language));
 
         SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
@@ -35,8 +36,9 @@ public class SpeechAPI extends Service {
                 System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
                 System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
                 System.out.println("CANCELED: Did you set the speech resource key and region values?");
-                throw new ExecutionException(
-                        new Throwable("CANCELED: Did you set the speech resource key and region values?"));
+                if (cancellation.getErrorCode() == CancellationErrorCode.ConnectionFailure)
+                    throw new ConnectException("There is no internet connection.");
+                throw new Exception("There is an error, please try again.");
             }
         }
         speechSynthesizer.close();
@@ -52,6 +54,10 @@ public class SpeechAPI extends Service {
             getSpeechFromText(sentence, "English");
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
+        } catch (ConnectException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

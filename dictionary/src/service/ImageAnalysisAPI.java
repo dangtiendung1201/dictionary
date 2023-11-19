@@ -4,6 +4,7 @@ import com.azure.ai.vision.common.VisionServiceOptions;
 import com.azure.ai.vision.common.VisionSource;
 import com.azure.ai.vision.imageanalysis.*;
 
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,7 +56,6 @@ public class ImageAnalysisAPI extends Service {
         ImageAnalysisResult result = analyzer.analyze();
         float maxSpaceToFinalChar = 0, maxLength = 0;
         if (result.getReason() == ImageAnalysisResultReason.ANALYZED) {
-
             if (result.getText() != null) {
                 for (DetectedTextLine line : result.getText()) {
                     lines.add(line.getContent());
@@ -69,7 +69,9 @@ public class ImageAnalysisAPI extends Service {
             System.out.println("   Error reason: " + errorDetails.getReason());
             System.out.println("   Error code: " + errorDetails.getErrorCode());
             System.out.println("   Error message: " + errorDetails.getMessage());
-            throw new Exception("Can't recognize text.");
+            if (errorDetails.getReason() == ImageAnalysisErrorReason.CONNECTION_FAILURE)
+                throw new ConnectException("There is no internet connection.");
+            throw new Exception("There is an error, please try again.");
         }
         for (int i = 0; i < lines.size(); ++i) {
             if (maxLength - endOfLines.get(i) > (float) 15 / 100 * maxLength) {
