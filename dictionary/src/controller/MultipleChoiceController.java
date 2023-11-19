@@ -56,6 +56,9 @@ public class MultipleChoiceController extends GameController {
             scoreText.setText("Score: " + multipleChoice.getPoint());
             healthText.setText("Health: " + multipleChoice.getHealth());
         } else {
+            scoreText.setText("Score: " + multipleChoice.getPoint());
+            healthText.setText("Health: " + multipleChoice.getHealth());
+
             confirmBtn.setDisable(true);
             answerABtn.setDisable(true);
             answerBBtn.setDisable(true);
@@ -82,6 +85,7 @@ public class MultipleChoiceController extends GameController {
         updateQuestion();
         scoreText.setText("Score: " + multipleChoice.getPoint());
         healthText.setText("Health: " + multipleChoice.getHealth());
+        resultText.setText("");
     }
 
     private void handleAnswerBtn() {
@@ -126,6 +130,11 @@ public class MultipleChoiceController extends GameController {
     private void updateQuestion() {
         multipleChoice.generateQuestion();
         multipleChoice.generateAnswer();
+
+        answerABtn.setSelected(false);
+        answerBBtn.setSelected(false);
+        answerCBtn.setSelected(false);
+        answerDBtn.setSelected(false);
 
         questionText.setText(multipleChoice.getQuestion());
         answerABtn.setText(multipleChoice.getAnswer(0));
