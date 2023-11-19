@@ -1,12 +1,14 @@
 package controller;
 
-
-import alert.Alerts;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import word.Word;
 
-import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +23,20 @@ public class TranslationController extends Controller {
     @FXML
     private TextField searchBox;
     @FXML
-    private TextArea pronunciationBox, wordTypeBox, meaningBox, exampleBox, relatedWordBox, spellBox;
+    private TextArea pronunciationBox, wordTypeBox, meaningBox, exampleBox, relatedWordBox;
     @FXML
     private Label englishWord, headerList, notAvailableAlert;
     @FXML
     private ListView<String> resultList;
+
+    private enum STATE {
+        NONE,
+        DISPLAYING,
+        UPDATING,
+        DELETING,
+        ADDING
+    }
+
     private STATE currentState = STATE.NONE;
 
     private void clearAllBoxes() {
@@ -35,16 +46,15 @@ public class TranslationController extends Controller {
         meaningBox.clear();
         exampleBox.clear();
         relatedWordBox.clear();
-        spellBox.clear();
     }
 
     private void handleSearchBtn() {
         String searchedWord = searchBox.getText();
         clearAllBoxes();
         notAvailableAlert.setVisible(false);
+        resultList.getItems().clear();
         try {
             List<Word> searchList = management.dictionarySearcher(searchedWord);
-            resultList.getItems().clear();
             for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
@@ -68,9 +78,10 @@ public class TranslationController extends Controller {
     private void handleLookUpBtn() {
         String lookedUpWord = searchBox.getText();
         resultList.getItems().clear();
+        clearAllBoxes();
         notAvailableAlert.setVisible(false);
         englishWord.setText(lookedUpWord);
-        meaningBox.clear();
+
         try {
             List<Word> searchList = management.dictionaryLookUp(lookedUpWord);
             displayingWord(searchList.get(0));
@@ -94,29 +105,22 @@ public class TranslationController extends Controller {
     private void handleSoundBtn() {
         try {
             getSpeechFromText(englishWord.getText(), "English");
-        } catch (ConnectException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
         } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
+            e.printStackTrace();
         }
-
     }
 
     private void handleAddBtn() {
         setDefaultDisplayingState();
+        searchBox.clear();
+        updateBtn.setVisible(false);
+        deleteBtn.setVisible(false);
         if (currentState != STATE.ADDING) {
 
             currentState = STATE.ADDING;
             clearAllBoxes();
+            englishWord.setText("");
 
-            spellBox.setVisible(true);
-            spellBox.setEditable(true);
             pronunciationBox.setEditable(true);
             wordTypeBox.setEditable(true);
             meaningBox.setEditable(true);
@@ -181,14 +185,12 @@ public class TranslationController extends Controller {
                     e.printStackTrace();
                 }
                 currentState = STATE.DISPLAYING;
-            } else if (currentState == STATE.DELETING) {
+            }
+            else if (currentState == STATE.DELETING) {
                 try {
                     management.removeWord(currentWord);
                 } catch (Exception e) {
-                    Alert alert = new Alerts().error("Error",
-                            "Unknown Error",
-                            "There is an error, please try again.");
-                    alert.show();
+                    e.printStackTrace();
                 }
                 currentState = STATE.NONE;
 
@@ -202,28 +204,22 @@ public class TranslationController extends Controller {
 
             } else if (currentState == STATE.ADDING) {
                 try {
-                    String wordTarget = spellBox.getText().isEmpty() ? "N/A" : spellBox.getText();
+                    String wordTarget = searchBox.getText().isEmpty() ? "N/A" : searchBox.getText();
                     String wordExplain = meaningBox.getText().isEmpty() ? "N/A" : meaningBox.getText();
                     String IPA = pronunciationBox.getText().isEmpty() ? "N/A" : pronunciationBox.getText();
                     String wordTypes = wordTypeBox.getText().isEmpty() ? "N/A" : wordTypeBox.getText();
                     String examples = exampleBox.getText().isEmpty() ? "N/A" : exampleBox.getText();
                     String relatedWords = relatedWordBox.getText().isEmpty() ? "N/A" : relatedWordBox.getText();
+                    try {
+                        System.out.println(wordTarget);
+                        management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
+                                examples, relatedWords));
+                    } catch (IllegalArgumentException ignored) {
+                        System.out.println("Từ được thêm vào không hợp lệ!");
+                    }
 
-                    System.out.println(wordTarget);
-                    management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
-                            examples, relatedWords));
-
-
-                } catch (IllegalArgumentException ignored) {
-                    Alert alert = new Alerts().error("Error",
-                            "Invalid word",
-                            "The word is invalid, please try again");
-                    alert.show();
                 } catch (Exception e) {
-                    Alert alert = new Alerts().error("Error",
-                            "Unknown Error",
-                            "There is an error, please try again.");
-                    alert.show();
+                    e.printStackTrace();
                 }
                 currentState = STATE.NONE;
             }
@@ -264,28 +260,12 @@ public class TranslationController extends Controller {
         }
     }
 
-    private void handleOnKeyTyped() {
-        resultList.getItems().clear();
-        String searchKey = searchBox.getText().trim();
-        try {
-            List<Word> searchList = management.dictionarySearcher(searchKey);
-            for (Word w : searchList) {
-                String s = w.getWordTarget();
-                resultList.getItems().add(s);
-            }
-        } catch (IllegalArgumentException e) {
-            notAvailableAlert.setVisible(true);
-        }
-    }
-
     private void setDefaultDisplayingState() {
         pronunciationBox.setEditable(false);
         wordTypeBox.setEditable(false);
         meaningBox.setEditable(false);
         exampleBox.setEditable(false);
         relatedWordBox.setEditable(false);
-        spellBox.setEditable(false);
-        spellBox.setVisible(false);
         confirmBtn.setVisible(false);
     }
 
@@ -312,14 +292,6 @@ public class TranslationController extends Controller {
         headerList.setText("Search result");
 
         notAvailableAlert.setVisible(false);
-
-        // handle type key
-        searchBox.setOnKeyTyped(keyEvent -> {
-            if (!searchBox.getText().isEmpty()) {
-                handleOnKeyTyped();
-            }
-        });
-
 
         searchBtn.setOnAction(e -> {
             handleSearchBtn();
@@ -364,13 +336,4 @@ public class TranslationController extends Controller {
 
 
     }
-
-    private enum STATE {
-        NONE,
-        DISPLAYING,
-        UPDATING,
-        DELETING,
-        ADDING
-    }
-
 }
