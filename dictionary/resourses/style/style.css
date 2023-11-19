@@ -104,7 +104,7 @@
     -fx-font-size: 30;
     -fx-text-fill: #ff0000;
 }
-.game-question {
+.game-question, .game-hint {
     -fx-font-family: 'Quicksand-Regular';
     -fx-font-size: 25;
     -fx-text-fill: #000000;
@@ -118,4 +118,9 @@
     -fx-font-family: 'Quicksand-Bold';
     -fx-font-size: 20;
     -fx-text-fill: #000000;
+}
+.game-guess {
+    -fx-font-family: 'Quicksand-Bold';
+    -fx-font-size: 20;
+    -fx-text-fill: #00a36c;
 }
