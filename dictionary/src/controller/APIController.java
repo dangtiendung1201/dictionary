@@ -43,6 +43,7 @@ public class APIController extends Controller {
     private void handleSpeech2TextBtn() {
         try {
             String sentence = getTextFromSpeech(originalLangBox.getValue());
+            inputBox.setText(sentence);
         }
         catch (ConnectException e) {
             Alert alert = new Alerts().error("Error",
