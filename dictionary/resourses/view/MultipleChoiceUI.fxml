@@ -12,35 +12,26 @@
 
 <AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MultipleChoiceController">
    <children>
-      <Label fx:id="questionText" alignment="TOP_LEFT" layoutX="84.0" layoutY="89.0" prefHeight="128.0" prefWidth="1009.0" styleClass="transparent-button" stylesheets="@../style/style.css" text="Question" textOverrun="CLIP" wrapText="true">
+      <Label fx:id="questionText" alignment="TOP_LEFT" layoutX="50.0" layoutY="100.0" prefHeight="150.0" prefWidth="1040.0" styleClass="game-question" stylesheets="@../style/style.css" text="Question" textOverrun="CLIP" wrapText="true">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <VBox layoutX="93.0" layoutY="241.0" prefHeight="112.0" prefWidth="642.0">
+      <VBox layoutX="50.0" layoutY="280.0" prefHeight="120.0" prefWidth="1040.0">
          <children>
-            <RadioButton fx:id="answerABtn" mnemonicParsing="false" prefHeight="17.0" prefWidth="600.0" text="RadioButton" />
-            <RadioButton fx:id="answerBBtn" mnemonicParsing="false" text="RadioButton" />
-            <RadioButton fx:id="answerCBtn" mnemonicParsing="false" text="RadioButton" />
-            <RadioButton fx:id="answerDBtn" mnemonicParsing="false" text="RadioButton" />
+            <RadioButton fx:id="answerABtn" mnemonicParsing="false" prefHeight="25.0" styleClass="game-choice" stylesheets="@../style/style.css" text="RadioButton" />
+            <RadioButton fx:id="answerBBtn" mnemonicParsing="false" prefHeight="25.0" styleClass="game-choice" stylesheets="@../style/style.css" text="RadioButton" />
+            <RadioButton fx:id="answerCBtn" mnemonicParsing="false" prefHeight="25.0" styleClass="game-choice" stylesheets="@../style/style.css" text="RadioButton" />
+            <RadioButton fx:id="answerDBtn" mnemonicParsing="false" prefHeight="25.0" styleClass="game-choice" stylesheets="@../style/style.css" text="RadioButton" />
          </children>
       </VBox>
-      <Label fx:id="scoreText" layoutX="84.0" layoutY="52.0" text="Score" />
-      <Label fx:id="healthText" layoutX="548.0" layoutY="61.0" text="Health" />
-      <Label fx:id="resultText" alignment="TOP_LEFT" layoutX="100.0" layoutY="377.0" prefHeight="128.0" prefWidth="958.0" text="Result" wrapText="true" />
-      <Button fx:id="confirmBtn" layoutX="389.0" layoutY="526.0" mnemonicParsing="false" styleClass="transparent-button" stylesheets="@../style/style.css">
-         <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icon/confirm.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <tooltip>
-            <Tooltip fx:id="confirmBtnTip" text="Confirm" />
-         </tooltip>
-      </Button>
-      <Button fx:id="backBtn" layoutX="300.0" layoutY="536.0" mnemonicParsing="false" styleClass="transparent-button" stylesheets="@../style/style.css">
+      <Label fx:id="scoreText" layoutX="50.0" layoutY="40.0" styleClass="game-score" stylesheets="@../style/style.css" text="Score: 0">
+         <font>
+            <Font size="1.0" />
+         </font></Label>
+      <Label fx:id="healthText" layoutX="570.0" layoutY="40.0" styleClass="game-health" stylesheets="@../style/style.css" text="Health: 3" />
+      <Label fx:id="resultText" alignment="TOP_LEFT" layoutX="50.0" layoutY="420.0" prefHeight="120.0" prefWidth="1040.0" styleClass="game-result" stylesheets="@../style/style.css" text="Result" wrapText="true" />
+      <Button fx:id="backBtn" layoutX="248.0" layoutY="550.0" mnemonicParsing="false" styleClass="transparent-button" stylesheets="@../style/style.css">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -52,7 +43,19 @@
             <Tooltip fx:id="backBtnTip" text="Back" />
          </tooltip>
       </Button>
-      <Button fx:id="reloadBtn" layoutX="500.0" layoutY="536.0" mnemonicParsing="false" styleClass="transparent-button" stylesheets="@../style/style.css">
+      <Button fx:id="confirmBtn" layoutX="546.0" layoutY="550.0" mnemonicParsing="false" styleClass="transparent-button" stylesheets="@../style/style.css">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/confirm.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip fx:id="confirmBtnTip" text="Confirm" />
+         </tooltip>
+      </Button>
+      <Button fx:id="reloadBtn" layoutX="844.0" layoutY="550.0" mnemonicParsing="false" styleClass="transparent-button" stylesheets="@../style/style.css">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
