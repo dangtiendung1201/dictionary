@@ -22,8 +22,16 @@ public class Word {
         wordExplain = word_explain;
     }
 
+    public Word(String wordTarget, String IPA,
+            String wordTypes, String wordExplain) {
+        this.wordTarget = wordTarget;
+        this.wordExplain = wordExplain;
+        this.IPA = IPA;
+        this.wordTypes = wordTypes;
+    }
+
     public Word(String wordTarget, String wordExplain, String IPA,
-                String wordTypes, String examples, String relatedWords) {
+            String wordTypes, String examples, String relatedWords) {
         this.wordTarget = wordTarget;
         this.wordExplain = wordExplain;
         this.IPA = IPA;

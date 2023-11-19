@@ -143,11 +143,18 @@ public class MultipleChoiceController extends GameController {
         answerDBtn.setText(multipleChoice.getAnswer(3));
     }
 
+    private void init() {
+        multipleChoice.setHealth(3);
+        multipleChoice.setPoint(0);
+        multipleChoice.setState(State.PLAYING);
+    }
+
     public void initialize() {
         confirmBtnTip.setShowDelay(Duration.seconds(0.5));
         backBtnTip.setShowDelay(Duration.seconds(0.5));
         reloadBtnTip.setShowDelay(Duration.seconds(0.5));
 
+        init();
         updateQuestion();
 
         // Radio button that user can only choose 1 of them
