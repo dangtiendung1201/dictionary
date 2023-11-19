@@ -10,10 +10,13 @@
 
 <AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GuessTheWordController">
    <children>
-      <Label fx:id="hintText" layoutX="37.0" layoutY="45.0" prefHeight="132.0" prefWidth="316.0" text="Hint" wrapText="true" />
-      <Label fx:id="resultText" layoutX="14.0" layoutY="349.0" prefHeight="122.0" prefWidth="263.0" text="Result" wrapText="true" />
-      <TextField fx:id="inputText" layoutX="849.0" layoutY="310.0" promptText="Guess" />
-      <Button fx:id="confirmBtn" layoutX="1035.0" layoutY="300.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+      <Label fx:id="hintText" layoutX="50.0" layoutY="108.0" prefHeight="200.0" prefWidth="1000.0" styleClass="game-hint" stylesheets="@../style/style.css" text="Hint" wrapText="true" />
+      <Label fx:id="resultText" layoutX="50.0" layoutY="398.0" prefHeight="120.0" prefWidth="1000.0" styleClass="game-result" stylesheets="@../style/style.css" text="Result" wrapText="true" />
+      <TextField fx:id="inputText" layoutX="50.0" layoutY="327.0" prefHeight="44.0" prefWidth="500.0" promptText="Guess" styleClass="game-guess" stylesheets="@../style/style.css" />
+      <Button fx:id="confirmBtn" layoutX="600.0" layoutY="315.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip fx:id="confirmBtnTip" text="Confirm" />
+         </tooltip>
          <graphic>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -21,11 +24,11 @@
                </image>
             </ImageView>
          </graphic>
-         <tooltip>
-            <Tooltip fx:id="confirmBtnTip" text="Confirm" />
-         </tooltip>
       </Button>
-      <Button fx:id="backBtn" layoutX="99.0" layoutY="528.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+      <Button fx:id="backBtn" layoutX="99.0" layoutY="530.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip fx:id="backBtnTip" text="Back" />
+         </tooltip>
          <graphic>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,11 +36,11 @@
                </image>
             </ImageView>
          </graphic>
-         <tooltip>
-            <Tooltip fx:id="backBtnTip" text="Back" />
-         </tooltip>
       </Button>
-      <Button fx:id="reloadBtn" layoutX="1000.0" layoutY="542.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+      <Button fx:id="reloadBtn" layoutX="600.0" layoutY="530.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="transparent-button" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip fx:id="reloadBtnTip" text="Reload" />
+         </tooltip>
          <graphic>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -45,11 +48,8 @@
                </image>
             </ImageView>
          </graphic>
-         <tooltip>
-            <Tooltip fx:id="reloadBtnTip" text="Reload" />
-         </tooltip>
       </Button>
-      <Label fx:id="scoreText" layoutX="188.0" layoutY="37.0" text="Score" />
-      <Label fx:id="healthText" layoutX="591.0" layoutY="29.0" text="Health" />
+      <Label fx:id="scoreText" layoutX="50.0" layoutY="50.0" styleClass="game-score" stylesheets="@../style/style.css" text="Score: 0" />
+      <Label fx:id="healthText" layoutX="550.0" layoutY="50.0" styleClass="game-health" stylesheets="@../style/style.css" text="Health: 10" />
    </children>
 </AnchorPane>
