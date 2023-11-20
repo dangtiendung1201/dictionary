@@ -9,8 +9,8 @@ import java.util.Scanner;
 import word.Word;
 
 public class GuessTheWord extends GameManagement {
-	private static final int maxWord = 82084;
-	private static final int maxGuess = 5;
+	private static final int maxWord = 76260;
+	private static final int maxGuess = 10;
 
 	private static ArrayList<Word> dataFile = new ArrayList<Word>();
 	static {
@@ -22,7 +22,7 @@ public class GuessTheWord extends GameManagement {
 
 			while (sc.hasNext()) {
 				String tmp[] = sc.nextLine().split("\t");
-				dataFile.add(new Word(tmp[0], tmp[1]));
+				dataFile.add(new Word(tmp[0], tmp[1], tmp[2], tmp[3]));
 			}
 
 			sc.close();
@@ -31,7 +31,7 @@ public class GuessTheWord extends GameManagement {
 		}
 	}
 	private Word word;
-	private State state;
+	public State state;
 
 	public GuessTheWord() {
 		health = maxGuess;
@@ -39,55 +39,33 @@ public class GuessTheWord extends GameManagement {
 		state = State.PLAYING;
 	}
 
-	private void printHint() {
-		System.out.println("This word has " + word.getWordTarget().length() + " characters.");
-		System.out.println("Meaning: " + word.getWordExplain());
+	public void reset() {
+		health = maxGuess;
+		point = 0;
+		state = State.PLAYING;
 	}
 
-	private void checkGuess(String guess) {
-		guess = guess.toLowerCase();
+	public String getHint() {
+		String res = "";
+		res += "This word has " + word.getWordTarget().length() + " characters." + "\n";
+		res += "Pronunciation: " + word.getIPA() + "\n";
+		res += "Type: " + word.getWordTypes() + "\n";
+		res += "Meaning: " + word.getWordExplain();
 
-		if (guess.equals(word.getWordTarget())) {
-			state = State.WIN;
-			return;
-		}
-
-		health--;
-		System.out.println("Wrong guess! You have " + health + " guesses left.");
+		return res;
 	}
 
-	private void getRandomWord() {
+	public boolean checkGuess(String guess) {
+		return word.getWordTarget().equals(guess);
+	}
+
+	public String getCorrectWord() {
+		return word.getWordTarget();
+	}
+
+	public void getRandomWord() {
 		Random rand = new Random();
 		int index = rand.nextInt(maxWord);
 		word = dataFile.get(index);
-	}
-
-	public void start() {
-		System.out.println("You are playing Guess The Word");
-
-		getRandomWord();
-
-		printHint();
-
-		while (state == State.PLAYING) {
-			System.out.println("Guess a word: ");
-
-			Scanner sc = new Scanner(System.in);
-			String guess = sc.nextLine();
-
-			checkGuess(guess);
-
-			if (health == 0) {
-				state = State.LOSE;
-			}
-		}
-
-		if (state == State.WIN) {
-			System.out.println("You win!");
-			System.out.println("The word is: " + word.getWordTarget());
-		} else {
-			System.out.println("You lose!");
-			System.out.println("The correct word is: " + word.getWordTarget());
-		}
 	}
 }

@@ -56,6 +56,9 @@ public class MultipleChoiceController extends GameController {
             scoreText.setText("Score: " + multipleChoice.getPoint());
             healthText.setText("Health: " + multipleChoice.getHealth());
         } else {
+            scoreText.setText("Score: " + multipleChoice.getPoint());
+            healthText.setText("Health: " + multipleChoice.getHealth());
+
             confirmBtn.setDisable(true);
             answerABtn.setDisable(true);
             answerBBtn.setDisable(true);
@@ -82,6 +85,7 @@ public class MultipleChoiceController extends GameController {
         updateQuestion();
         scoreText.setText("Score: " + multipleChoice.getPoint());
         healthText.setText("Health: " + multipleChoice.getHealth());
+        resultText.setText("");
     }
 
     private void handleAnswerBtn() {
@@ -127,6 +131,11 @@ public class MultipleChoiceController extends GameController {
         multipleChoice.generateQuestion();
         multipleChoice.generateAnswer();
 
+        answerABtn.setSelected(false);
+        answerBBtn.setSelected(false);
+        answerCBtn.setSelected(false);
+        answerDBtn.setSelected(false);
+
         questionText.setText(multipleChoice.getQuestion());
         answerABtn.setText(multipleChoice.getAnswer(0));
         answerBBtn.setText(multipleChoice.getAnswer(1));
@@ -134,11 +143,18 @@ public class MultipleChoiceController extends GameController {
         answerDBtn.setText(multipleChoice.getAnswer(3));
     }
 
+    private void init() {
+        multipleChoice.setHealth(3);
+        multipleChoice.setPoint(0);
+        multipleChoice.setState(State.PLAYING);
+    }
+
     public void initialize() {
         confirmBtnTip.setShowDelay(Duration.seconds(0.5));
         backBtnTip.setShowDelay(Duration.seconds(0.5));
         reloadBtnTip.setShowDelay(Duration.seconds(0.5));
 
+        init();
         updateQuestion();
 
         // Radio button that user can only choose 1 of them

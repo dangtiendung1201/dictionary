@@ -40,7 +40,9 @@ public class APIController extends Controller {
     private void handleSpeech2TextBtn() {
         try {
             String sentence = getTextFromSpeech(originalLangBox.getValue());
-        } catch (ConnectException e) {
+            inputBox.setText(sentence);
+        }
+        catch (ConnectException e) {
             Alert alert = new Alerts().error("Error",
                     "No Internet Connection",
                     "Please check your internet connection.");

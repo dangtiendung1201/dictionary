@@ -1,7 +1,5 @@
 package word;
 
-import java.util.ArrayList;
-
 public class Word {
     private String wordTarget = "N/A";
     private String wordExplain = "N/A";
@@ -11,19 +9,35 @@ public class Word {
     private String relatedWords = "N/A";
     private String examples = "N/A";
 
-    public Word(String word_target, String word_explain) {
-        for (int i = 0; i < word_target.length(); i++) {
-            if (!validCharacter(word_target.charAt(i))) {
-                throw new IllegalArgumentException("This word has an invalid character!");
-            }
-            word_target = word_target.toLowerCase();
+    public Word(String wordTarget, String wordExplain) {
+        if (invalidWordTarget(wordTarget)) {
+            throw new IllegalArgumentException("This word has an invalid character!");
         }
-        wordTarget = word_target;
-        wordExplain = word_explain;
+        wordTarget = wordTarget.toLowerCase();
+        this.wordTarget = wordTarget;
+        this.wordExplain = wordExplain;
+    }
+
+    public Word(String wordTarget, String IPA,
+                String wordTypes, String wordExplain) {
+        if (invalidWordTarget(wordTarget)) {
+            throw new IllegalArgumentException("This word has an invalid character!");
+        }
+        wordTarget = wordTarget.toLowerCase();
+
+        this.wordTarget = wordTarget;
+        this.wordExplain = wordExplain;
+        this.IPA = IPA;
+        this.wordTypes = wordTypes;
     }
 
     public Word(String wordTarget, String wordExplain, String IPA,
-                String wordTypes, String examples, String relatedWords) {
+            String wordTypes, String examples, String relatedWords) {
+        if (invalidWordTarget(wordTarget)) {
+            throw new IllegalArgumentException("This word has an invalid character!");
+        }
+        wordTarget = wordTarget.toLowerCase();
+
         this.wordTarget = wordTarget;
         this.wordExplain = wordExplain;
         this.IPA = IPA;
@@ -32,13 +46,21 @@ public class Word {
         this.examples = examples;
     }
 
-    private static boolean validCharacter(char c) {
+    private static boolean invalidCharacter(char c) {
         if (c == '-') {
-            return true;
+            return false;
         }
-        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+        return (c < 'a' || c > 'z') && (c < 'A' || c > 'Z');
     }
 
+    private static boolean invalidWordTarget(String wordTarget) {
+        for (int i = 0; i < wordTarget.length(); i++) {
+            if (invalidCharacter(wordTarget.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
     public String getWordTarget() {
         return wordTarget;
     }
