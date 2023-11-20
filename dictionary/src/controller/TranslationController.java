@@ -260,6 +260,21 @@ public class TranslationController extends Controller {
         }
     }
 
+    private void handleOnKeyTyped() {
+        resultList.getItems().clear();
+        String searchKey = searchBox.getText().trim();
+        try {
+            List<Word> searchList = management.dictionarySearcher(searchKey);
+            for(Word w : searchList) {
+                String s = w.getWordTarget();
+                resultList.getItems().add(s);
+            }
+        } catch (IllegalArgumentException e) {
+            notAvailableAlert.setVisible(true);
+        }
+    }
+
+
     private void setDefaultDisplayingState() {
         pronunciationBox.setEditable(false);
         wordTypeBox.setEditable(false);
@@ -292,6 +307,13 @@ public class TranslationController extends Controller {
         headerList.setText("Search result");
 
         notAvailableAlert.setVisible(false);
+
+        // handle type key
+        searchBox.setOnKeyTyped(keyEvent -> {
+            if (!searchBox.getText().isEmpty()) {
+                handleOnKeyTyped();
+            }
+        });
 
         searchBtn.setOnAction(e -> {
             handleSearchBtn();
