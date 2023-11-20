@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -19,9 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import static service.ImageAnalysisAPI.getTextFromImage;
 import static service.SpeechRecognitionAPI.getTextFromSpeech;
@@ -43,20 +40,17 @@ public class APIController extends Controller {
     private void handleSpeech2TextBtn() {
         try {
             String sentence = getTextFromSpeech(originalLangBox.getValue());
-        }
-        catch (ConnectException e) {
+        } catch (ConnectException e) {
             Alert alert = new Alerts().error("Error",
                     "No Internet Connection",
                     "Please check your internet connection.");
             alert.show();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Alert alert = new Alerts().error("Error",
                     "Can't recognize speech",
                     "Please check your language.");
             alert.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alerts().error("Error",
                     "Unknown Error",
                     "There is an error, please try again.");
@@ -80,9 +74,11 @@ public class APIController extends Controller {
         InputStream stream = null;
         try {
             stream = new FileInputStream(path);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Alert alert = new Alerts().error("Error",
+                    "Unknown Error",
+                    "There is an error, please try again.");
+            alert.show();
         }
         Image image = new Image(stream);
         ImageView imageView = new ImageView();
@@ -100,14 +96,12 @@ public class APIController extends Controller {
         String sentence = "";
         try {
             sentence = getTextFromImage(path);
-        }
-        catch (ConnectException e) {
+        } catch (ConnectException e) {
             Alert alert = new Alerts().error("Error",
                     "No Internet Connection",
                     "Please check your internet connection.");
             alert.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alerts().error("Error",
                     "Unknown Error",
                     "There is an error, please try again.");
@@ -126,6 +120,7 @@ public class APIController extends Controller {
         inputBox.setText(outputBox.getText());
         outputBox.setText(temp);
     }
+
     @FXML
     private void handleOriginalSoundBtn() {
         T2SThread t1 = new T2SThread();
@@ -133,14 +128,12 @@ public class APIController extends Controller {
         try {
             System.out.println("Handle sound btn");
             t1.getSpeechFromTextThread(inputBox.getText(), originalLangBox.getValue());
-        }
-        catch (ConnectException e) {
+        } catch (ConnectException e) {
             Alert alert = new Alerts().error("Error",
                     "No Internet Connection",
                     "Please check your internet connection.");
             alert.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alerts().error("Error",
                     "Unknown Error",
                     "There is an error, please try again.");
@@ -155,14 +148,12 @@ public class APIController extends Controller {
         try {
             System.out.println("Handle sound btn");
             t1.getSpeechFromTextThread(outputBox.getText(), translatedLangBox.getValue());
-        }
-        catch (ConnectException e) {
+        } catch (ConnectException e) {
             Alert alert = new Alerts().error("Error",
                     "No Internet Connection",
                     "Please check your internet connection.");
             alert.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alerts().error("Error",
                     "Unknown Error",
                     "There is an error, please try again.");
@@ -181,14 +172,12 @@ public class APIController extends Controller {
             String translatedSentence = translateAPI.translate(sentence, originalLanguage, translatedLanguage);
 
             outputBox.setText(translatedSentence);
-        }
-        catch (UnknownHostException e) {
+        } catch (UnknownHostException e) {
             Alert alert = new Alerts().error("Error",
                     "No Internet Connection",
                     "Please check your internet connection.");
             alert.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alerts().error("Error",
                     "Unknown Error",
                     "There is an error, please try again.");
