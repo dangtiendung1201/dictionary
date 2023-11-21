@@ -277,6 +277,26 @@ public class Trie {
         return ret;
     }
 
+    public ArrayList<String> searchSuggestions(String enteredWord, int maxSuggestSize) {
+        ArrayList<String> ret = new ArrayList<>();
+        ArrayList<String> allTargetWord = allTargetWords();
+        for (int i = 0; i < maxSuggestSize && !allTargetWord.isEmpty(); i++) {
+            int min = minimumEditDistance(enteredWord, allTargetWord.get(0));
+            int id = 0;
+            for (int j = 1; j < allTargetWord.size(); j++) {
+                int op = minimumEditDistance(enteredWord, allTargetWord.get(j));
+                if (op < min) {
+                    min = op;
+                    id = j;
+                }
+            }
+            ret.add(allTargetWord.get(id));
+            allTargetWord.remove(id);
+        }
+        return ret;
+    }
+
+
     private static class Node {
         // by this node, used for searching word.
         static final int MAX_CANDIDATE_SIZE = 10; // Maximum number of the offered word.
