@@ -15,9 +15,9 @@ import java.util.ResourceBundle;
 
 public class DictionaryController extends Controller implements Initializable {
     @FXML
-    private Tooltip dictionaryBtnTip, gameBtnTip, APIBtnTip, exitBtnTip;
+    private Tooltip dictionaryBtnTip, gameBtnTip, APIBtnTip, exitBtnTip, myListBtnTip;
     @FXML
-    private Button dictionaryBtn, gameBtn, APIBtn, exitBtn;
+    private Button dictionaryBtn, gameBtn, APIBtn, exitBtn, myListBtn;
     @FXML
     private AnchorPane container;
 
@@ -41,6 +41,15 @@ public class DictionaryController extends Controller implements Initializable {
         gameBtnTip.setShowDelay(Duration.seconds(0.5));
         APIBtnTip.setShowDelay(Duration.seconds(0.5));
         exitBtnTip.setShowDelay(Duration.seconds(0.5));
+        myListBtnTip.setShowDelay(Duration.seconds(0.5));
+
+        myListBtn.setOnAction(actionEvent -> {
+            try {
+                showPane("/view/MyListUI.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         dictionaryBtn.setOnAction(actionEvent -> {
             try {
@@ -68,6 +77,7 @@ public class DictionaryController extends Controller implements Initializable {
 
         exitBtn.setOnAction(actionEvent -> {
             management.exportToFile("dictionary/resourses/data/merged.txt");
+            management.exportMyWordListToFile("dictionary/resourses/data/myList.txt");
             System.exit(0);
         });
 

@@ -13,9 +13,11 @@ import word.Word;
 
 public class DictionaryManagement {
     private final Trie T;
+    private final Trie myList;
 
     public DictionaryManagement() {
         T = new Trie();
+        myList = new Trie();
     }
 
     public static void main(String[] args) {
@@ -81,6 +83,49 @@ public class DictionaryManagement {
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred!");
+        }
+    }
+
+    public void insertMyWordListFromFile(String path) {
+        try {
+            File myObj = new File(path);
+            Scanner myReader = new Scanner(myObj);
+            int x = 0;
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                myList.addWord(getWordFromLine(data));
+            }
+            System.out.println("Done.");
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+
+    }
+
+
+    public void exportMyWordListToFile(String path) {
+        try {
+            File myObj = new File(path);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+            java.io.FileWriter myWriter = new java.io.FileWriter(path);
+            ArrayList<Word> words = myList.allWords();
+            for (Word word : words) {
+                myWriter.write(word.getWordTarget() + "\t"
+                        + word.getIPA() + "\t"
+                        + word.getWordTypes() + "\t"
+                        + word.getWordExplain() + "\t"
+                        + word.getExamples() + "\t"
+                        + word.getRelatedWords() + "\n");
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote my wordlist to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred!");
         }
@@ -157,4 +202,33 @@ public class DictionaryManagement {
                     "| " + wordList.get(i).getWordExplain());
         }
     }
+
+    public ArrayList<Word> allMyListWord() {
+        return myList.allWords();
+    }
+
+    public ArrayList<Word> myListLookUp(String s) {
+        return myList.lookUpWord(s);
+    }
+
+    public ArrayList<Word> myListSearcher(String s) {
+        return myList.searchWord(s);
+    }
+
+    public ArrayList<String> myListSearchSuggestion(String enteredWord) {
+        return myList.searchSuggestions(enteredWord, 1000);
+    }
+
+    public void myListAddWord(Word word) {
+        myList.addWord(word);
+    }
+
+    public void myListRemoveWord(Word word) {
+        myList.removeWord(word);
+    }
+
+    public void myListRemoveWord(String wordTarget) {
+        myList.removeWord(wordTarget);
+    }
+
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static service.SpeechAPI.getSpeechFromText;
 
-public class TranslationController extends Controller {
+public class MyListController extends Controller {
     @FXML
     private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, addBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip,
             favoriteOnBtnTip, favoriteOffBtnTip;
@@ -42,7 +42,7 @@ public class TranslationController extends Controller {
         notAvailableAlert.setVisible(false);
         resultList.getItems().clear();
         try {
-            List<Word> searchList = management.dictionarySearcher(searchedWord);
+            List<Word> searchList = management.myListSearcher(searchedWord);
             for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
@@ -71,7 +71,7 @@ public class TranslationController extends Controller {
         englishWord.setText(lookedUpWord);
 
         try {
-            List<Word> searchList = management.dictionaryLookUp(lookedUpWord);
+            List<Word> searchList = management.myListLookUp(lookedUpWord);
             displayingWord(searchList.get(0));
         } catch (IllegalArgumentException e) {
 
@@ -79,7 +79,7 @@ public class TranslationController extends Controller {
             clearAllBoxes();
 
             resultList.getItems().clear();
-            List<String> suggestions = management.searchSuggestions(lookedUpWord);
+            List<String> suggestions = management.myListSearchSuggestion(lookedUpWord);
             for (String s : suggestions) {
                 resultList.getItems().add(s);
             }
@@ -227,8 +227,7 @@ public class TranslationController extends Controller {
         System.out.println("Favorite on button clicked");
 
         String currentWord = englishWord.getText();
-        if (!searchBox.getText().isEmpty())
-            management.myListRemoveWord(currentWord);
+        management.myListRemoveWord(currentWord);
 
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(true);
@@ -239,8 +238,7 @@ public class TranslationController extends Controller {
 
         String currentWord = englishWord.getText();
         Word favouriteWord = management.dictionaryLookUp(currentWord).get(0);
-        if (!searchBox.getText().isEmpty())
-            management.myListAddWord(favouriteWord);
+        management.myListAddWord(favouriteWord);
 
         favoriteOnBtn.setVisible(true);
         favoriteOffBtn.setVisible(false);
@@ -252,22 +250,9 @@ public class TranslationController extends Controller {
         englishWord.setText(chosenWord);
         notAvailableAlert.setVisible(false);
         try {
-            System.out.println("Word: " + chosenWord + " is chosen");
-            List<Word> searchList = management.dictionaryLookUp(chosenWord);
-            System.out.println("Word: " + searchList.get(0).getWordTarget());
-            try {
-                if (!management.myListLookUp(chosenWord).isEmpty()) {
-                    favoriteOnBtn.setVisible(true);
-                    favoriteOffBtn.setVisible(false);
-                } else {
-                    favoriteOnBtn.setVisible(false);
-                    favoriteOffBtn.setVisible(true);
-                }
-            } catch (IllegalArgumentException e) {
-                favoriteOnBtn.setVisible(false);
-                favoriteOffBtn.setVisible(true);
-            }
-
+            List<Word> searchList = management.myListLookUp(chosenWord);
+            favoriteOnBtn.setVisible(true);
+            favoriteOffBtn.setVisible(false);
             displayingWord(searchList.get(0));
             currentState = STATE.DISPLAYING;
             deleteBtn.setVisible(true);
@@ -285,7 +270,20 @@ public class TranslationController extends Controller {
         resultList.getItems().clear();
         String searchKey = searchBox.getText().trim();
         try {
-            List<Word> searchList = management.dictionarySearcher(searchKey);
+            List<Word> searchList = management.myListSearcher(searchKey);
+            for (Word w : searchList) {
+                String s = w.getWordTarget();
+                resultList.getItems().add(s);
+            }
+        } catch (IllegalArgumentException e) {
+            notAvailableAlert.setVisible(true);
+        }
+    }
+
+    private void showMyList() {
+        resultList.getItems().clear();
+        try {
+            List<Word> searchList = management.allMyListWord();
             for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
@@ -320,6 +318,8 @@ public class TranslationController extends Controller {
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(false);
 
+        showMyList();
+
         setDefaultDisplayingState();
 
         // Set default value for confirmBtn
@@ -335,6 +335,8 @@ public class TranslationController extends Controller {
         searchBox.setOnKeyTyped(keyEvent -> {
             if (!searchBox.getText().isEmpty()) {
                 handleOnKeyTyped();
+            } else {
+                showMyList();
             }
         });
 

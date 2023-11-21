@@ -7,6 +7,7 @@ public class Controller {
         management = new DictionaryManagement();
         try {
             management.insertFromFile("dictionary/resourses/data/merged.txt");
+            management.insertMyWordListFromFile("dictionary/resourses/data/myList.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }
