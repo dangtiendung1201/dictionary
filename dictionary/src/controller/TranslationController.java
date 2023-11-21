@@ -65,6 +65,7 @@ public class TranslationController extends Controller {
     }
 
     private void displayingWord(Word word) {
+        word = word.getDisplayingWord();
         meaningBox.setText(word.getWordExplain());
         pronunciationBox.setText(word.getIPA());
         exampleBox.setText(word.getExamples());

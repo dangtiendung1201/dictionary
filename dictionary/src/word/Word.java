@@ -92,6 +92,54 @@ public class Word {
         return false;
     }
 
+    private boolean invalidCharacterBesideWordTarget(char c) {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c > 'À';
+    }
+    public Word getDisplayingWord() {
+        String[] allExample = examples.split(" \\| ");
+        String examples = "";
+        boolean isPreviousExampleEnglish = false;
+        for(String example : allExample) {
+            // Check if example is English or Vietnamese
+            boolean isEnglish = false;
+            if (example.isEmpty()) continue;
+            for (int i = 0; i + wordTarget.length() - 1 < example.length(); i ++) {
+                if (i > 0 && invalidCharacterBesideWordTarget(example.charAt(i - 1))) {
+                    continue;
+                }
+                if (i + wordTarget.length() < example.length()
+                    && invalidCharacterBesideWordTarget(example.charAt(i + wordTarget.length()))) {
+                    continue;
+                }
+                if (example.startsWith(wordTarget, i)) {
+                    isEnglish = true;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < example.length(); i ++) {
+                char c = example.charAt(i);
+                isEnglish &= (c < 'À');
+            }
+
+            if (examples.isEmpty()) {
+                assert isEnglish;
+                examples += example;
+            } else if (isEnglish) {
+                examples += "\n" + example;
+            } else {
+                // Vietnamese
+                if (isPreviousExampleEnglish) {
+                    examples += ":\t";
+                }
+                examples += example + "; ";
+            }
+            isPreviousExampleEnglish = isEnglish;
+        }
+        return new Word(wordTarget, wordExplain, IPA,
+                wordTypes, examples, relatedWords);
+    }
+
     public String getExamples() {
         return examples;
     }

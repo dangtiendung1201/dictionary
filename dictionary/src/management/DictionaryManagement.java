@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 import trie.Trie;
@@ -19,19 +17,10 @@ public class DictionaryManagement {
     }
 
     public static void main(String[] args) {
-        DictionaryManagement DM = new DictionaryManagement();
-        DM.addWord(new Word("House", "Căn nhà"));
-        DM.addWord(new Word("Home", "Ngôi nhà"));
-        DM.addWord(new Word("Household", "Căn hộ"));
-        DM.addWord(new Word("Mouse", "Con chuột"));
-        Scanner s = new Scanner(System.in);
-        String pat = s.nextLine();
-        try {
-            ArrayList<Word> arrayList = DM.dictionaryLookUp(pat);
-            System.out.println(arrayList);
-        } catch (IllegalArgumentException ignored) {
-            System.out.println(DM.searchSuggestions(pat));
-        }
+        String line = "again\tə'gen\tphó từ\t lại, lần nữa, nữa\tto be home again | trở lại về nhà | to be well again | khoẻ lại, bình phục | to answer again | trả lời lại; đáp lại | rocks echoed again | những vách đá vang dội lại | again, it is necessary to bear in mind that... | hơn nữa, cần phải nhớ rằng... | these again are more expensive | vả lại những cái này đắt hơn | again and again | nhiều lần, không biết bao nhiêu lần | as much (many) again | nhiều gấp đôi | as tall again as somebody | cao gấp đôi ai | ever and again | thỉnh thoảng, đôi khi | half as much again | half as high again as somebody', \"alf again somebody's height\", 'now and again | once and again | over again | time and again\tafresh, anew, anon, bis, come again, encore, freshly, newly, once more, one more time, over, over and over, recurrently, reiteratively, repeatedly, additionally, also, besides, further, furthermore, moreover, on the contrary, on the other hand, then, de novo, more, recur";
+        DictionaryManagement dm = new DictionaryManagement();
+        Word word = dm.getWordFromLine(line).getDisplayingWord();
+        System.out.println(word.getExamples());
     }
 
     /**
@@ -43,7 +32,6 @@ public class DictionaryManagement {
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
-            int x = 0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 addWord(getWordFromLine(data));
@@ -95,26 +83,15 @@ public class DictionaryManagement {
      */
     private Word getWordFromLine(String data) {
         String[] info = data.split("\t");
-        String examples = info[4], relatedWords = info[5];
+        String wordTarget = info[0];
+        String wordExplain = info[3];
+        String IPA = info[1];
+        String wordTypes = info[2];
+        String examples = info[4];
+        String relatedWords = info[5];
 
-        /*
-        int cnt = 0;
-        for(int i = 0; i < examples.length(); i ++) {
-            if (examples.charAt(i) == '|') {
-                cnt ++;
-                if (cnt % 2 == 1) {
-                    examples = examples.substring(0, i)
-                            + ":" + examples.substring(i + 1);
-                }
-                else {
-                    examples = examples.substring(0, i)
-                            + "\n" + examples.substring(i + 1);
-                }
-            }
-        }*/
-
-        relatedWords = relatedWords.replace(" |", ",");
-        return new Word(info[0], info[3], info[1], info[2], examples, relatedWords);
+        return new Word(wordTarget, wordExplain, IPA,
+                wordTypes, examples, relatedWords);
     }
 
     public ArrayList<Word> allDictionaryWord() {
