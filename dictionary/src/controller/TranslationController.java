@@ -1,14 +1,11 @@
 package controller;
 
+import alert.Alerts;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import word.Word;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +25,6 @@ public class TranslationController extends Controller {
     private Label englishWord, headerList, notAvailableAlert;
     @FXML
     private ListView<String> resultList;
-
-    private enum STATE {
-        NONE,
-        DISPLAYING,
-        UPDATING,
-        DELETING,
-        ADDING
-    }
-
     private STATE currentState = STATE.NONE;
 
     private void clearAllBoxes() {
@@ -105,8 +93,16 @@ public class TranslationController extends Controller {
     private void handleSoundBtn() {
         try {
             getSpeechFromText(englishWord.getText(), "English");
+        } catch (ConnectException e) {
+            Alert alert = new Alerts().error("Error",
+                    "No Internet Connection",
+                    "Please check your internet connection.");
+            alert.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alerts().error("Error",
+                    "Unknown Error",
+                    "There is an error, please try again.");
+            alert.show();
         }
     }
 
@@ -185,8 +181,7 @@ public class TranslationController extends Controller {
                     e.printStackTrace();
                 }
                 currentState = STATE.DISPLAYING;
-            }
-            else if (currentState == STATE.DELETING) {
+            } else if (currentState == STATE.DELETING) {
                 try {
                     management.removeWord(currentWord);
                 } catch (Exception e) {
@@ -291,7 +286,7 @@ public class TranslationController extends Controller {
         String searchKey = searchBox.getText().trim();
         try {
             List<Word> searchList = management.dictionarySearcher(searchKey);
-            for(Word w : searchList) {
+            for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
             }
@@ -299,7 +294,6 @@ public class TranslationController extends Controller {
             notAvailableAlert.setVisible(true);
         }
     }
-
 
     private void setDefaultDisplayingState() {
         pronunciationBox.setEditable(false);
@@ -386,5 +380,13 @@ public class TranslationController extends Controller {
         });
 
 
+    }
+
+    private enum STATE {
+        NONE,
+        DISPLAYING,
+        UPDATING,
+        DELETING,
+        ADDING
     }
 }

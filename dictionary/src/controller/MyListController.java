@@ -1,9 +1,11 @@
 package controller;
 
+import alert.Alerts;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import word.Word;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,8 +93,16 @@ public class MyListController extends Controller {
     private void handleSoundBtn() {
         try {
             getSpeechFromText(englishWord.getText(), "English");
+        } catch (ConnectException e) {
+            Alert alert = new Alerts().error("Error",
+                    "No Internet Connection",
+                    "Please check your internet connection.");
+            alert.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alerts().error("Error",
+                    "Unknown Error",
+                    "There is an error, please try again.");
+            alert.show();
         }
     }
 
