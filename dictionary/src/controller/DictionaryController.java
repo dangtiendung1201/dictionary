@@ -77,7 +77,7 @@ public class DictionaryController extends Controller implements Initializable {
 
         exitBtn.setOnAction(actionEvent -> {
             management.exportToFile("dictionary/resourses/data/merged.txt");
-            management.exportMyWordListToFile("dictionary/resorses/data/myList.txt");
+            management.exportMyWordListToFile("dictionary/resourses/data/myList.txt");
             System.exit(0);
         });
 

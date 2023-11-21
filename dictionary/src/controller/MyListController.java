@@ -215,12 +215,21 @@ public class MyListController extends Controller {
 
     private void handleFavoriteOnBtn() {
         System.out.println("Favorite on button clicked");
+
+        String currentWord = englishWord.getText();
+        management.myListRemoveWord(currentWord);
+
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(true);
     }
 
     private void handleFavoriteOffBtn() {
         System.out.println("Favorite off button clicked");
+
+        String currentWord = englishWord.getText();
+        Word favouriteWord = management.dictionaryLookUp(currentWord).get(0);
+        management.myListAddWord(favouriteWord);
+
         favoriteOnBtn.setVisible(true);
         favoriteOffBtn.setVisible(false);
     }
@@ -232,6 +241,8 @@ public class MyListController extends Controller {
         notAvailableAlert.setVisible(false);
         try {
             List<Word> searchList = management.myListLookUp(chosenWord);
+            favoriteOnBtn.setVisible(true);
+            favoriteOffBtn.setVisible(false);
             displayingWord(searchList.get(0));
             currentState = STATE.DISPLAYING;
             deleteBtn.setVisible(true);
@@ -294,6 +305,8 @@ public class MyListController extends Controller {
         favoriteOnBtn.setTooltip(favoriteOnBtnTip);
         favoriteOffBtn.setTooltip(favoriteOffBtnTip);
 
+        favoriteOnBtn.setVisible(false);
+        favoriteOffBtn.setVisible(false);
 
         showMyList();
 

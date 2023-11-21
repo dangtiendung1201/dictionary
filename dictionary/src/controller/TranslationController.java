@@ -230,12 +230,23 @@ public class TranslationController extends Controller {
 
     private void handleFavoriteOnBtn() {
         System.out.println("Favorite on button clicked");
+
+        String currentWord = englishWord.getText();
+        if (!searchBox.getText().isEmpty())
+            management.myListRemoveWord(currentWord);
+
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(true);
     }
 
     private void handleFavoriteOffBtn() {
         System.out.println("Favorite off button clicked");
+
+        String currentWord = englishWord.getText();
+        Word favouriteWord = management.dictionaryLookUp(currentWord).get(0);
+        if (!searchBox.getText().isEmpty())
+            management.myListAddWord(favouriteWord);
+
         favoriteOnBtn.setVisible(true);
         favoriteOffBtn.setVisible(false);
     }
@@ -246,7 +257,22 @@ public class TranslationController extends Controller {
         englishWord.setText(chosenWord);
         notAvailableAlert.setVisible(false);
         try {
+            System.out.println("Word: " + chosenWord + " is chosen");
             List<Word> searchList = management.dictionaryLookUp(chosenWord);
+            System.out.println("Word: " + searchList.get(0).getWordTarget());
+            try {
+                if (!management.myListLookUp(chosenWord).isEmpty()) {
+                    favoriteOnBtn.setVisible(true);
+                    favoriteOffBtn.setVisible(false);
+                } else {
+                    favoriteOnBtn.setVisible(false);
+                    favoriteOffBtn.setVisible(true);
+                }
+            } catch (IllegalArgumentException e) {
+                favoriteOnBtn.setVisible(false);
+                favoriteOffBtn.setVisible(true);
+            }
+
             displayingWord(searchList.get(0));
             currentState = STATE.DISPLAYING;
             deleteBtn.setVisible(true);
@@ -296,6 +322,9 @@ public class TranslationController extends Controller {
         confirmBtn.setTooltip(confirmBtnTip);
         favoriteOnBtn.setTooltip(favoriteOnBtnTip);
         favoriteOffBtn.setTooltip(favoriteOffBtnTip);
+
+        favoriteOnBtn.setVisible(false);
+        favoriteOffBtn.setVisible(false);
 
         setDefaultDisplayingState();
 
