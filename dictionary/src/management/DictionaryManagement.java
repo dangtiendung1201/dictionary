@@ -9,6 +9,8 @@ import java.util.Scanner;
 import trie.Trie;
 import word.Word;
 
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
+
 public class DictionaryManagement {
     private final Trie T;
 
@@ -17,10 +19,8 @@ public class DictionaryManagement {
     }
 
     public static void main(String[] args) {
-        String line = "again\tə'gen\tphó từ\t lại, lần nữa, nữa\tto be home again | trở lại về nhà | to be well again | khoẻ lại, bình phục | to answer again | trả lời lại; đáp lại | rocks echoed again | những vách đá vang dội lại | again, it is necessary to bear in mind that... | hơn nữa, cần phải nhớ rằng... | these again are more expensive | vả lại những cái này đắt hơn | again and again | nhiều lần, không biết bao nhiêu lần | as much (many) again | nhiều gấp đôi | as tall again as somebody | cao gấp đôi ai | ever and again | thỉnh thoảng, đôi khi | half as much again | half as high again as somebody', \"alf again somebody's height\", 'now and again | once and again | over again | time and again\tafresh, anew, anon, bis, come again, encore, freshly, newly, once more, one more time, over, over and over, recurrently, reiteratively, repeatedly, additionally, also, besides, further, furthermore, moreover, on the contrary, on the other hand, then, de novo, more, recur";
-        DictionaryManagement dm = new DictionaryManagement();
-        Word word = dm.getWordFromLine(line).getDisplayingWord();
-        System.out.println(word.getExamples());
+        String line = "a\tei, ə\tdanh từ,  số nhiều as,  a's\t (thông tục) loại a, hạng nhất, hạng tốt nhất hạng rất tốt\this health is a | sức khoẻ anh ta vào loại a | A sharp | la thăng | A flat | la giáng | from a to z | từ đầu đến đuôi, tường tận | not to know a from b | không biết tí gì cả; một chữ bẻ đôi cũng không biết | a very cold day | một ngày rất lạnh | a dozen | một tá | a few | một ít | all of a size | tất cả cùng một cỡ | a Shakespeare | một (văn hào (như) kiểu) Sếch-xpia | a Mr. Nam | một ông Nam (nào đó)\tN/A";
+
     }
 
     /**
@@ -60,6 +60,7 @@ public class DictionaryManagement {
             java.io.FileWriter myWriter = new java.io.FileWriter(path);
             ArrayList<Word> words = T.allWords();
             for (Word word : words) {
+                word = word.toLine();
                 myWriter.write(word.getWordTarget() + "\t"
                                 + word.getIPA() + "\t"
                                 + word.getWordTypes() + "\t"
@@ -91,7 +92,7 @@ public class DictionaryManagement {
         String relatedWords = info[5];
 
         return new Word(wordTarget, wordExplain, IPA,
-                wordTypes, examples, relatedWords);
+                wordTypes, examples, relatedWords).getDisplayingWord();
     }
 
     public ArrayList<Word> allDictionaryWord() {

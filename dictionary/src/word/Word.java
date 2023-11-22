@@ -1,5 +1,7 @@
 package word;
 
+import management.DictionaryManagement;
+
 public class Word {
     private String wordTarget = "N/A";
     private String wordExplain = "N/A";
@@ -96,6 +98,12 @@ public class Word {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c > 'À';
     }
     public Word getDisplayingWord() {
+        if (examples.contains("\\n")) {
+            // this word has been converted to displaying then converted to line again
+            return new Word(wordTarget, wordExplain, IPA, wordTypes,
+                    examples.replace("\\n", "\n"), relatedWords);
+        }
+
         String[] allExample = examples.split(" \\| ");
         String examples = "";
         boolean isPreviousExampleEnglish = false;
@@ -111,7 +119,7 @@ public class Word {
                     && invalidCharacterBesideWordTarget(example.charAt(i + wordTarget.length()))) {
                     continue;
                 }
-                if (example.startsWith(wordTarget, i)) {
+                if (example.startsWith(wordTarget, i) || example.startsWith(wordTarget.toUpperCase(), i)) {
                     isEnglish = true;
                     break;
                 }
@@ -123,14 +131,13 @@ public class Word {
             }
 
             if (examples.isEmpty()) {
-                assert isEnglish;
                 examples += example;
             } else if (isEnglish) {
                 examples += "\n" + example;
             } else {
                 // Vietnamese
                 if (isPreviousExampleEnglish) {
-                    examples += ":\t";
+                    examples += ":     ";
                 }
                 examples += example + "; ";
             }
@@ -138,6 +145,15 @@ public class Word {
         }
         return new Word(wordTarget, wordExplain, IPA,
                 wordTypes, examples, relatedWords);
+    }
+
+    /** Convert displaying word to one line to export;
+     * @return word in one line
+     */
+    public Word toLine() {
+        String examples = this.examples;
+        examples = examples.replace("\n", "\\n");
+        return new Word(wordTarget, wordExplain, IPA, wordTypes, examples, relatedWords);
     }
 
     public String getExamples() {
