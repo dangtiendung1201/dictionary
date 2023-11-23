@@ -55,6 +55,8 @@ public class HangmanController extends GameController {
     private void handleConfirmBtn() {
         String input = String.valueOf(inputText.getText().charAt(0)).toLowerCase();
 
+        inputText.clear();
+
         if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
             resultText.setText("Please enter a character!");
             return;
@@ -69,13 +71,11 @@ public class HangmanController extends GameController {
 
         int cnt = hangman.checkGuess(c);
 
-        inputText.clear();
-
         if (cnt == 0) {
             changeHangmanImg();
             hangman.decreaseHealth();
 
-            resultText.setText("Wrong character " + c + "!. " + hangman.getHealth() + " guesses left.");
+            resultText.setText("Wrong character " + c + "! " + hangman.getHealth() + " guesses left.");
         } else {
             resultText.setText("Correct characters! There is(are) " + cnt + " " + c + " in the word.");
             updateWordText();
@@ -89,10 +89,9 @@ public class HangmanController extends GameController {
         hangman.updateState();
         if (hangman.getState() == Hangman.State.WIN) {
             resultText.setText("You win!");
-            
+
             confirmBtn.setDisable(true);
-        }
-        else if (hangman.getState() == Hangman.State.LOSE) {
+        } else if (hangman.getState() == Hangman.State.LOSE) {
             resultText.setText("You lose! The word is: " + hangman.getCorretWord() + ".");
 
             confirmBtn.setDisable(true);
