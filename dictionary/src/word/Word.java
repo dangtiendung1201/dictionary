@@ -101,7 +101,7 @@ public class Word {
         if (examples.contains("\\n")) {
             // this word has been converted to displaying then converted to line again
             return new Word(wordTarget, wordExplain, IPA, wordTypes,
-                    examples.replace("\\n", "\n"), relatedWords);
+                    examples.replace("2\\n", "\n\n").replace("1\\n", "\n"), relatedWords);
         }
 
         String[] allExample = examples.split(" \\| ");
@@ -109,8 +109,9 @@ public class Word {
         boolean isPreviousExampleEnglish = false;
         for(String example : allExample) {
             // Check if example is English or Vietnamese
-            boolean isEnglish = false;
+            boolean isEnglish = true;
             if (example.isEmpty()) continue;
+            /*
             for (int i = 0; i + wordTarget.length() - 1 < example.length(); i ++) {
                 if (i > 0 && invalidCharacterBesideWordTarget(example.charAt(i - 1))) {
                     continue;
@@ -124,7 +125,7 @@ public class Word {
                     break;
                 }
             }
-
+            */
             for (int i = 0; i < example.length(); i ++) {
                 char c = example.charAt(i);
                 isEnglish &= (c < 'À');
@@ -133,11 +134,11 @@ public class Word {
             if (examples.isEmpty()) {
                 examples += example;
             } else if (isEnglish) {
-                examples += "\n" + example;
+                examples += "\n\n" + example;
             } else {
                 // Vietnamese
                 if (isPreviousExampleEnglish) {
-                    examples += ":     ";
+                    examples += ":\n";
                 }
                 examples += example + "; ";
             }
@@ -152,7 +153,7 @@ public class Word {
      */
     public Word toLine() {
         String examples = this.examples;
-        examples = examples.replace("\n", "\\n");
+        examples = examples.replace("\n\n", "2\\n").replace("\n", "1\\n");
         return new Word(wordTarget, wordExplain, IPA, wordTypes, examples, relatedWords);
     }
 
