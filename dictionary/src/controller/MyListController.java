@@ -247,10 +247,16 @@ public class MyListController extends Controller {
     // Call lookup function
     private void handleResultList() {
         String chosenWord = resultList.getSelectionModel().getSelectedItem();
+        System.out.println("Word " + chosenWord + " is chosen\n");
         englishWord.setText(chosenWord);
         notAvailableAlert.setVisible(false);
         try {
             List<Word> searchList = management.myListLookUp(chosenWord);
+            if (searchList.isEmpty()) {
+                System.out.println("Word " + chosenWord + " is not in my list, searching in dictionary.\n");
+                searchList = management.dictionaryLookUp(chosenWord);
+            }
+            displayingWord(searchList.get(0));
             favoriteOnBtn.setVisible(true);
             favoriteOffBtn.setVisible(false);
             displayingWord(searchList.get(0));
@@ -258,11 +264,22 @@ public class MyListController extends Controller {
             deleteBtn.setVisible(true);
             updateBtn.setVisible(true);
         } catch (IllegalArgumentException e) {
-            notAvailableAlert.setVisible(true);
-            clearAllBoxes();
-            currentState = STATE.NONE;
-            deleteBtn.setVisible(false);
-            updateBtn.setVisible(false);
+            try {
+                List<Word> searchList = management.dictionaryLookUp(chosenWord);
+                displayingWord(searchList.get(0));
+                favoriteOnBtn.setVisible(false);
+                favoriteOffBtn.setVisible(true);
+                displayingWord(searchList.get(0));
+                currentState = STATE.DISPLAYING;
+                deleteBtn.setVisible(true);
+                updateBtn.setVisible(true);
+            } catch (IllegalArgumentException ignored) {
+                notAvailableAlert.setVisible(true);
+                clearAllBoxes();
+                currentState = STATE.NONE;
+                deleteBtn.setVisible(false);
+                updateBtn.setVisible(false);
+            }
         }
     }
 
@@ -327,7 +344,7 @@ public class MyListController extends Controller {
         deleteBtn.setVisible(false);
         updateBtn.setVisible(false);
 
-        headerList.setText("Search result");
+        headerList.setText("Word List");
 
         notAvailableAlert.setVisible(false);
 
