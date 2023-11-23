@@ -9,8 +9,6 @@ import java.util.Scanner;
 import trie.Trie;
 import word.Word;
 
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
-
 public class DictionaryManagement {
     private final Trie T;
     private final Trie myList;
