@@ -110,6 +110,7 @@ public class HangmanController extends GameController {
         hintText.setText(hangman.getHint());
         wordText.setText(hangman.getWord());
         resultText.setText("");
+        confirmBtn.setDisable(false);
 
         resetHangmanImg();
     }
