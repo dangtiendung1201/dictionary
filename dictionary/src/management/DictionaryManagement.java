@@ -81,7 +81,6 @@ public class DictionaryManagement {
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
-            int x = 0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 myList.addWord(getWordFromLine(data));
@@ -106,12 +105,14 @@ public class DictionaryManagement {
             java.io.FileWriter myWriter = new java.io.FileWriter(path);
             ArrayList<Word> words = myList.allWords();
             for (Word word : words) {
+                word = word.toLine();
                 myWriter.write(word.getWordTarget() + "\t"
                         + word.getIPA() + "\t"
                         + word.getWordTypes() + "\t"
                         + word.getWordExplain() + "\t"
                         + word.getExamples() + "\t"
                         + word.getRelatedWords() + "\n");
+                System.out.println("Wrote " + word.getWordTarget() + " to file. \n");
             }
             myWriter.close();
             System.out.println("Successfully wrote my wordlist to the file.");
