@@ -176,7 +176,7 @@ public class TranslationController extends Controller {
                     word.setExamples(exampleBox.getText());
                     word.setWordTypes(wordTypeBox.getText());
 
-                    management.addWord(word);
+                    management.addWord(word.toLine());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -1,5 +1,7 @@
 package word;
 
+import management.DictionaryManagement;
+
 public class Word {
     private String wordTarget = "N/A";
     private String wordExplain = "N/A";
@@ -90,6 +92,68 @@ public class Word {
             return another.wordExplain.equals(this.wordExplain) && another.wordTarget.equals(this.wordTarget);
         }
         return false;
+    }
+
+    private boolean invalidCharacterBesideWordTarget(char c) {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c > 'À';
+    }
+    public Word getDisplayingWord() {
+        if (examples.contains("\\n")) {
+            // this word has been converted to displaying then converted to line again
+            return new Word(wordTarget, wordExplain, IPA, wordTypes,
+                    examples.replace("\\n", "\n"), relatedWords);
+        }
+
+        String[] allExample = examples.split(" \\| ");
+        String examples = "";
+        boolean isPreviousExampleEnglish = false;
+        for(String example : allExample) {
+            // Check if example is English or Vietnamese
+            boolean isEnglish = false;
+            if (example.isEmpty()) continue;
+            for (int i = 0; i + wordTarget.length() - 1 < example.length(); i ++) {
+                if (i > 0 && invalidCharacterBesideWordTarget(example.charAt(i - 1))) {
+                    continue;
+                }
+                if (i + wordTarget.length() < example.length()
+                    && invalidCharacterBesideWordTarget(example.charAt(i + wordTarget.length()))) {
+                    continue;
+                }
+                if (example.startsWith(wordTarget, i) || example.startsWith(wordTarget.toUpperCase(), i)) {
+                    isEnglish = true;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < example.length(); i ++) {
+                char c = example.charAt(i);
+                isEnglish &= (c < 'À');
+            }
+
+            if (examples.isEmpty()) {
+                examples += example;
+            } else if (isEnglish) {
+                examples += "\n" + example;
+            } else {
+                // Vietnamese
+                if (isPreviousExampleEnglish) {
+                    examples += ":     ";
+                }
+                examples += example + "; ";
+            }
+            isPreviousExampleEnglish = isEnglish;
+        }
+        return new Word(wordTarget, wordExplain, IPA,
+                wordTypes, examples, relatedWords);
+    }
+
+    /** Convert displaying word to one line to export;
+     * @return word in one line
+     */
+    public Word toLine() {
+        String examples = this.examples;
+        examples = examples.replace("\n", "\\n");
+        return new Word(wordTarget, wordExplain, IPA, wordTypes, examples, relatedWords);
     }
 
     public String getExamples() {

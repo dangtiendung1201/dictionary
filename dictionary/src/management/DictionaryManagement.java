@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 import trie.Trie;
 import word.Word;
+
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 
 public class DictionaryManagement {
     private final Trie T;
@@ -21,19 +21,8 @@ public class DictionaryManagement {
     }
 
     public static void main(String[] args) {
-        DictionaryManagement DM = new DictionaryManagement();
-        DM.addWord(new Word("House", "Căn nhà"));
-        DM.addWord(new Word("Home", "Ngôi nhà"));
-        DM.addWord(new Word("Household", "Căn hộ"));
-        DM.addWord(new Word("Mouse", "Con chuột"));
-        Scanner s = new Scanner(System.in);
-        String pat = s.nextLine();
-        try {
-            ArrayList<Word> arrayList = DM.dictionaryLookUp(pat);
-            System.out.println(arrayList);
-        } catch (IllegalArgumentException ignored) {
-            System.out.println(DM.searchSuggestions(pat));
-        }
+        String line = "a\tei, ə\tdanh từ,  số nhiều as,  a's\t (thông tục) loại a, hạng nhất, hạng tốt nhất hạng rất tốt\this health is a | sức khoẻ anh ta vào loại a | A sharp | la thăng | A flat | la giáng | from a to z | từ đầu đến đuôi, tường tận | not to know a from b | không biết tí gì cả; một chữ bẻ đôi cũng không biết | a very cold day | một ngày rất lạnh | a dozen | một tá | a few | một ít | all of a size | tất cả cùng một cỡ | a Shakespeare | một (văn hào (như) kiểu) Sếch-xpia | a Mr. Nam | một ông Nam (nào đó)\tN/A";
+
     }
 
     /**
@@ -45,7 +34,6 @@ public class DictionaryManagement {
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
-            int x = 0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 addWord(getWordFromLine(data));
@@ -74,6 +62,7 @@ public class DictionaryManagement {
             java.io.FileWriter myWriter = new java.io.FileWriter(path);
             ArrayList<Word> words = T.allWords();
             for (Word word : words) {
+                word = word.toLine();
                 myWriter.write(word.getWordTarget() + "\t"
                                 + word.getIPA() + "\t"
                                 + word.getWordTypes() + "\t"
@@ -140,26 +129,15 @@ public class DictionaryManagement {
      */
     private Word getWordFromLine(String data) {
         String[] info = data.split("\t");
-        String examples = info[4], relatedWords = info[5];
+        String wordTarget = info[0];
+        String wordExplain = info[3];
+        String IPA = info[1];
+        String wordTypes = info[2];
+        String examples = info[4];
+        String relatedWords = info[5];
 
-        /*
-        int cnt = 0;
-        for(int i = 0; i < examples.length(); i ++) {
-            if (examples.charAt(i) == '|') {
-                cnt ++;
-                if (cnt % 2 == 1) {
-                    examples = examples.substring(0, i)
-                            + ":" + examples.substring(i + 1);
-                }
-                else {
-                    examples = examples.substring(0, i)
-                            + "\n" + examples.substring(i + 1);
-                }
-            }
-        }*/
-
-        relatedWords = relatedWords.replace(" |", ",");
-        return new Word(info[0], info[3], info[1], info[2], examples, relatedWords);
+        return new Word(wordTarget, wordExplain, IPA,
+                wordTypes, examples, relatedWords).getDisplayingWord();
     }
 
     public ArrayList<Word> allDictionaryWord() {
