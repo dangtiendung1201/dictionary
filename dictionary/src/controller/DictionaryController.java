@@ -15,9 +15,9 @@ import java.util.ResourceBundle;
 
 public class DictionaryController extends Controller implements Initializable {
     @FXML
-    private Tooltip dictionaryBtnTip, gameBtnTip, APIBtnTip, exitBtnTip, myListBtnTip;
+    private Tooltip dictionaryBtnTip, gameBtnTip, APIBtnTip, exitBtnTip, myListBtnTip, homeTip;
     @FXML
-    private Button dictionaryBtn, gameBtn, APIBtn, exitBtn, myListBtn;
+    private Button dictionaryBtn, gameBtn, APIBtn, exitBtn, myListBtn, homeButton;
     @FXML
     private AnchorPane container;
 
@@ -37,11 +37,22 @@ public class DictionaryController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dictionaryBtnTip.setShowDelay(Duration.seconds(0.5));
-        gameBtnTip.setShowDelay(Duration.seconds(0.5));
-        APIBtnTip.setShowDelay(Duration.seconds(0.5));
-        exitBtnTip.setShowDelay(Duration.seconds(0.5));
-        myListBtnTip.setShowDelay(Duration.seconds(0.5));
+        dictionaryBtnTip.setShowDelay(Duration.seconds(0.2));
+        gameBtnTip.setShowDelay(Duration.seconds(0.2));
+        APIBtnTip.setShowDelay(Duration.seconds(0.2));
+        exitBtnTip.setShowDelay(Duration.seconds(0.2));
+        myListBtnTip.setShowDelay(Duration.seconds(0.2));
+        homeTip.setShowDelay(Duration.seconds(0.2));
+
+        showPane("/view/HomeUI.fxml");
+        homeButton.setOnAction(actionEvent -> {
+            try {
+                container.getChildren().clear();
+                showPane("/view/HomeUI.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         myListBtn.setOnAction(actionEvent -> {
             try {
@@ -82,4 +93,5 @@ public class DictionaryController extends Controller implements Initializable {
         });
 
     }
+
 }

@@ -27,7 +27,7 @@
     -fx-background-color: transparent;
 }
 .search-field {
-    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-family: 'Mali';
     -fx-font-size: 20;
     -fx-text-fill: #000000;
     -fx-border-color: #000000;
@@ -41,34 +41,36 @@
     -fx-border-radius: 5;
 }
 .wordlist-title {
-    -fx-font-family: 'Quicksand-Bold';
+    -fx-font-family: 'Mali';
     -fx-font-size: 20;
+    -fx-font-weight: bold;
     -fx-text-fill: #000000;
 }
 .wordlist-content {
-    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-family: 'Mali';
     -fx-font-size: 20;
     -fx-text-fill: #000000;
 }
 .english-word {
-    -fx-font-family: 'Quicksand-Bold';
+    -fx-font-family: 'Mali';
     -fx-font-size: 20;
     -fx-text-fill: #000000;
+    -fx-font-weight: bold;
 }
 .pronunciation-field, .wordtype-field, .meaning-field, .example-field, .relatedword-field, .spell-field {
-    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-family: 'Mali';
     -fx-font-size: 15;
     -fx-text-fill: #000000;
     -fx-background-color: #ffffff;
 }
 .suggest-alert {
-    -fx-font-family: 'Quicksand-Regular';
+    -fx-font-family: 'Mali';
     -fx-font-size: 12;
     -fx-text-alignment: center;
     -fx-text-fill: red;
 }
 .button:hover {
-    -fx-background-color: #bbdefb;
+    -fx-background-color: #BBB3A2;
     -fx-background-radius: 5;
 }
 
@@ -123,4 +125,25 @@
     -fx-font-family: 'Quicksand-Bold';
     -fx-font-size: 20;
     -fx-text-fill: #00a36c;
+}
+
+/* Home */
+.dictionary-application-text {
+   -fx-font-size: 30px;
+   -fx-font-family: 'Mali';
+   -fx-alignment: center;
+   -fx-font-weight: bold;
+   -fx-text-fill: #00E1D4;
+}
+
+.instruction {
+       -fx-font-size: 12px;
+       -fx-font-family: 'Mali';
+}
+
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
 }
