@@ -1,3 +1,0 @@
-unhyphenated	N/A	danh từ	không có dấu nối ở giữa	N/A	N/A
-unhypocritical	N/A	danh từ	không đạo đức giả; không giả nhân giả nghĩa	N/A	N/A
-unhypothecated	N/A	danh từ	(pháp lý) không bị cầm cố, không bị cầm đợ (bất động sản)	N/A	N/A
