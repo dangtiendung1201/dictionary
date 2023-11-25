@@ -3,7 +3,11 @@ package controller;
 import alert.Alerts;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import trie.exception.AddWordException;
+import trie.exception.RemoveWordException;
+import trie.exception.SearchWordException;
 import word.Word;
+import word.exception.InvalidWordException;
 
 import java.net.ConnectException;
 import java.util.ArrayList;
@@ -27,6 +31,8 @@ public class TranslationController extends Controller {
     private ListView<String> resultList;
     private STATE currentState = STATE.NONE;
 
+    private int maxResultListSize = 100;
+
     private void clearAllBoxes() {
         searchBox.clear();
         pronunciationBox.clear();
@@ -43,11 +49,14 @@ public class TranslationController extends Controller {
         resultList.getItems().clear();
         try {
             List<Word> searchList = management.dictionarySearcher(searchedWord);
+            if (searchList.size() > maxResultListSize) {
+                searchList = searchList.subList(0, maxResultListSize);
+            }
             for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
             }
-        } catch (IllegalArgumentException e) {
+        } catch (SearchWordException e) {
             notAvailableAlert.setVisible(true);
         }
     }
@@ -71,13 +80,11 @@ public class TranslationController extends Controller {
         englishWord.setText(lookedUpWord);
 
         try {
-            List<Word> searchList = management.dictionaryLookUp(lookedUpWord);
-            displayingWord(searchList.get(0));
-        } catch (IllegalArgumentException e) {
-
+            Word word = management.dictionaryLookUp(lookedUpWord);
+            displayingWord(word);
+        } catch (SearchWordException e) {
             notAvailableAlert.setVisible(true);
             clearAllBoxes();
-
             resultList.getItems().clear();
             List<String> suggestions = management.searchSuggestions(lookedUpWord);
             for (String s : suggestions) {
@@ -159,17 +166,28 @@ public class TranslationController extends Controller {
         }
     }
 
+    /** avoid bug.
+     *
+     */
+    private void eraseTabInAllBox() {
+        pronunciationBox.setText(pronunciationBox.getText().replace("\t", ""));
+        wordTypeBox.setText(wordTypeBox.getText().replace("\t", ""));
+        meaningBox.setText(meaningBox.getText().replace("\t", ""));
+        exampleBox.setText(exampleBox.getText().replace("\t", ""));
+        relatedWordBox.setText(relatedWordBox.getText().replace("\t", ""));
+        searchBox.setText(searchBox.getText().replace("\t", ""));
+    }
     // confirm button show only when update or delete button clicked
     private void handleConfirmBtn() {
         if (confirmBtn.isVisible()) {
             String currentWord = englishWord.getText();
             if (currentState == STATE.UPDATING) {
                 try {
-                    ArrayList<Word> wordList = management.dictionaryLookUp(currentWord);
-                    Word word = wordList.get(0);
+                    Word word = management.dictionaryLookUp(currentWord);
 
                     management.removeWord(word);
 
+                    eraseTabInAllBox();
                     word.setIPA(pronunciationBox.getText());
                     word.setRelatedWords(relatedWordBox.getText());
                     word.setWordExplain(meaningBox.getText());
@@ -177,15 +195,17 @@ public class TranslationController extends Controller {
                     word.setWordTypes(wordTypeBox.getText());
 
                     management.addWord(word.toLine());
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
                 }
                 currentState = STATE.DISPLAYING;
             } else if (currentState == STATE.DELETING) {
                 try {
                     management.removeWord(currentWord);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (RemoveWordException removeWordException) {
+                    System.out.println(removeWordException.getMessage());
+                    Alert alert = new Alerts().error("Error", "Remove word error", removeWordException.getMessage());;
+                    alert.show();
                 }
                 currentState = STATE.NONE;
 
@@ -199,6 +219,7 @@ public class TranslationController extends Controller {
 
             } else if (currentState == STATE.ADDING) {
                 try {
+                    eraseTabInAllBox();
                     String wordTarget = searchBox.getText().isEmpty() ? "N/A" : searchBox.getText();
                     String wordExplain = meaningBox.getText().isEmpty() ? "N/A" : meaningBox.getText();
                     String IPA = pronunciationBox.getText().isEmpty() ? "N/A" : pronunciationBox.getText();
@@ -209,8 +230,10 @@ public class TranslationController extends Controller {
                         System.out.println(wordTarget);
                         management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
                                 examples, relatedWords));
-                    } catch (IllegalArgumentException ignored) {
-                        System.out.println("Từ được thêm vào không hợp lệ!");
+                    } catch (InvalidWordException | AddWordException e) {
+                        System.out.println(e.getMessage());
+                        Alert alert = new Alerts().error("Error", "Add word error!", e.getMessage());
+                        alert.show();
                     }
 
                 } catch (Exception e) {
@@ -238,7 +261,7 @@ public class TranslationController extends Controller {
         System.out.println("Favorite off button clicked");
 
         String currentWord = englishWord.getText();
-        Word favouriteWord = management.dictionaryLookUp(currentWord).get(0);
+        Word favouriteWord = management.dictionaryLookUp(currentWord);
         if (!searchBox.getText().isEmpty())
             management.myListAddWord(favouriteWord);
 
@@ -252,27 +275,25 @@ public class TranslationController extends Controller {
         englishWord.setText(chosenWord);
         notAvailableAlert.setVisible(false);
         try {
-            System.out.println("Word: " + chosenWord + " is chosen");
-            List<Word> searchList = management.dictionaryLookUp(chosenWord);
-            System.out.println("Word: " + searchList.get(0).getWordTarget());
+            Word word = management.dictionaryLookUp(chosenWord);
             try {
-                if (!management.myListLookUp(chosenWord).isEmpty()) {
+                if (management.myListLookUp(chosenWord) == null) {
                     favoriteOnBtn.setVisible(true);
                     favoriteOffBtn.setVisible(false);
                 } else {
                     favoriteOnBtn.setVisible(false);
                     favoriteOffBtn.setVisible(true);
                 }
-            } catch (IllegalArgumentException e) {
+            } catch (SearchWordException e) {
                 favoriteOnBtn.setVisible(false);
                 favoriteOffBtn.setVisible(true);
             }
 
-            displayingWord(searchList.get(0));
+            displayingWord(word);
             currentState = STATE.DISPLAYING;
             deleteBtn.setVisible(true);
             updateBtn.setVisible(true);
-        } catch (IllegalArgumentException e) {
+        } catch (SearchWordException e) {
             notAvailableAlert.setVisible(true);
             clearAllBoxes();
             currentState = STATE.NONE;
@@ -282,17 +303,28 @@ public class TranslationController extends Controller {
     }
 
     private void handleOnKeyTyped() {
+        if (currentState == STATE.ADDING) {
+            return;
+        }
         resultList.getItems().clear();
         String searchKey = searchBox.getText().trim();
         try {
+            notAvailableAlert.setVisible(false);
             List<Word> searchList = management.dictionarySearcher(searchKey);
+            if (searchList.size() > maxResultListSize) {
+                searchList = searchList.subList(0, maxResultListSize);
+            }
             for (Word w : searchList) {
                 String s = w.getWordTarget();
                 resultList.getItems().add(s);
             }
-        } catch (IllegalArgumentException e) {
+        } catch (SearchWordException e) {
             notAvailableAlert.setVisible(true);
         }
+    }
+
+    private void setMaxResultListSize(int maxResultListSize) {
+        this.maxResultListSize = maxResultListSize;
     }
 
     private void setDefaultDisplayingState() {
