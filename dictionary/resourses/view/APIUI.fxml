@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.APIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1140.0" styleClass="container" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.APIController">
    <children>
       <Button fx:id="swapBtn" layoutX="520.0" layoutY="375.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="transparent-button" stylesheets="@../style/style.css">
          <tooltip>
@@ -36,12 +41,45 @@
             <Font name="Arial" size="90.0" />
          </font>
       </TextArea>
-      <ComboBox fx:id="originalLangBox" layoutX="173.0" layoutY="234.0" prefHeight="45.0" prefWidth="200.0" promptText="English" styleClass="language-choice" stylesheets="@../style/style.css" />
-      <ComboBox fx:id="translatedLangBox" layoutX="762.0" layoutY="234.0" prefHeight="45.0" prefWidth="200.0" promptText="Vietnamese" styleClass="language-choice" stylesheets="@../style/style.css" />
+      <ComboBox fx:id="originalLangBox" layoutX="25.0" layoutY="234.0" prefHeight="45.0" prefWidth="200.0" promptText="English" styleClass="language-choice" stylesheets="@../style/style.css" />
+      <ComboBox fx:id="translatedLangBox" layoutX="838.0" layoutY="235.0" prefHeight="45.0" prefWidth="200.0" promptText="Vietnamese" styleClass="language-choice" stylesheets="@../style/style.css" />
       <Button fx:id="translateBtn" layoutX="470.0" layoutY="232.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="translate-button" stylesheets="@../style/style.css" text="Translate" />
-      <Button fx:id="Speech2TextBtn" layoutX="25.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="S2T" />
-      <Button fx:id="Image2TextBtn" layoutX="25.0" layoutY="234.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="I2T" />
-      <Button fx:id="originalSoundBtn" layoutX="400.0" layoutY="234.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="Spk" />
-          <Button fx:id="translatedSoundBtn" layoutX="989.0" layoutY="234.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" text="Spk" />
+      <Button fx:id="Speech2TextBtn" ellipsisString="" layoutX="319.0" layoutY="233.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="56.0">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/SpeechToTextIcon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="Image2TextBtn" ellipsisString="" layoutX="245.0" layoutY="233.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="56.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/image.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="originalSoundBtn" ellipsisString="" layoutX="389.0" layoutY="233.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="56.0">
+         <graphic>
+            <ImageView fitHeight="43.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/speak.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+          <Button fx:id="translatedSoundBtn" ellipsisString="" layoutX="1059.0" layoutY="235.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="56.0">
+         <graphic>
+            <ImageView fitHeight="67.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/speak.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="470.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/Microsoft_Azure-Logo.wine.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package word;
 
 import management.DictionaryManagement;
+import word.exception.InvalidWordException;
 
 public class Word {
     private String wordTarget = "N/A";
@@ -36,7 +37,7 @@ public class Word {
     public Word(String wordTarget, String wordExplain, String IPA,
             String wordTypes, String examples, String relatedWords) {
         if (invalidWordTarget(wordTarget)) {
-            throw new IllegalArgumentException("This word has an invalid character!");
+            throw new InvalidWordException("This word has an invalid character!");
         }
         wordTarget = wordTarget.toLowerCase();
 

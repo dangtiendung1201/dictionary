@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import trie.Trie;
+import trie.exception.AddWordException;
+import trie.exception.RemoveWordException;
 import word.Word;
 
 public class DictionaryManagement {
@@ -88,7 +90,6 @@ public class DictionaryManagement {
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
         }
-
     }
 
 
@@ -143,7 +144,7 @@ public class DictionaryManagement {
         return T.allWords();
     }
 
-    public ArrayList<Word> dictionaryLookUp(String s) {
+    public Word dictionaryLookUp(String s) {
         return T.lookUpWord(s);
     }
 
@@ -168,7 +169,7 @@ public class DictionaryManagement {
         T.removeWord(word);
     }
 
-    public void removeWord(String wordTarget) {
+    public void removeWord(String wordTarget) throws RemoveWordException {
         T.removeWord(wordTarget);
     }
 
@@ -184,7 +185,7 @@ public class DictionaryManagement {
         return myList.allWords();
     }
 
-    public ArrayList<Word> myListLookUp(String s) {
+    public Word myListLookUp(String s) {
         return myList.lookUpWord(s);
     }
 

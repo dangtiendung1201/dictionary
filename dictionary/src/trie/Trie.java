@@ -1,9 +1,13 @@
 package trie;
 
+import trie.exception.AddWordException;
+import trie.exception.RemoveWordException;
+import trie.exception.SearchWordException;
 import word.Word;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.TreeMap;
 
 import static java.lang.Math.min;
 
@@ -86,19 +90,20 @@ public class Trie {
      * @param depth   the depth of current node.
      * @param word    the added word.
      */
-    private void addWord(Node current, int depth, Word word) {
+    private void addWord(Node current, int depth, Word word) throws AddWordException {
         if (depth == word.getWordTarget().length()) {
-            current.formedWord.add(word);
-            current.updateCandidateWords();
+            if (current.formedWord != null) {
+                throw new AddWordException("This word has already been added!");
+            }
+            current.formedWord = word;
             size++;
             return;
         }
         int id = mapCharToInt(word.getWordTarget().charAt(depth));
-        if (current.next[id] == null) {
-            current.next[id] = new Node();
+        if (!current.next.containsKey(id)) {
+            current.next.put(id, new Node());
         }
-        addWord(current.next[id], depth + 1, word);
-        current.updateCandidateWords();
+        addWord(current.next.get(id), depth + 1, word);
     }
 
     /**
@@ -119,18 +124,18 @@ public class Trie {
      */
     private void removeWord(Node current, int depth, Word word) {
         if (depth == word.getWordTarget().length()) {
-            current.formedWord.remove(word);
-            current.updateCandidateWords();
+            if (current.formedWord == null) {
+                throw new RemoveWordException("Từ không tồn tại!");
+            }
+            current.formedWord = null;
             size--;
             return;
         }
         int id = mapCharToInt(word.getWordTarget().charAt(depth));
-        if (current.next[id] == null) {
-            return;
+        if (!current.next.containsKey(id)) {
+            throw new RemoveWordException("Từ không tồn tại!");
         }
-        removeWord(current.next[id], depth + 1, word);
-        current.updateCandidateWords();
-        if (current.next[id].meaningless()) current.next[id] = null;
+        removeWord(current.next.get(id), depth + 1, word);
     }
 
     /**
@@ -142,19 +147,18 @@ public class Trie {
      */
     private void removeWord(Node current, int depth, String wordTarget) {
         if (depth == wordTarget.length()) {
-            size -= current.formedWord.size();
-            current.formedWord.removeIf(w -> w.getWordTarget().equals(wordTarget));
-            size += current.formedWord.size();
-            current.updateCandidateWords();
+            if (current.formedWord == null) {
+                throw new RemoveWordException("Từ không tồn tại!");
+            }
+            current.formedWord = null;
+            size--;
             return;
         }
         int id = mapCharToInt(wordTarget.charAt(depth));
-        if (current.next[id] == null) {
-            return;
+        if (current.next.get(id) == null) {
+            throw new RemoveWordException("Từ không tồn tại!");
         }
-        removeWord(current.next[id], depth + 1, wordTarget);
-        current.updateCandidateWords();
-        if (current.next[id].meaningless()) current.next[id] = null;
+        removeWord(current.next.get(id), depth + 1, wordTarget);
     }
 
     public void removeWord(Word word) {
@@ -179,10 +183,10 @@ public class Trie {
         }
         char c = prefix.charAt(depth);
         int id = mapCharToInt(c);
-        if (current.next[id] == null) {
-            throw new IllegalArgumentException("This prefix isn't contained in any word!");
+        if (current.next.get(id) == null) {
+            throw new SearchWordException("This prefix isn't contained in any word!");
         }
-        return getNodeFormPrefix(current.next[id], depth + 1, prefix);
+        return getNodeFormPrefix(current.next.get(id), depth + 1, prefix);
     }
 
     /**
@@ -191,13 +195,9 @@ public class Trie {
      * @param word the English form of the word you want to look up.
      * @return ArrayList of Words that have WORD_TARGET equals to word.
      */
-    public ArrayList<Word> lookUpWord(String word) {
+    public Word lookUpWord(String word) {
         Node tail = getNodeFormPrefix(root, 0, word);
-        ArrayList<Word> res = (ArrayList<Word>) tail.formedWord.clone();
-        if (res.isEmpty()) {
-            throw new IllegalArgumentException("This word doesn't exist in the dictionary!");
-        }
-        return res;
+        return tail.formedWord;
     }
 
     /**
@@ -208,9 +208,9 @@ public class Trie {
      */
     public ArrayList<Word> searchWord(String prefix) {
         Node tail = getNodeFormPrefix(root, 0, prefix);
-        ArrayList<Word> res = (ArrayList<Word>) tail.candidateWords.clone();
+        ArrayList<Word> res = allWords(tail);
         if (res.isEmpty()) {
-            throw new IllegalArgumentException("This prefix doesn't exist in the dictionary");
+            throw new SearchWordException("This prefix doesn't exist in the dictionary");
         }
         return res;
     }
@@ -223,12 +223,12 @@ public class Trie {
      */
     private ArrayList<String> allTargetWords(Node current) {
         ArrayList<String> res = new ArrayList<>();
-        if (!current.formedWord.isEmpty()) {
-            res.add(current.formedWord.get(0).getWordTarget());
+        if (current.formedWord != null) {
+            res.add(current.formedWord.getWordTarget());
         }
         for (int i = 0; i < ALPHABET_SIZE; i++) {
-            if (current.next[i] != null) {
-                res.addAll(allTargetWords(current.next[i]));
+            if (current.next.get(i) != null) {
+                res.addAll(allTargetWords(current.next.get(i)));
             }
         }
         return res;
@@ -239,10 +239,13 @@ public class Trie {
     }
 
     private ArrayList<Word> allWords(Node current) {
-        ArrayList<Word> res = new ArrayList<>(current.formedWord);
+        ArrayList<Word> res = new ArrayList<>();
+        if(current.formedWord != null) {
+            res.add(current.formedWord);
+        }
         for (int i = 0; i < ALPHABET_SIZE; i++) {
-            if (current.next[i] != null) {
-                res.addAll(allWords(current.next[i]));
+            if (current.next.get(i) != null) {
+                res.addAll(allWords(current.next.get(i)));
             }
         }
         return res;
@@ -299,44 +302,14 @@ public class Trie {
 
     private static class Node {
         // by this node, used for searching word.
-        static final int MAX_CANDIDATE_SIZE = 10; // Maximum number of the offered word.
-        private final Node[] next; // pointer to child of this Node.
-        private final ArrayList<Word> formedWord; // All words that this node form because maybe
+        private final TreeMap<Integer, Node> next; // pointer to child of this Node.
+        private Word formedWord; // All words that this node form because maybe
         // one word can have many meanings.
-        private final ArrayList<Word> candidateWords; // Some words that contain the prefix formed by this node.
 
-        Node() {
-            next = new Node[ALPHABET_SIZE];
-            formedWord = new ArrayList<>();
-            candidateWords = new ArrayList<>();
+        public Node() {
+            next = new TreeMap<>();
+            formedWord = null;
         }
 
-        /**
-         * Update candidate word of this node
-         * candidateWords contains some distinct word added in the subtree formed by this node
-         */
-        void updateCandidateWords() {
-            candidateWords.clear();
-            for (Node child : next) {
-                if (child == null) {
-                    continue;
-                }
-                candidateWords.addAll(child.candidateWords);
-            }
-            Collections.shuffle(candidateWords);
-
-            if (!formedWord.isEmpty()) {
-                candidateWords.add(0, formedWord.get(0));
-            }
-
-            if (candidateWords.size() > MAX_CANDIDATE_SIZE) {
-                candidateWords.subList(MAX_CANDIDATE_SIZE, candidateWords.size()).clear();
-            }
-        }
-
-        // if a node doesn't have any child forming a word, it's meaningless.
-        public boolean meaningless() {
-            return candidateWords.isEmpty();
-        }
     }
 }

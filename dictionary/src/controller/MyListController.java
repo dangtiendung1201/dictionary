@@ -71,8 +71,8 @@ public class MyListController extends Controller {
         englishWord.setText(lookedUpWord);
 
         try {
-            List<Word> searchList = management.myListLookUp(lookedUpWord);
-            displayingWord(searchList.get(0));
+            Word lookUp = management.myListLookUp(lookedUpWord);
+            displayingWord(lookUp);
         } catch (IllegalArgumentException e) {
 
             notAvailableAlert.setVisible(true);
@@ -165,8 +165,7 @@ public class MyListController extends Controller {
             String currentWord = englishWord.getText();
             if (currentState == STATE.UPDATING) {
                 try {
-                    ArrayList<Word> wordList = management.dictionaryLookUp(currentWord);
-                    Word word = wordList.get(0);
+                    Word word = management.dictionaryLookUp(currentWord);
 
                     management.removeWord(word);
 
@@ -237,7 +236,7 @@ public class MyListController extends Controller {
         System.out.println("Favorite off button clicked");
 
         String currentWord = englishWord.getText();
-        Word favouriteWord = management.dictionaryLookUp(currentWord).get(0);
+        Word favouriteWord = management.dictionaryLookUp(currentWord);
         management.myListAddWord(favouriteWord);
 
         favoriteOnBtn.setVisible(true);
@@ -251,25 +250,25 @@ public class MyListController extends Controller {
         englishWord.setText(chosenWord);
         notAvailableAlert.setVisible(false);
         try {
-            List<Word> searchList = management.myListLookUp(chosenWord);
-            if (searchList.isEmpty()) {
+            Word word = management.myListLookUp(chosenWord);
+            if (word == null) {
                 System.out.println("Word " + chosenWord + " is not in my list, searching in dictionary.\n");
-                searchList = management.dictionaryLookUp(chosenWord);
+                word = management.dictionaryLookUp(chosenWord);
             }
-            displayingWord(searchList.get(0));
+            displayingWord(word);
             favoriteOnBtn.setVisible(true);
             favoriteOffBtn.setVisible(false);
-            displayingWord(searchList.get(0));
+            displayingWord(word);
             currentState = STATE.DISPLAYING;
             deleteBtn.setVisible(true);
             updateBtn.setVisible(true);
         } catch (IllegalArgumentException e) {
             try {
-                List<Word> searchList = management.dictionaryLookUp(chosenWord);
-                displayingWord(searchList.get(0));
+                Word word = management.dictionaryLookUp(chosenWord);
+                displayingWord(word);
                 favoriteOnBtn.setVisible(false);
                 favoriteOffBtn.setVisible(true);
-                displayingWord(searchList.get(0));
+                displayingWord(word);
                 currentState = STATE.DISPLAYING;
                 deleteBtn.setVisible(true);
                 updateBtn.setVisible(true);
