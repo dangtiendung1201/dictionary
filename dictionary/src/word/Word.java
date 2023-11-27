@@ -139,9 +139,10 @@ public class Word {
             } else {
                 // Vietnamese
                 if (isPreviousExampleEnglish) {
-                    examples += ":\n";
+                    examples += "\n";
                 }
-                examples += example + "; ";
+                else examples += "; ";
+                examples += example;
             }
             isPreviousExampleEnglish = isEnglish;
         }
