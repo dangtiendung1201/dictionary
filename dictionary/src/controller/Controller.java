@@ -1,7 +1,6 @@
 package controller;
 
 import management.DictionaryManagement;
-import trie.exception.AddWordException;
 
 public class Controller {
     static protected DictionaryManagement management;
@@ -9,8 +8,12 @@ public class Controller {
         management = new DictionaryManagement();
         try {
             management.insertFromFile("dictionary/resourses/data/merged.txt");
-        } catch (AddWordException e) {
+            System.out.println("Add successfully " + management.allDictionaryWord().size()
+            + " words from merged.txt!");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("Using back up!");
+            management = new DictionaryManagement();
             management.insertFromFile("dictionary/resourses/data/merged-backup.txt");
         }
 

@@ -37,13 +37,6 @@ public class DictionaryController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dictionaryBtnTip.setShowDelay(Duration.seconds(0.2));
-        gameBtnTip.setShowDelay(Duration.seconds(0.2));
-        APIBtnTip.setShowDelay(Duration.seconds(0.2));
-        exitBtnTip.setShowDelay(Duration.seconds(0.2));
-        myListBtnTip.setShowDelay(Duration.seconds(0.2));
-        homeTip.setShowDelay(Duration.seconds(0.2));
-
         showPane("/view/HomeUI.fxml");
         homeButton.setOnAction(actionEvent -> {
             try {
