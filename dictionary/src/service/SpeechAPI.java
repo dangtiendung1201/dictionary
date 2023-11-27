@@ -3,8 +3,6 @@ package service;
 import com.microsoft.cognitiveservices.speech.*;
 
 import java.net.ConnectException;
-import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class SpeechAPI extends Service {
     private static SpeechConfig speechConfig;
@@ -43,22 +41,6 @@ public class SpeechAPI extends Service {
         }
         speechSynthesizer.close();
         speechSynthesisResult.close();
-    }
-
-    public static void main(String[] args) {
-        SpeechAPI speech = new SpeechAPI();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a sentence to speak: ");
-        String sentence = scanner.nextLine();
-        try {
-            getSpeechFromText(sentence, "English");
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        } catch (ConnectException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static String getLanguageCode(String language) {

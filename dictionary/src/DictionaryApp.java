@@ -1,6 +1,3 @@
-import java.io.IOException;
-import java.util.Objects;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +6,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class DictionaryApp extends Application {    
+import java.io.IOException;
+import java.util.Objects;
+
+public class DictionaryApp extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
+
     @Override
     public void start(Stage stage) throws IOException {
         try {

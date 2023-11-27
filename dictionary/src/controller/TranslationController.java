@@ -10,7 +10,6 @@ import word.Word;
 import word.exception.InvalidWordException;
 
 import java.net.ConnectException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static service.SpeechAPI.getSpeechFromText;
@@ -321,10 +320,6 @@ public class TranslationController extends Controller {
         } catch (SearchWordException e) {
             notAvailableAlert.setVisible(true);
         }
-    }
-
-    private void setMaxResultListSize(int maxResultListSize) {
-        this.maxResultListSize = maxResultListSize;
     }
 
     private void setDefaultDisplayingState() {

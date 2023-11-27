@@ -3,11 +3,11 @@ package controller;
 import game.GameManagement.State;
 import game.MultipleChoice;
 import javafx.fxml.FXML;
-import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
 
 public class MultipleChoiceController extends GameController {
     private static char noChoice = 'E';

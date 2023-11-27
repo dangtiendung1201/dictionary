@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import word.Word;
 
 import java.net.ConnectException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static service.SpeechAPI.getSpeechFromText;

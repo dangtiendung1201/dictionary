@@ -1,13 +1,13 @@
 package controller;
 
-import game.GuessTheWord;
 import game.GameManagement.State;
-import javafx.util.Duration;
+import game.GuessTheWord;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
 
 public class GuessTheWordController extends GameController {
     private static GuessTheWord guessTheWord = new GuessTheWord();
