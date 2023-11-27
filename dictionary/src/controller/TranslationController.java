@@ -10,7 +10,6 @@ import word.Word;
 import word.exception.InvalidWordException;
 
 import java.net.ConnectException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static service.SpeechAPI.getSpeechFromText;

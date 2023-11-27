@@ -6,7 +6,6 @@ import trie.exception.SearchWordException;
 import word.Word;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.TreeMap;
 
 import static java.lang.Math.min;

@@ -1,15 +1,14 @@
 package management;
 
+import trie.Trie;
+import trie.exception.RemoveWordException;
+import word.Word;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import trie.Trie;
-import trie.exception.AddWordException;
-import trie.exception.RemoveWordException;
-import word.Word;
 
 public class DictionaryManagement {
     private final Trie T;

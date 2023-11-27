@@ -1,12 +1,12 @@
 package game;
 
+import word.Word;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
-import word.Word;
 
 public class GuessTheWord extends GameManagement {
 	private static final int maxWord = 76260;

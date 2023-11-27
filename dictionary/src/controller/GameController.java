@@ -1,14 +1,14 @@
 package controller;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.util.Duration;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class GameController extends Controller {
     @FXML

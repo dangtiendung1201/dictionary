@@ -1,6 +1,5 @@
 package word;
 
-import management.DictionaryManagement;
 import word.exception.InvalidWordException;
 
 public class Word {
