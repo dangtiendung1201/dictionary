@@ -18,6 +18,8 @@ import java.util.Optional;
 import static service.SpeechAPI.getSpeechFromText;
 
 public class TranslationController extends Controller {
+    public Label removeFromList;
+    public Label addToList;
     @FXML
     private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, addBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip,
             favoriteOnBtnTip, favoriteOffBtnTip;
@@ -48,6 +50,8 @@ public class TranslationController extends Controller {
         String searchedWord = searchBox.getText();
         clearAllBoxes();
         notAvailableAlert.setVisible(false);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
         resultList.getItems().clear();
         try {
             List<Word> searchList = management.dictionarySearcher(searchedWord);
@@ -79,6 +83,9 @@ public class TranslationController extends Controller {
         resultList.getItems().clear();
         clearAllBoxes();
         notAvailableAlert.setVisible(false);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
+
         englishWord.setText(lookedUpWord);
 
         try {
@@ -100,6 +107,7 @@ public class TranslationController extends Controller {
     }
 
     private void handleSoundBtn() {
+        setDefaultDisplayingState();
         try {
             getSpeechFromText(englishWord.getText(), "English");
         } catch (ConnectException e) {
@@ -179,8 +187,11 @@ public class TranslationController extends Controller {
         relatedWordBox.setText(relatedWordBox.getText().replace("\t", ""));
         searchBox.setText(searchBox.getText().replace("\t", ""));
     }
+
     // confirm button show only when update or delete button clicked
     private void handleConfirmBtn() {
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
         if (confirmBtn.isVisible()) {
             String currentWord = englishWord.getText();
             if (currentState == STATE.UPDATING) {
@@ -306,8 +317,12 @@ public class TranslationController extends Controller {
         System.out.println("Favorite on button clicked");
 
         String currentWord = englishWord.getText();
-        if (!searchBox.getText().isEmpty())
+        if (!searchBox.getText().isEmpty()) {
             management.myListRemoveWord(currentWord);
+        }
+
+        addToList.setVisible(false);
+        removeFromList.setVisible(true);
 
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(true);
@@ -318,8 +333,12 @@ public class TranslationController extends Controller {
 
         String currentWord = englishWord.getText();
         Word favouriteWord = management.dictionaryLookUp(currentWord);
-        if (!searchBox.getText().isEmpty())
+        if (!searchBox.getText().isEmpty()) {
             management.myListAddWord(favouriteWord);
+        }
+
+        addToList.setVisible(true);
+        removeFromList.setVisible(false);
 
         favoriteOnBtn.setVisible(true);
         favoriteOffBtn.setVisible(false);
@@ -330,6 +349,8 @@ public class TranslationController extends Controller {
         String chosenWord = resultList.getSelectionModel().getSelectedItem();
         englishWord.setText(chosenWord);
         notAvailableAlert.setVisible(false);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
         try {
             Word word = management.dictionaryLookUp(chosenWord);
             try {
@@ -390,6 +411,8 @@ public class TranslationController extends Controller {
         exampleBox.setEditable(false);
         relatedWordBox.setEditable(false);
         confirmBtn.setVisible(false);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
     }
 
     @FXML
@@ -405,6 +428,8 @@ public class TranslationController extends Controller {
         favoriteOnBtn.setTooltip(favoriteOnBtnTip);
         favoriteOffBtn.setTooltip(favoriteOffBtnTip);
 
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(false);
 

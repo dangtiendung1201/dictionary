@@ -11,7 +11,9 @@ import java.util.List;
 
 import static service.SpeechAPI.getSpeechFromText;
 
-public class MyListController extends Controller {
+public class MyListController extends TranslationController {
+    public Label removeFromList;
+    public Label addToList;
     @FXML
     private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, addBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip,
             favoriteOnBtnTip, favoriteOffBtnTip;
@@ -40,6 +42,8 @@ public class MyListController extends Controller {
         String searchedWord = searchBox.getText();
         clearAllBoxes();
         notAvailableAlert.setVisible(false);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
         resultList.getItems().clear();
         try {
             List<Word> searchList = management.myListSearcher(searchedWord);
@@ -61,6 +65,8 @@ public class MyListController extends Controller {
         currentState = STATE.DISPLAYING;
         deleteBtn.setVisible(true);
         updateBtn.setVisible(true);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
     }
 
     private void handleLookUpBtn() {
@@ -68,6 +74,9 @@ public class MyListController extends Controller {
         resultList.getItems().clear();
         clearAllBoxes();
         notAvailableAlert.setVisible(false);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
+
         englishWord.setText(lookedUpWord);
 
         try {
@@ -91,6 +100,7 @@ public class MyListController extends Controller {
     }
 
     private void handleSoundBtn() {
+        setDefaultDisplayingState();
         try {
             getSpeechFromText(englishWord.getText(), "English");
         } catch (ConnectException e) {
@@ -218,6 +228,8 @@ public class MyListController extends Controller {
                 currentState = STATE.NONE;
             }
         }
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
         confirmBtn.setVisible(false);
         setDefaultDisplayingState();
     }
@@ -227,6 +239,9 @@ public class MyListController extends Controller {
 
         String currentWord = englishWord.getText();
         management.myListRemoveWord(currentWord);
+
+        addToList.setVisible(false);
+        removeFromList.setVisible(true);
 
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(true);
@@ -238,6 +253,9 @@ public class MyListController extends Controller {
         String currentWord = englishWord.getText();
         Word favouriteWord = management.dictionaryLookUp(currentWord);
         management.myListAddWord(favouriteWord);
+
+        addToList.setVisible(true);
+        removeFromList.setVisible(false);
 
         favoriteOnBtn.setVisible(true);
         favoriteOffBtn.setVisible(false);
@@ -251,13 +269,15 @@ public class MyListController extends Controller {
         notAvailableAlert.setVisible(false);
         try {
             Word word = management.myListLookUp(chosenWord);
-            if (word == null) {
-                System.out.println("Word " + chosenWord + " is not in my list, searching in dictionary.\n");
-                word = management.dictionaryLookUp(chosenWord);
-            }
-            displayingWord(word);
             favoriteOnBtn.setVisible(true);
             favoriteOffBtn.setVisible(false);
+            if (word == null) {
+                System.out.println("Word " + chosenWord +
+                        " is not in my list, searching in dictionary.\n");
+                word = management.dictionaryLookUp(chosenWord);
+                favoriteOnBtn.setVisible(false);
+                favoriteOffBtn.setVisible(true);
+            }
             displayingWord(word);
             currentState = STATE.DISPLAYING;
             deleteBtn.setVisible(true);
@@ -316,6 +336,8 @@ public class MyListController extends Controller {
         exampleBox.setEditable(false);
         relatedWordBox.setEditable(false);
         confirmBtn.setVisible(false);
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
     }
 
     @FXML
@@ -333,6 +355,9 @@ public class MyListController extends Controller {
 
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(false);
+
+        addToList.setVisible(false);
+        removeFromList.setVisible(false);
 
         showMyList();
 
