@@ -89,7 +89,7 @@
         <sourceDirectory>dictionary/src</sourceDirectory>
         <resources>
             <resource>
-                <directory>dictionary/resourses</directory>
+                <directory>dictionary/resources</directory>
             </resource>
         </resources>
 
