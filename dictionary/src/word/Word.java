@@ -139,9 +139,10 @@ public class Word {
             } else {
                 // Vietnamese
                 if (isPreviousExampleEnglish) {
-                    examples += ":\n";
+                    examples += "\n";
                 }
-                examples += example + "; ";
+                else examples += "; ";
+                examples += example;
             }
             isPreviousExampleEnglish = isEnglish;
         }
@@ -155,8 +156,18 @@ public class Word {
      * @return word in one line
      */
     public Word toLine() {
-        String examples = this.examples;
-        examples = examples.replace("\n\n", "2\\n").replace("\n", "1\\n");
+        String wordTarget = this.wordTarget.replace("\n\n", "2\\n")
+                .replace("\n", "1\\n").replace("\t", "");
+        String examples = this.examples.replace("\n\n", "2\\n")
+                .replace("\n", "1\\n").replace("\t", "");
+        String wordExplain = this.wordExplain.replace("\n\n", "2\\n")
+                .replace("\n", "1\\n").replace("\t", "");
+        String IPA = this.IPA.replace("\n\n", "2\\n")
+                .replace("\n", "1\\n").replace("\t", "");
+        String wordTypes = this.wordTypes.replace("\n\n", "2\\n")
+                .replace("\n", "1\\n").replace("\t", "");
+        String relatedWords = this.relatedWords.replace("\n\n", "2\\n")
+                .replace("\n", "1\\n").replace("\t", "");
         return new Word(wordTarget, wordExplain, IPA, wordTypes, examples, relatedWords);
     }
 

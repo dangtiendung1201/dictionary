@@ -17,7 +17,7 @@
 }
 
 .container {
-    -fx-background-color: #e8ebe6;
+    -fx-background-image: url("../icon/background.jpg");
     -fx-background-radius: 20;
     -fx-border-radius: 20;
 }

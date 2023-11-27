@@ -90,7 +90,7 @@ public class TranslationController extends Controller {
         try {
             Word word = management.dictionaryLookUp(lookedUpWord);
             displayingWord(word);
-        } catch (SearchWordException e) {
+        } catch (Exception e) {
             notAvailableAlert.setVisible(true);
             clearAllBoxes();
             resultList.getItems().clear();
@@ -132,6 +132,7 @@ public class TranslationController extends Controller {
             currentState = STATE.ADDING;
             clearAllBoxes();
             englishWord.setText("");
+            searchBox.setPromptText("Nhập từ bạn muốn thêm");
 
             pronunciationBox.setEditable(true);
             wordTypeBox.setEditable(true);
@@ -142,6 +143,7 @@ public class TranslationController extends Controller {
 
         } else {
             currentState = STATE.NONE;
+            searchBox.setPromptText("Nhập từ");
             confirmBtn.setVisible(false);
             updateBtn.setVisible(false);
             deleteBtn.setVisible(false);
@@ -400,6 +402,7 @@ public class TranslationController extends Controller {
     }
 
     private void setDefaultDisplayingState() {
+        searchBox.setPromptText("Nhập từ");
         pronunciationBox.setEditable(false);
         wordTypeBox.setEditable(false);
         meaningBox.setEditable(false);
