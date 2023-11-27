@@ -18,7 +18,7 @@ public class GuessTheWord extends GameManagement {
 
 		try {
 			Scanner sc = new Scanner(
-					new File(System.getProperty("user.dir") + "/dictionary/resourses/data/GuessTheWordData.txt"));
+					new File(System.getProperty("user.dir") + "/dictionary/resources/data/GuessTheWordData.txt"));
 
 			while (sc.hasNext()) {
 				String tmp[] = sc.nextLine().split("\t");

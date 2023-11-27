@@ -17,7 +17,7 @@ public class MultipleChoice extends GameManagement {
 
         try {
             Scanner sc = new Scanner(
-                    new File(System.getProperty("user.dir") + "/dictionary/resourses/data/MultipleChoiceData.txt"));
+                    new File(System.getProperty("user.dir") + "/dictionary/resources/data/MultipleChoiceData.txt"));
 
             while (sc.hasNext()) {
                 String tmp[] = sc.nextLine().split("\t");
