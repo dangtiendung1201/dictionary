@@ -12,6 +12,8 @@ import word.exception.InvalidWordException;
 import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static service.SpeechAPI.getSpeechFromText;
 
@@ -182,30 +184,67 @@ public class TranslationController extends Controller {
         if (confirmBtn.isVisible()) {
             String currentWord = englishWord.getText();
             if (currentState == STATE.UPDATING) {
-                try {
-                    Word word = management.dictionaryLookUp(currentWord);
+                Alert alertConfirmation = new Alerts().confirmation(
+                        "Confirmation",
+                        "Update word",
+                        "Do you really want to update this word?"
+                );
+                Optional<ButtonType> option = alertConfirmation.showAndWait();
+                if (option.get() == ButtonType.OK) {
+                    try {
+                        Word word = management.dictionaryLookUp(currentWord);
 
-                    management.removeWord(word);
+                        management.removeWord(word);
 
-                    eraseTabInAllBox();
-                    word.setIPA(pronunciationBox.getText());
-                    word.setRelatedWords(relatedWordBox.getText());
-                    word.setWordExplain(meaningBox.getText());
-                    word.setExamples(exampleBox.getText());
-                    word.setWordTypes(wordTypeBox.getText());
+                        Alert notification = new Alerts().confirmation(
+                                "Notification",
+                                "Update word",
+                                "Updated word successfully!");
+                        notification.show();
 
-                    management.addWord(word.toLine());
-                } catch (RuntimeException e) {
-                    System.out.println(e.getMessage());
+                        eraseTabInAllBox();
+                        word.setIPA(pronunciationBox.getText());
+                        word.setRelatedWords(relatedWordBox.getText());
+                        word.setWordExplain(meaningBox.getText());
+                        word.setExamples(exampleBox.getText());
+                        word.setWordTypes(wordTypeBox.getText());
+
+                        management.addWord(word.toLine());
+                    } catch (RuntimeException e) {
+                        Alert notification = new Alerts().error(
+                                "Error",
+                                "Update word",
+                                "There is an error, please try again!"
+                        );
+                        notification.show();
+                    }
                 }
                 currentState = STATE.DISPLAYING;
             } else if (currentState == STATE.DELETING) {
-                try {
-                    management.removeWord(currentWord);
-                } catch (RemoveWordException removeWordException) {
-                    System.out.println(removeWordException.getMessage());
-                    Alert alert = new Alerts().error("Error", "Remove word error", removeWordException.getMessage());;
-                    alert.show();
+                Alert alertConfirmation = new Alerts().confirmation(
+                        "Confirmation",
+                        "Delete word",
+                        "Do you really want to delete this word?"
+                );
+                Optional<ButtonType> option = alertConfirmation.showAndWait();
+                if (option.get() == ButtonType.OK) {
+                    try {
+                        management.removeWord(currentWord);
+                        Alert notification = new Alerts().confirmation(
+                                "Notification",
+                                "Remove word",
+                                "Removed word successfully!"
+                        );
+                        notification.show();
+                    } catch (RemoveWordException removeWordException) {
+                        System.out.println(removeWordException.getMessage());
+                        Alert alert = new Alerts().error(
+                                "Error",
+                                "Remove word",
+                                removeWordException.getMessage()
+                        );
+                        alert.show();
+                    }
                 }
                 currentState = STATE.NONE;
 
@@ -216,28 +255,45 @@ public class TranslationController extends Controller {
                 deleteBtn.setVisible(false);
                 updateBtn.setVisible(false);
 
-
             } else if (currentState == STATE.ADDING) {
-                try {
-                    eraseTabInAllBox();
-                    String wordTarget = searchBox.getText().isEmpty() ? "N/A" : searchBox.getText();
-                    String wordExplain = meaningBox.getText().isEmpty() ? "N/A" : meaningBox.getText();
-                    String IPA = pronunciationBox.getText().isEmpty() ? "N/A" : pronunciationBox.getText();
-                    String wordTypes = wordTypeBox.getText().isEmpty() ? "N/A" : wordTypeBox.getText();
-                    String examples = exampleBox.getText().isEmpty() ? "N/A" : exampleBox.getText();
-                    String relatedWords = relatedWordBox.getText().isEmpty() ? "N/A" : relatedWordBox.getText();
+                Alert alertConfirmation = new Alerts().confirmation(
+                        "Confirmation",
+                        "Add word",
+                        "Do you really want to add this word?"
+                );
+                Optional<ButtonType> option = alertConfirmation.showAndWait();
+                if (option.get() == ButtonType.OK) {
                     try {
-                        System.out.println(wordTarget);
-                        management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
-                                examples, relatedWords));
-                    } catch (InvalidWordException | AddWordException e) {
-                        System.out.println(e.getMessage());
-                        Alert alert = new Alerts().error("Error", "Add word error!", e.getMessage());
-                        alert.show();
-                    }
+                        eraseTabInAllBox();
+                        String wordTarget = searchBox.getText().isEmpty() ? "N/A" : searchBox.getText();
+                        String wordExplain = meaningBox.getText().isEmpty() ? "N/A" : meaningBox.getText();
+                        String IPA = pronunciationBox.getText().isEmpty() ? "N/A" : pronunciationBox.getText();
+                        String wordTypes = wordTypeBox.getText().isEmpty() ? "N/A" : wordTypeBox.getText();
+                        String examples = exampleBox.getText().isEmpty() ? "N/A" : exampleBox.getText();
+                        String relatedWords = relatedWordBox.getText().isEmpty() ? "N/A" : relatedWordBox.getText();
+                        try {
+                            System.out.println(wordTarget);
+                            management.addWord(new Word(wordTarget, wordExplain, IPA, wordTypes,
+                                    examples, relatedWords));
+                            Alert notification = new Alerts().confirmation(
+                                    "Notification",
+                                    "Add word",
+                                    "Added word successfully!"
+                            );
+                            notification.show();
+                        } catch (InvalidWordException | AddWordException e) {
+                            System.out.println(e.getMessage());
+                            Alert alert = new Alerts().error(
+                                    "Error",
+                                    "Add word error!",
+                                    e.getMessage()
+                            );
+                            alert.show();
+                        }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 currentState = STATE.NONE;
             }
@@ -278,11 +334,11 @@ public class TranslationController extends Controller {
             Word word = management.dictionaryLookUp(chosenWord);
             try {
                 if (management.myListLookUp(chosenWord) == null) {
-                    favoriteOnBtn.setVisible(true);
-                    favoriteOffBtn.setVisible(false);
-                } else {
                     favoriteOnBtn.setVisible(false);
                     favoriteOffBtn.setVisible(true);
+                } else {
+                    favoriteOnBtn.setVisible(true);
+                    favoriteOffBtn.setVisible(false);
                 }
             } catch (SearchWordException e) {
                 favoriteOnBtn.setVisible(false);
