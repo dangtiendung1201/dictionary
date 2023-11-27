@@ -17,6 +17,24 @@
     <children>
         <Pane prefHeight="100.0" prefWidth="1140.0" stylesheets="@../style/style.css">
             <children>
+            <Label fx:id="removeFromList" alignment="CENTER" layoutX="348.0" layoutY="85.0" prefHeight="30.0" prefWidth="314.0" styleClass="suggest-alert" stylesheets="@../style/style.css" text="Đã loại từ ra khỏi danh sách yêu thích" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent-button">
+                     <image>
+                        <Image url="@../icon/favoriteOff.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label fx:id="addToList" alignment="CENTER" layoutX="348.0" layoutY="85.0" prefHeight="30.0" prefWidth="304.0" styleClass="suggest-alert" stylesheets="@../style/style.css" text="Đã thêm từ vào danh sách yêu thích" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent-button">
+                     <image>
+                        <Image url="@../icon/favoriteOn.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
                 <Label fx:id="notAvailableAlert" alignment="CENTER" layoutX="370.0" layoutY="70.0" prefHeight="30.0" prefWidth="300.0" styleClass="suggest-alert" stylesheets="@../style/style.css" text="Không có từ này trong danh sách yêu thích." textAlignment="CENTER">
                     <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent-button">
