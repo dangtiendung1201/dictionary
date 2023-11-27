@@ -54,6 +54,12 @@ public class HangmanController extends GameController {
 
     private void handleConfirmBtn() {
         String input = String.valueOf(inputText.getText().charAt(0)).toLowerCase();
+        if (!input.matches("[a-zA-Z]"))
+        {
+            resultText.setText("Please enter a character!");
+            inputText.clear();
+            return;
+        }
 
         inputText.clear();
 
