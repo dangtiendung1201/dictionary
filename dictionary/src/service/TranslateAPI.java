@@ -12,7 +12,6 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketTimeoutException;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class TranslateAPI extends Service {
@@ -77,18 +76,5 @@ public class TranslateAPI extends Service {
 
     public String translate(String sentence, String originalLanguage, String translatedLanguage) throws IOException {
         return prettify(Post(sentence, getLanguageCode(originalLanguage), getLanguageCode(translatedLanguage)));
-    }
-
-    public static void main(String[] args) {
-        try {
-            TranslateAPI translateRequest = new TranslateAPI();
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter a sentence to translate: ");
-            String sentence = scanner.nextLine();
-            String response = translateRequest.Post(sentence, "en", "vi");
-            System.out.println(prettify(response));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 }

@@ -322,10 +322,6 @@ public class TranslationController extends Controller {
         }
     }
 
-    private void setMaxResultListSize(int maxResultListSize) {
-        this.maxResultListSize = maxResultListSize;
-    }
-
     private void setDefaultDisplayingState() {
         pronunciationBox.setEditable(false);
         wordTypeBox.setEditable(false);

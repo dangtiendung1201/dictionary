@@ -19,11 +19,6 @@ public class DictionaryManagement {
         myList = new Trie();
     }
 
-    public static void main(String[] args) {
-        String line = "a\tei, ə\tdanh từ,  số nhiều as,  a's\t (thông tục) loại a, hạng nhất, hạng tốt nhất hạng rất tốt\this health is a | sức khoẻ anh ta vào loại a | A sharp | la thăng | A flat | la giáng | from a to z | từ đầu đến đuôi, tường tận | not to know a from b | không biết tí gì cả; một chữ bẻ đôi cũng không biết | a very cold day | một ngày rất lạnh | a dozen | một tá | a few | một ít | all of a size | tất cả cùng một cỡ | a Shakespeare | một (văn hào (như) kiểu) Sếch-xpia | a Mr. Nam | một ông Nam (nào đó)\tN/A";
-
-    }
-
     /**
      * Insert data from a file.
      *

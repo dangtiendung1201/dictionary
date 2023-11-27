@@ -54,7 +54,7 @@ public class ImageAnalysisAPI extends Service {
         ImageAnalyzer analyzer = new ImageAnalyzer(serviceOptions, imageSource, analysisOptions);
 
         ImageAnalysisResult result = analyzer.analyze();
-        float maxSpaceToFinalChar = 0, maxLength = 0;
+        float maxLength = 0;
         if (result.getReason() == ImageAnalysisResultReason.ANALYZED) {
             if (result.getText() != null) {
                 for (DetectedTextLine line : result.getText()) {

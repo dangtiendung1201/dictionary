@@ -63,6 +63,7 @@ public class Word {
         }
         return false;
     }
+
     public String getWordTarget() {
         return wordTarget;
     }
@@ -94,9 +95,6 @@ public class Word {
         return false;
     }
 
-    private boolean invalidCharacterBesideWordTarget(char c) {
-        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c > 'À';
-    }
     public Word getDisplayingWord() {
         if (examples.contains("\\n")) {
             // this word has been converted to displaying then converted to line again
@@ -107,26 +105,29 @@ public class Word {
         String[] allExample = examples.split(" \\| ");
         String examples = "";
         boolean isPreviousExampleEnglish = false;
-        for(String example : allExample) {
+        for (String example : allExample) {
             // Check if example is English or Vietnamese
             boolean isEnglish = true;
-            if (example.isEmpty()) continue;
+            if (example.isEmpty())
+                continue;
             /*
-            for (int i = 0; i + wordTarget.length() - 1 < example.length(); i ++) {
-                if (i > 0 && invalidCharacterBesideWordTarget(example.charAt(i - 1))) {
-                    continue;
-                }
-                if (i + wordTarget.length() < example.length()
-                    && invalidCharacterBesideWordTarget(example.charAt(i + wordTarget.length()))) {
-                    continue;
-                }
-                if (example.startsWith(wordTarget, i) || example.startsWith(wordTarget.toUpperCase(), i)) {
-                    isEnglish = true;
-                    break;
-                }
-            }
-            */
-            for (int i = 0; i < example.length(); i ++) {
+             * for (int i = 0; i + wordTarget.length() - 1 < example.length(); i ++) {
+             * if (i > 0 && invalidCharacterBesideWordTarget(example.charAt(i - 1))) {
+             * continue;
+             * }
+             * if (i + wordTarget.length() < example.length()
+             * && invalidCharacterBesideWordTarget(example.charAt(i + wordTarget.length())))
+             * {
+             * continue;
+             * }
+             * if (example.startsWith(wordTarget, i) ||
+             * example.startsWith(wordTarget.toUpperCase(), i)) {
+             * isEnglish = true;
+             * break;
+             * }
+             * }
+             */
+            for (int i = 0; i < example.length(); i++) {
                 char c = example.charAt(i);
                 isEnglish &= (c < 'À');
             }
@@ -148,7 +149,9 @@ public class Word {
                 wordTypes, examples, relatedWords);
     }
 
-    /** Convert displaying word to one line to export;
+    /**
+     * Convert displaying word to one line to export;
+     *
      * @return word in one line
      */
     public Word toLine() {
