@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.jetbrains.annotations.NotNull;
 import service.TranslateAPI;
 
 import java.io.File;
@@ -38,10 +37,19 @@ public class APIController extends Controller {
     public ComboBox<String> originalLangBox, translatedLangBox;
     @FXML
     public Button translateBtn, swapBtn, Speech2TextBtn, Image2TextBtn, originalSoundBtn, translatedSoundBtn;
+    public ImageView audioOriginalOn;
+    public ImageView audioTranslatedOn;
+    public ImageView audioOriginalOff;
+    public ImageView audioTranslatedOff;
+    public ImageView voiceOn;
+    public ImageView voiceOff;
 
     @FXML
     private void handleSpeech2TextBtn() {
         int thisApiCallNumber = ++apiCallCount;
+
+        voiceOn.setVisible(true);
+        voiceOff.setVisible(false);
 
         Task<Void> apiCallTask = new Task<Void>() {
             @Override
@@ -72,6 +80,9 @@ public class APIController extends Controller {
                         if (thisApiCallNumber == apiCallCount) {
                             inputBox.setText(finalSentence);
                         }
+
+                        voiceOn.setVisible(false);
+                        voiceOff.setVisible(true);
                     }
                 });
 
@@ -116,13 +127,6 @@ public class APIController extends Controller {
         stage.setScene(scene);
         stage.show();
 
-        Task<Void> apiCallTask = getVoidTask(path, thisApiCallNumber);
-        new Thread(apiCallTask).start();
-
-    }
-
-    @NotNull
-    private Task<Void> getVoidTask(String path, int thisApiCallNumber) {
         final String[] sentence = {""};
         Task<Void> apiCallTask = new Task<Void>() {
             @Override
@@ -154,7 +158,8 @@ public class APIController extends Controller {
                 return null;
             }
         };
-        return apiCallTask;
+        new Thread(apiCallTask).start();
+
     }
 
     @FXML
@@ -172,6 +177,8 @@ public class APIController extends Controller {
     private void handleOriginalSoundBtn() {
         int thisApiCallNumber = ++apiCallCount;
 
+        audioOriginalOff.setVisible(false);
+        audioOriginalOn.setVisible(true);
         Task<Void> apiCallTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -189,6 +196,10 @@ public class APIController extends Controller {
                     alert.show();
                 }
 
+                Platform.runLater(() -> {
+                    audioOriginalOff.setVisible(true);
+                    audioOriginalOn.setVisible(false);
+                });
                 return null;
             }
         };
@@ -198,6 +209,9 @@ public class APIController extends Controller {
     @FXML
     private void handleTranslatedSoundBtn() {
         int thisApiCallNumber = ++apiCallCount;
+
+        audioTranslatedOff.setVisible(false);
+        audioTranslatedOn.setVisible(true);
 
         Task<Void> apiCallTask = new Task<Void>() {
             @Override
@@ -215,6 +229,10 @@ public class APIController extends Controller {
                             "There is an error, please try again.");
                     alert.show();
                 }
+                Platform.runLater(() -> {
+                    audioTranslatedOff.setVisible(true);
+                    audioTranslatedOn.setVisible(false);
+                });
                 return null;
             }
         };
@@ -261,6 +279,10 @@ public class APIController extends Controller {
         translatedLangBox.setValue("Vietnamese");
 
         outputBox.setEditable(false);
+        audioTranslatedOn.setVisible(false);
+        audioOriginalOn.setVisible(false);
+
+        voiceOn.setVisible(false);
 
         translateBtn.setOnAction(actionEvent -> {
             handleTranslateBtn();

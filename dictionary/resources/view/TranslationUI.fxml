@@ -108,7 +108,7 @@
                                             <graphic>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../icon/sound.png" />
+                                                        <Image url="@../icon/audio_off.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -188,6 +188,11 @@
                                                 <Tooltip fx:id="favoriteOffBtnTip" text="Favorite" />
                                             </tooltip>
                                         </Button>
+                              <ImageView fx:id="audioOn" fitHeight="30.0" fitWidth="30.0" layoutX="500.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/audio_on.gif" />
+                                 </image>
+                              </ImageView>
                                     </children>
                                 </Pane>
                             </children>

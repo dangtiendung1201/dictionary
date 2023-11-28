@@ -104,37 +104,25 @@
                                                 <Insets left="5.0" />
                                             </padding>
                                         </Label>
+                                          <ImageView fx:id="audioOn" fitHeight="30.0" fitWidth="30.0" layoutX="500.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                              <Image url="@../icon/audio_on.gif" />
+                                          </ImageView>
                                         <Button fx:id="soundBtn" layoutX="495.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/sound.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
                                             <tooltip>
-                                                <Tooltip fx:id="soundBtnTip" text="Sound" />
+                                                <Tooltip fx:id="soundBtnTip" text="Sound">
+                                       <graphic>
+                                           <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="480.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                               <Image url="@../icon/audio_on.gif" />
+                                           </ImageView>
+                                       </graphic></Tooltip>
                                             </tooltip>
-                                        </Button>
-                                        <Button fx:id="addBtn" layoutX="550.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <tooltip>
-                                                <Tooltip fx:id="addBtnTip" text="Add" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="updateBtn" layoutX="605.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <tooltip>
-                                                <Tooltip fx:id="updateBtnTip" text="Update" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="deleteBtn" layoutX="660.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <tooltip>
-                                                <Tooltip fx:id="deleteBtnTip" text="Delete" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="confirmBtn" layoutX="715.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <tooltip>
-                                                <Tooltip fx:id="confirmBtnTip" text="Confirm" />
-                                            </tooltip>
+                                 <graphic>
+                                    <ImageView fx:id="audioOff" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/audio_off.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                         </Button>
                                         <Button fx:id="favoriteOnBtn" layoutX="770.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
                                             <graphic>
@@ -151,9 +139,7 @@
                                         <Button fx:id="favoriteOffBtn" layoutX="770.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
                                             <graphic>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/favoriteOff.png" />
-                                                    </image>
+                                                    <Image url="@../icon/favoriteOff.png" />
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>

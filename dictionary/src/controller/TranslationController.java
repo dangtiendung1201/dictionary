@@ -1,9 +1,11 @@
 package controller;
 
 import alert.Alerts;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import trie.exception.AddWordException;
 import trie.exception.RemoveWordException;
 import trie.exception.SearchWordException;
@@ -20,6 +22,7 @@ import static service.SpeechAPI.getSpeechFromText;
 public class TranslationController extends Controller {
     public Label removeFromList;
     public Label addToList;
+    public ImageView audioOn;
     @FXML
     private Tooltip searchBtnTip, lookUpBtnTip, soundBtnTip, addBtnTip, updateBtnTip, deleteBtnTip, confirmBtnTip,
             favoriteOnBtnTip, favoriteOffBtnTip;
@@ -108,6 +111,8 @@ public class TranslationController extends Controller {
 
     private void handleSoundBtn() {
         setDefaultDisplayingState();
+        audioOn.setVisible(true);
+        soundBtn.setVisible(false);
         Task<Void> apiCallTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -124,7 +129,10 @@ public class TranslationController extends Controller {
                             "There is an error, please try again.");
                     alert.show();
                 }
-
+                Platform.runLater(() -> {
+                    soundBtn.setVisible(true);
+                    audioOn.setVisible(false);
+                });
                 return null;
             }
         };
@@ -440,6 +448,8 @@ public class TranslationController extends Controller {
         removeFromList.setVisible(false);
         favoriteOnBtn.setVisible(false);
         favoriteOffBtn.setVisible(false);
+
+        audioOn.setVisible(false);
 
         setDefaultDisplayingState();
 
