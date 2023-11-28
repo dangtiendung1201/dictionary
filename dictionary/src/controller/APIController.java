@@ -1,6 +1,8 @@
 package controller;
 
 import alert.Alerts;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import service.T2SThread;
+import org.jetbrains.annotations.NotNull;
 import service.TranslateAPI;
 
 import java.io.File;
@@ -18,12 +20,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ConnectException;
-import java.net.UnknownHostException;
 
 import static service.ImageAnalysisAPI.getTextFromImage;
+import static service.SpeechAPI.getSpeechFromText;
 import static service.SpeechRecognitionAPI.getTextFromSpeech;
 
 public class APIController extends Controller {
+    public static int apiCallCount = 0;
     private final String[] languages = {"English", "Vietnamese"};
     @FXML
     public Tooltip tooltip1;
@@ -38,29 +41,48 @@ public class APIController extends Controller {
 
     @FXML
     private void handleSpeech2TextBtn() {
-        try {
-            String sentence = getTextFromSpeech(originalLangBox.getValue());
-            inputBox.setText(sentence);
-        }
-        catch (ConnectException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
-        } catch (IOException e) {
-            Alert alert = new Alerts().error("Error",
-                    "Can't recognize speech",
-                    "Please check your language.");
-            alert.show();
-        } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
-        }
+        int thisApiCallNumber = ++apiCallCount;
+
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                String sentence = "";
+                try {
+                    sentence = getTextFromSpeech(originalLangBox.getValue());
+                } catch (ConnectException e) {
+                    Alert alert = new Alerts().error("Error",
+                            "No Internet Connection",
+                            "Please check your internet connection.");
+                    alert.show();
+                } catch (IOException e) {
+                    Alert alert = new Alerts().error("Error",
+                            "Can't recognize speech",
+                            "Please check your language.");
+                    alert.show();
+                } catch (Exception e) {
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
+                }
+                String finalSentence = sentence;
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (thisApiCallNumber == apiCallCount) {
+                            inputBox.setText(finalSentence);
+                        }
+                    }
+                });
+
+                return null;
+            }
+        };
+        new Thread(apiCallTask).start();
     }
 
     private void handleImage2TextBtn() {
+        int thisApiCallNumber = ++apiCallCount;
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose an image");
@@ -68,9 +90,7 @@ public class APIController extends Controller {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.bmp", "*.jpeg")
         );
         File selectedFile = fileChooser.showOpenDialog(stage);
-        if (selectedFile == null) {
-            return;
-        }
+
         String path = selectedFile.getAbsolutePath();
 
         InputStream stream = null;
@@ -82,6 +102,7 @@ public class APIController extends Controller {
                     "There is an error, please try again.");
             alert.show();
         }
+        assert stream != null;
         Image image = new Image(stream);
         ImageView imageView = new ImageView();
         imageView.setImage(image);
@@ -95,21 +116,45 @@ public class APIController extends Controller {
         stage.setScene(scene);
         stage.show();
 
-        String sentence = "";
-        try {
-            sentence = getTextFromImage(path);
-        } catch (ConnectException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
-        } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
-        }
-        inputBox.setText(sentence);
+        Task<Void> apiCallTask = getVoidTask(path, thisApiCallNumber);
+        new Thread(apiCallTask).start();
+
+    }
+
+    @NotNull
+    private Task<Void> getVoidTask(String path, int thisApiCallNumber) {
+        final String[] sentence = {""};
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                
+                try {
+                    sentence[0] = getTextFromImage(path);
+                } catch (ConnectException e) {
+                    Alert alert = new Alerts().error("Error",
+                            "No Internet Connection",
+                            "Please check your internet connection.");
+                    alert.show();
+                } catch (Exception e) {
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
+                }
+                String finalSentence = sentence[0];
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (thisApiCallNumber == apiCallCount) {
+                            inputBox.setText(finalSentence);
+                        }
+                    }
+                });
+
+                return null;
+            }
+        };
+        return apiCallTask;
     }
 
     @FXML
@@ -125,66 +170,84 @@ public class APIController extends Controller {
 
     @FXML
     private void handleOriginalSoundBtn() {
-        T2SThread t1 = new T2SThread();
-        // get text from speech
-        try {
-            System.out.println("Handle sound btn");
-            t1.getSpeechFromTextThread(inputBox.getText(), originalLangBox.getValue());
-        } catch (ConnectException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
-        } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
-        }
+        int thisApiCallNumber = ++apiCallCount;
+
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    getSpeechFromText(inputBox.getText(), originalLangBox.getValue());
+                } catch (ConnectException e) {
+                    Alert alert = new Alerts().error("Error",
+                            "No Internet Connection",
+                            "Please check your internet connection.");
+                    alert.show();
+                } catch (Exception e) {
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
+                }
+
+                return null;
+            }
+        };
+        new Thread(apiCallTask).start();
     }
 
     @FXML
     private void handleTranslatedSoundBtn() {
-        T2SThread t1 = new T2SThread();
-        // get text from speech
-        try {
-            System.out.println("Handle sound btn");
-            t1.getSpeechFromTextThread(outputBox.getText(), translatedLangBox.getValue());
-        } catch (ConnectException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
-        } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
-        }
+        int thisApiCallNumber = ++apiCallCount;
+
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    getSpeechFromText(outputBox.getText(), translatedLangBox.getValue());
+                } catch (ConnectException e) {
+                    Alert alert = new Alerts().error("Error",
+                            "No Internet Connection",
+                            "Please check your internet connection.");
+                    alert.show();
+                } catch (Exception e) {
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
+                }
+                return null;
+            }
+        };
+        new Thread(apiCallTask).start();
     }
 
     @FXML
     private void handleTranslateBtn() {
-        try {
-            String sentence = inputBox.getText();
-            String originalLanguage = originalLangBox.getValue();
-            String translatedLanguage = translatedLangBox.getValue();
+        int thisApiCallNumber = ++apiCallCount;
 
-            TranslateAPI translateAPI = new TranslateAPI();
-            String translatedSentence = translateAPI.translate(sentence, originalLanguage, translatedLanguage);
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                String sentence = inputBox.getText();
+                String originalLanguage = originalLangBox.getValue();
+                String translatedLanguage = translatedLangBox.getValue();
+                TranslateAPI translateAPI = new TranslateAPI();
+                String resultText = translateAPI.translate
+                        (sentence, originalLanguage, translatedLanguage);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (thisApiCallNumber == apiCallCount) {
+                            outputBox.setText(resultText);
+                        }
+                    }
+                });
 
-            outputBox.setText(translatedSentence);
-        } catch (UnknownHostException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
-        } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
-        }
+                return null;
+            }
+        };
+
+        new Thread(apiCallTask).start();
     }
 
     @FXML

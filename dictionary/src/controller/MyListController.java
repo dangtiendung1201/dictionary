@@ -1,6 +1,8 @@
 package controller;
 
 import alert.Alerts;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import word.Word;
@@ -8,6 +10,7 @@ import word.Word;
 import java.net.ConnectException;
 import java.util.List;
 
+import static controller.APIController.apiCallCount;
 import static service.SpeechAPI.getSpeechFromText;
 
 public class MyListController extends TranslationController {
@@ -100,19 +103,29 @@ public class MyListController extends TranslationController {
 
     private void handleSoundBtn() {
         setDefaultDisplayingState();
-        try {
-            getSpeechFromText(englishWord.getText(), "English");
-        } catch (ConnectException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
-        } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
-        }
+
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    getSpeechFromText(englishWord.getText(), "English");
+                } catch (ConnectException e) {
+                    Alert alert = new Alerts().error("Error",
+                            "No Internet Connection",
+                            "Please check your internet connection.");
+                    alert.show();
+                } catch (Exception e) {
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
+                }
+
+                return null;
+            }
+        };
+        new Thread(apiCallTask).start();
+
     }
 
     private void handleAddBtn() {

@@ -1,6 +1,7 @@
 package controller;
 
 import alert.Alerts;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import trie.exception.AddWordException;
@@ -107,19 +108,28 @@ public class TranslationController extends Controller {
 
     private void handleSoundBtn() {
         setDefaultDisplayingState();
-        try {
-            getSpeechFromText(englishWord.getText(), "English");
-        } catch (ConnectException e) {
-            Alert alert = new Alerts().error("Error",
-                    "No Internet Connection",
-                    "Please check your internet connection.");
-            alert.show();
-        } catch (Exception e) {
-            Alert alert = new Alerts().error("Error",
-                    "Unknown Error",
-                    "There is an error, please try again.");
-            alert.show();
-        }
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    getSpeechFromText(englishWord.getText(), "English");
+                } catch (ConnectException e) {
+                    Alert alert = new Alerts().error("Error",
+                            "No Internet Connection",
+                            "Please check your internet connection.");
+                    alert.show();
+                } catch (Exception e) {
+                    Alert alert = new Alerts().error("Error",
+                            "Unknown Error",
+                            "There is an error, please try again.");
+                    alert.show();
+                }
+
+                return null;
+            }
+        };
+        new Thread(apiCallTask).start();
+
     }
 
     private void handleAddBtn() {
