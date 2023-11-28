@@ -117,49 +117,21 @@
                                             </tooltip>
                                         </Button>
                                         <Button fx:id="addBtn" layoutX="550.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/add.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
                                             <tooltip>
                                                 <Tooltip fx:id="addBtnTip" text="Add" />
                                             </tooltip>
                                         </Button>
                                         <Button fx:id="updateBtn" layoutX="605.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/update.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
                                             <tooltip>
                                                 <Tooltip fx:id="updateBtnTip" text="Update" />
                                             </tooltip>
                                         </Button>
                                         <Button fx:id="deleteBtn" layoutX="660.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/delete.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
                                             <tooltip>
                                                 <Tooltip fx:id="deleteBtnTip" text="Delete" />
                                             </tooltip>
                                         </Button>
                                         <Button fx:id="confirmBtn" layoutX="715.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="transparent-button" stylesheets="@../style/style.css">
-                                            <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../icon/confirm.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
                                             <tooltip>
                                                 <Tooltip fx:id="confirmBtnTip" text="Confirm" />
                                             </tooltip>
