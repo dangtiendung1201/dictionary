@@ -18,7 +18,7 @@ Scrapy 2.11.0
 pip install scrapy
 ```
 ## Usage
-There is 2 crawler in this branch
+There are 2 crawlers in this branch
 ### Crawl dictionary data
 I took data from http://tratu.soha.vn/
 ```
