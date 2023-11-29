@@ -13,11 +13,14 @@ Python 3.11.5
 Scrapy 2.11.0
 ```
 ## Setup
-
-Using this code to install Scrapy libraries and crawl
 ```
 pip install scrapy
-
+```
+## Usage
+There is 2 crawler in this branch
+### Crawl dictionary data
+I took data from http://tratu.soha.vn/
+```
 cd cambridge
 cd cambridge
 cd spiders
@@ -29,6 +32,19 @@ All words that will be crawled stored in `wordList.txt` file
 
 Crawled data will be stored in `dataDictionary.json` file
 
-Due to the fact that the crawled data was not sorted by key, so we can sort it by
+Because the crawler works like a pipeline, after crawling word, we sort them alphabetically.
 
-## Usage
+### Crawl Multiple choice game data
+I took data from https://sentence.yourdictionary.com
+```
+cd multiplechoice
+cd multiplechoice
+cd spiders
+
+scrapy crawl example -o dataDictionary.json
+```
+All words that will be crawled stored in `wordList.txt` file
+
+Crawled data will be stored in `dataDictionary.json` file
+
+Because the crawler works like a pipeline, after crawling word, we sort them alphabetically.
