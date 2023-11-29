@@ -14,8 +14,11 @@ Python 3.11.5
 Scrapy 2.11.0
 ```
 ## Setup
+Beside `Scrapy`, I used `scrapy-rotating-proxies` and `scrapy-fake-useragent` to bypass security check.
 ```
 pip install scrapy
+pip install scrapy-rotating-proxies
+pip install scrapy-fake-useragent
 ```
 ## Usage
 There are 2 crawlers in this branch
