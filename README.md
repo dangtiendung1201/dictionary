@@ -5,6 +5,7 @@
 # Table of Contents
 - [Requirements](#requirements)
 - [Setup](#setup)
+- [Usage](#usage)
 
 ## Requirements
 
