@@ -20,8 +20,6 @@ public class ImageAnalysisAPI extends Service {
         Dotenv dotenv = Dotenv.load();
         subscriptionKey = dotenv.get("IMAGE_SUBSCRIPTION_KEY");
         endpoint = dotenv.get("IMAGE_ENDPOINT");
-        System.out.println(endpoint);
-        System.out.println(subscriptionKey);
 
         try {
             serviceOptions = new VisionServiceOptions(new URL(endpoint), subscriptionKey);

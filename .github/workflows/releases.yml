@@ -1,0 +1,63 @@
+name: Build and Release Java Project
+
+on:
+  push:
+    branches: [ "main" ]
+    tags:
+      - 'v*.*'
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 20
+        uses: actions/setup-java@v3
+        with:
+          java-version: '20'
+          distribution: 'temurin'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Install Maven
+        run: |
+          sudo apt-get update
+          sudo apt install -y maven
+
+      - name: Install Dependencies
+        run: mvn install -f pom.xml
+
+      - name: Compile and Package
+        run: mvn package assembly:single -f pom.xml
+        env:
+          IMAGE_SUBSCRIPTION_KEY: ${{ secrets.IMAGE_SUBSCRIPTION_KEY }}
+          IMAGE_ENDPOINT: ${{ secrets.IMAGE_ENDPOINT }}
+          SPEECH_SUBSCRIPTION_KEY: ${{ secrets.SPEECH_SUBSCRIPTION_KEY }}
+          SPEECH_REGION: ${{ secrets.SPEECH_REGION }}
+          SPEECH_ENDPOINT: ${{ secrets.SPEECH_ENDPOINT }}
+          TRANSLATOR_SUBSCRIPTION_KEY: ${{ secrets.TRANSLATOR_SUBSCRIPTION_KEY }}
+          TRANSLATOR_REGION: ${{ secrets.TRANSLATOR_REGION }}
+          TRANSLATOR_ENDPOINT: ${{ secrets.TRANSLATOR_ENDPOINT }}
+
+      - name: Rename Jar
+        run: mv target/dictionary-jar-with-dependencies.jar target/dictionary.jar
+
+      - name: Zip Binaries
+        run: zip -r dictionary.zip target/dictionary.jar dictionary/resources
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.MY_TOKEN }}
+          file: dictionary.zip
+          tag: ${{ github.ref }}
