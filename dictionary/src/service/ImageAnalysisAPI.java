@@ -3,6 +3,7 @@ package service;
 import com.azure.ai.vision.common.VisionServiceOptions;
 import com.azure.ai.vision.common.VisionSource;
 import com.azure.ai.vision.imageanalysis.*;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.net.ConnectException;
 import java.net.MalformedURLException;
@@ -16,8 +17,11 @@ public class ImageAnalysisAPI extends Service {
     private static VisionServiceOptions serviceOptions;
 
     static {
-        subscriptionKey = "018dc14a6078443db9dacc4e4efb5c36";
-        endpoint = "https://uetdic.cognitiveservices.azure.com/";
+        Dotenv dotenv = Dotenv.load();
+        subscriptionKey = dotenv.get("IMAGE_SUBSCRIPTION_KEY");
+        endpoint = dotenv.get("IMAGE_ENDPOINT");
+        System.out.println(endpoint);
+        System.out.println(subscriptionKey);
 
         try {
             serviceOptions = new VisionServiceOptions(new URL(endpoint), subscriptionKey);

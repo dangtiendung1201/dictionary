@@ -1,14 +1,17 @@
 package service;
 
 import com.microsoft.cognitiveservices.speech.*;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.net.ConnectException;
 
 public class SpeechAPI extends Service {
     private static SpeechConfig speechConfig;
     static {
-        subscriptionKey = "81baf70c342f475291fed4dcdb2d9c0c";
-        serviceRegion = "southeastasia";
+        Dotenv dotenv = Dotenv.load();
+        subscriptionKey = dotenv.get("SPEECH_SUBSCRIPTION_KEY");
+        serviceRegion = dotenv.get("SPEECH_REGION");
+
         try {
             speechConfig = SpeechConfig.fromSubscription(subscriptionKey, serviceRegion);
         } catch (Exception e) {

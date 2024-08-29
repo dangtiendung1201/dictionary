@@ -2,6 +2,7 @@ package service;
 
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -13,8 +14,9 @@ public class SpeechRecognitionAPI extends Service {
     private static SpeechConfig config;
     private static AudioConfig audioConfig;
     static {
-        subscriptionKey = "81baf70c342f475291fed4dcdb2d9c0c";
-        serviceRegion = "southeastasia";
+        Dotenv dotenv = Dotenv.load();
+        subscriptionKey = dotenv.get("SPEECH_SUBSCRIPTION_KEY");
+        serviceRegion = dotenv.get("SPEECH_REGION");
 
         try {
             config = SpeechConfig.fromSubscription(subscriptionKey, serviceRegion);
@@ -51,9 +53,10 @@ public class SpeechRecognitionAPI extends Service {
             if (cancellation.getReason() == CancellationReason.Error) {
                 System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
 
-                if (cancellation.getErrorCode() == ConnectionFailure ) {
+                if (cancellation.getErrorCode() == ConnectionFailure) {
                     throw new ConnectException("There is no internet connection.");
-                };
+                }
+                ;
                 throw new Exception("There is an error, please try again.");
             }
         }

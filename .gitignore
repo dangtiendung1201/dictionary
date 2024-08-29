@@ -34,3 +34,5 @@ bin/
 ### Java ###
 *.class
 target/
+
+.env
