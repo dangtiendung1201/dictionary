@@ -35,3 +35,12 @@ jobs:
       run: mvn install -f pom.xml
     - name: Compile
       run: mvn compile -f pom.xml
+      env:
+        IMAGE_SUBSCRIPTION_KEY: ${{ secrets.IMAGE_SUBSCRIPTION_KEY }}
+        IMAGE_ENDPOINT: ${{ secrets.IMAGE_ENDPOINT }}
+        SPEECH_SUBSCRIPTION_KEY: ${{ secrets.SPEECH_SUBSCRIPTION_KEY }}
+        SPEECH_REGION: ${{ secrets.SPEECH_REGION }}
+        SPEECH_ENDPONT: ${{ secrets.SPEECH_ENDPONT }}
+        TRANSLATOR_SUBSCRIPTION_KEY: ${{ secrets.TRANSLATOR_SUBSCRIPTION_KEY }}
+        TRANSLATOR_REGION: ${{ secrets.TRANSLATOR_REGION }}
+        TRANSLATOR_ENDPOINT: ${{ secrets.TRANSLATOR_ENDPOINT }}
