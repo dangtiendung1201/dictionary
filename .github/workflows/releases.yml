@@ -2,11 +2,8 @@ name: Build and Release Java Project
 
 on:
   push:
-    branches: [ "main" ]
     tags:
-      - 'v*.*'
-  pull_request:
-    branches: [ "main" ]
+      - 'v*.*.*'
 
 jobs:
   build:
